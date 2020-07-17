@@ -35,13 +35,12 @@ export class EmptyDemoComponent implements OnInit {
       name: "Test Company",
     });
   }
-  
+}
 //   deleteCompany(ID) {
 //     this.api.DeleteCompany({}
 //       id: ID,
 //     });
-  }
-}
+//
 
 // id: ID!
 // name: String!
