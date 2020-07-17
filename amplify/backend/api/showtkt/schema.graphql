@@ -1,0 +1,46 @@
+type Company @model {
+  id: ID!
+  name: String!
+  Productions: [Production] @connection(name: "companyProductions")
+}
+
+type Venue @model {
+  id: ID!
+  name: String!
+  events: [Event] @connection(name: "venueEvents")
+}
+
+type Production @model {
+  id: ID!
+  name: String!
+  company: Company @connection(name: "companyProductions")
+  events: [Event] @connection(name: "productionEvents")
+}
+
+type Event @model {
+  id: ID!
+  name: String!
+  production: Production! @connection(name: "productionEvents")
+  venue: Venue @connection(name: "venueEvents")
+  datetime: AWSDateTime
+  seats: [Seat] @connection(name: "eventSeats")
+  maxAdmission: Int
+}
+
+# The seating chart is simply a template to populate a new event's seats
+type SeatingChart @model {
+  id: ID!
+  name: String!
+  venue: Venue! @connection
+  seats: [Seat]
+}
+
+# A Seat is unique to an Event
+type Seat @model {
+  id: ID!
+  section: String!
+  row: String!
+  number: String!
+  event: Event @connection(name: "eventSeats")
+  status: String!
+}

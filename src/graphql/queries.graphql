@@ -1,0 +1,327 @@
+# this is an auto generated file. This will be overwritten
+query GetCompany($id: ID!) {
+  getCompany(id: $id) {
+    id
+    name
+    Productions {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListCompanys(
+  $filter: ModelCompanyFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCompanys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      Productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetVenue($id: ID!) {
+  getVenue(id: $id) {
+    id
+    name
+    events {
+      items {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListVenues(
+  $filter: ModelVenueFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listVenues(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetProduction($id: ID!) {
+  getProduction(id: $id) {
+    id
+    name
+    company {
+      id
+      name
+      Productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    events {
+      items {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListProductions(
+  $filter: ModelProductionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listProductions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      company {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetEvent($id: ID!) {
+  getEvent(id: $id) {
+    id
+    name
+    production {
+      id
+      name
+      company {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    venue {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    datetime
+    seats {
+      items {
+        id
+        section
+        row
+        number
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    maxAdmission
+    createdAt
+    updatedAt
+  }
+}
+query ListEvents(
+  $filter: ModelEventFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      production {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      venue {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      datetime
+      seats {
+        nextToken
+      }
+      maxAdmission
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetSeatingChart($id: ID!) {
+  getSeatingChart(id: $id) {
+    id
+    name
+    venue {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    seats {
+      id
+      section
+      row
+      number
+      event {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      status
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListSeatingCharts(
+  $filter: ModelSeatingChartFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listSeatingCharts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      venue {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      seats {
+        id
+        section
+        row
+        number
+        status
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetSeat($id: ID!) {
+  getSeat(id: $id) {
+    id
+    section
+    row
+    number
+    event {
+      id
+      name
+      production {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      venue {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      datetime
+      seats {
+        nextToken
+      }
+      maxAdmission
+      createdAt
+      updatedAt
+    }
+    status
+    createdAt
+    updatedAt
+  }
+}
+query ListSeats(
+  $filter: ModelSeatFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listSeats(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      section
+      row
+      number
+      event {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      status
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

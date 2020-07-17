@@ -1,0 +1,535 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateCompany {
+  onCreateCompany {
+    id
+    name
+    Productions {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCompany {
+  onUpdateCompany {
+    id
+    name
+    Productions {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCompany {
+  onDeleteCompany {
+    id
+    name
+    Productions {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateVenue {
+  onCreateVenue {
+    id
+    name
+    events {
+      items {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateVenue {
+  onUpdateVenue {
+    id
+    name
+    events {
+      items {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteVenue {
+  onDeleteVenue {
+    id
+    name
+    events {
+      items {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateProduction {
+  onCreateProduction {
+    id
+    name
+    company {
+      id
+      name
+      Productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    events {
+      items {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateProduction {
+  onUpdateProduction {
+    id
+    name
+    company {
+      id
+      name
+      Productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    events {
+      items {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteProduction {
+  onDeleteProduction {
+    id
+    name
+    company {
+      id
+      name
+      Productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    events {
+      items {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateEvent {
+  onCreateEvent {
+    id
+    name
+    production {
+      id
+      name
+      company {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    venue {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    datetime
+    seats {
+      items {
+        id
+        section
+        row
+        number
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    maxAdmission
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateEvent {
+  onUpdateEvent {
+    id
+    name
+    production {
+      id
+      name
+      company {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    venue {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    datetime
+    seats {
+      items {
+        id
+        section
+        row
+        number
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    maxAdmission
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteEvent {
+  onDeleteEvent {
+    id
+    name
+    production {
+      id
+      name
+      company {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    venue {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    datetime
+    seats {
+      items {
+        id
+        section
+        row
+        number
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    maxAdmission
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateSeatingChart {
+  onCreateSeatingChart {
+    id
+    name
+    venue {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    seats {
+      id
+      section
+      row
+      number
+      event {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      status
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateSeatingChart {
+  onUpdateSeatingChart {
+    id
+    name
+    venue {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    seats {
+      id
+      section
+      row
+      number
+      event {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      status
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteSeatingChart {
+  onDeleteSeatingChart {
+    id
+    name
+    venue {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    seats {
+      id
+      section
+      row
+      number
+      event {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      status
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateSeat {
+  onCreateSeat {
+    id
+    section
+    row
+    number
+    event {
+      id
+      name
+      production {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      venue {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      datetime
+      seats {
+        nextToken
+      }
+      maxAdmission
+      createdAt
+      updatedAt
+    }
+    status
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateSeat {
+  onUpdateSeat {
+    id
+    section
+    row
+    number
+    event {
+      id
+      name
+      production {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      venue {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      datetime
+      seats {
+        nextToken
+      }
+      maxAdmission
+      createdAt
+      updatedAt
+    }
+    status
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteSeat {
+  onDeleteSeat {
+    id
+    section
+    row
+    number
+    event {
+      id
+      name
+      production {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      venue {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      datetime
+      seats {
+        nextToken
+      }
+      maxAdmission
+      createdAt
+      updatedAt
+    }
+    status
+    createdAt
+    updatedAt
+  }
+}
