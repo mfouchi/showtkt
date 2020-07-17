@@ -6,16 +6,16 @@ import API, { graphqlOperation } from "@aws-amplify/api";
 import { GraphQLResult } from "@aws-amplify/api/lib/types";
 import { Observable } from "zen-observable-ts";
 
-export type CreateCompanyInput = {
+export type CreateTicketProviderInput = {
   id?: string | null;
   name: string;
 };
 
-export type ModelCompanyConditionInput = {
+export type ModelTicketProviderConditionInput = {
   name?: ModelStringInput | null;
-  and?: Array<ModelCompanyConditionInput | null> | null;
-  or?: Array<ModelCompanyConditionInput | null> | null;
-  not?: ModelCompanyConditionInput | null;
+  and?: Array<ModelTicketProviderConditionInput | null> | null;
+  or?: Array<ModelTicketProviderConditionInput | null> | null;
+  not?: ModelTicketProviderConditionInput | null;
 };
 
 export type ModelStringInput = {
@@ -57,44 +57,25 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
-export type UpdateCompanyInput = {
+export type UpdateTicketProviderInput = {
   id: string;
   name?: string | null;
 };
 
-export type DeleteCompanyInput = {
-  id?: string | null;
-};
-
-export type CreateVenueInput = {
-  id?: string | null;
-  name: string;
-};
-
-export type ModelVenueConditionInput = {
-  name?: ModelStringInput | null;
-  and?: Array<ModelVenueConditionInput | null> | null;
-  or?: Array<ModelVenueConditionInput | null> | null;
-  not?: ModelVenueConditionInput | null;
-};
-
-export type UpdateVenueInput = {
-  id: string;
-  name?: string | null;
-};
-
-export type DeleteVenueInput = {
+export type DeleteTicketProviderInput = {
   id?: string | null;
 };
 
 export type CreateProductionInput = {
   id?: string | null;
   name: string;
-  productionCompanyId?: string | null;
+  producer?: string | null;
+  ticketProviderProductionsId?: string | null;
 };
 
 export type ModelProductionConditionInput = {
   name?: ModelStringInput | null;
+  producer?: ModelStringInput | null;
   and?: Array<ModelProductionConditionInput | null> | null;
   or?: Array<ModelProductionConditionInput | null> | null;
   not?: ModelProductionConditionInput | null;
@@ -103,7 +84,8 @@ export type ModelProductionConditionInput = {
 export type UpdateProductionInput = {
   id: string;
   name?: string | null;
-  productionCompanyId?: string | null;
+  producer?: string | null;
+  ticketProviderProductionsId?: string | null;
 };
 
 export type DeleteProductionInput = {
@@ -150,6 +132,27 @@ export type UpdateEventInput = {
 };
 
 export type DeleteEventInput = {
+  id?: string | null;
+};
+
+export type CreateVenueInput = {
+  id?: string | null;
+  name: string;
+};
+
+export type ModelVenueConditionInput = {
+  name?: ModelStringInput | null;
+  and?: Array<ModelVenueConditionInput | null> | null;
+  or?: Array<ModelVenueConditionInput | null> | null;
+  not?: ModelVenueConditionInput | null;
+};
+
+export type UpdateVenueInput = {
+  id: string;
+  name?: string | null;
+};
+
+export type DeleteVenueInput = {
   id?: string | null;
 };
 
@@ -208,12 +211,12 @@ export type DeleteSeatInput = {
   id?: string | null;
 };
 
-export type ModelCompanyFilterInput = {
+export type ModelTicketProviderFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
-  and?: Array<ModelCompanyFilterInput | null> | null;
-  or?: Array<ModelCompanyFilterInput | null> | null;
-  not?: ModelCompanyFilterInput | null;
+  and?: Array<ModelTicketProviderFilterInput | null> | null;
+  or?: Array<ModelTicketProviderFilterInput | null> | null;
+  not?: ModelTicketProviderFilterInput | null;
 };
 
 export type ModelIDInput = {
@@ -232,17 +235,10 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null;
 };
 
-export type ModelVenueFilterInput = {
-  id?: ModelIDInput | null;
-  name?: ModelStringInput | null;
-  and?: Array<ModelVenueFilterInput | null> | null;
-  or?: Array<ModelVenueFilterInput | null> | null;
-  not?: ModelVenueFilterInput | null;
-};
-
 export type ModelProductionFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
+  producer?: ModelStringInput | null;
   and?: Array<ModelProductionFilterInput | null> | null;
   or?: Array<ModelProductionFilterInput | null> | null;
   not?: ModelProductionFilterInput | null;
@@ -256,6 +252,14 @@ export type ModelEventFilterInput = {
   and?: Array<ModelEventFilterInput | null> | null;
   or?: Array<ModelEventFilterInput | null> | null;
   not?: ModelEventFilterInput | null;
+};
+
+export type ModelVenueFilterInput = {
+  id?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  and?: Array<ModelVenueFilterInput | null> | null;
+  or?: Array<ModelVenueFilterInput | null> | null;
+  not?: ModelVenueFilterInput | null;
 };
 
 export type ModelSeatingChartFilterInput = {
@@ -277,16 +281,17 @@ export type ModelSeatFilterInput = {
   not?: ModelSeatFilterInput | null;
 };
 
-export type CreateCompanyMutation = {
-  __typename: "Company";
+export type CreateTicketProviderMutation = {
+  __typename: "TicketProvider";
   id: string;
   name: string;
-  Productions: {
+  productions: {
     __typename: "ModelProductionConnection";
     items: Array<{
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -296,16 +301,17 @@ export type CreateCompanyMutation = {
   updatedAt: string;
 };
 
-export type UpdateCompanyMutation = {
-  __typename: "Company";
+export type UpdateTicketProviderMutation = {
+  __typename: "TicketProvider";
   id: string;
   name: string;
-  Productions: {
+  productions: {
     __typename: "ModelProductionConnection";
     items: Array<{
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -315,21 +321,229 @@ export type UpdateCompanyMutation = {
   updatedAt: string;
 };
 
-export type DeleteCompanyMutation = {
-  __typename: "Company";
+export type DeleteTicketProviderMutation = {
+  __typename: "TicketProvider";
   id: string;
   name: string;
-  Productions: {
+  productions: {
     __typename: "ModelProductionConnection";
     items: Array<{
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateProductionMutation = {
+  __typename: "Production";
+  id: string;
+  name: string;
+  producer: string | null;
+  events: {
+    __typename: "ModelEventConnection";
+    items: Array<{
+      __typename: "Event";
+      id: string;
+      name: string;
+      datetime: string | null;
+      maxAdmission: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateProductionMutation = {
+  __typename: "Production";
+  id: string;
+  name: string;
+  producer: string | null;
+  events: {
+    __typename: "ModelEventConnection";
+    items: Array<{
+      __typename: "Event";
+      id: string;
+      name: string;
+      datetime: string | null;
+      maxAdmission: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteProductionMutation = {
+  __typename: "Production";
+  id: string;
+  name: string;
+  producer: string | null;
+  events: {
+    __typename: "ModelEventConnection";
+    items: Array<{
+      __typename: "Event";
+      id: string;
+      name: string;
+      datetime: string | null;
+      maxAdmission: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateEventMutation = {
+  __typename: "Event";
+  id: string;
+  name: string;
+  production: {
+    __typename: "Production";
+    id: string;
+    name: string;
+    producer: string | null;
+    events: {
+      __typename: "ModelEventConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  venue: {
+    __typename: "Venue";
+    id: string;
+    name: string;
+    events: {
+      __typename: "ModelEventConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  datetime: string | null;
+  seats: {
+    __typename: "ModelSeatConnection";
+    items: Array<{
+      __typename: "Seat";
+      id: string;
+      section: string;
+      row: string;
+      number: string;
+      status: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  maxAdmission: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateEventMutation = {
+  __typename: "Event";
+  id: string;
+  name: string;
+  production: {
+    __typename: "Production";
+    id: string;
+    name: string;
+    producer: string | null;
+    events: {
+      __typename: "ModelEventConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  venue: {
+    __typename: "Venue";
+    id: string;
+    name: string;
+    events: {
+      __typename: "ModelEventConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  datetime: string | null;
+  seats: {
+    __typename: "ModelSeatConnection";
+    items: Array<{
+      __typename: "Seat";
+      id: string;
+      section: string;
+      row: string;
+      number: string;
+      status: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  maxAdmission: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteEventMutation = {
+  __typename: "Event";
+  id: string;
+  name: string;
+  production: {
+    __typename: "Production";
+    id: string;
+    name: string;
+    producer: string | null;
+    events: {
+      __typename: "ModelEventConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  venue: {
+    __typename: "Venue";
+    id: string;
+    name: string;
+    events: {
+      __typename: "ModelEventConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  datetime: string | null;
+  seats: {
+    __typename: "ModelSeatConnection";
+    items: Array<{
+      __typename: "Seat";
+      id: string;
+      section: string;
+      row: string;
+      number: string;
+      status: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  maxAdmission: number | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -393,261 +607,6 @@ export type DeleteVenueMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type CreateProductionMutation = {
-  __typename: "Production";
-  id: string;
-  name: string;
-  company: {
-    __typename: "Company";
-    id: string;
-    name: string;
-    Productions: {
-      __typename: "ModelProductionConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  events: {
-    __typename: "ModelEventConnection";
-    items: Array<{
-      __typename: "Event";
-      id: string;
-      name: string;
-      datetime: string | null;
-      maxAdmission: number | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type UpdateProductionMutation = {
-  __typename: "Production";
-  id: string;
-  name: string;
-  company: {
-    __typename: "Company";
-    id: string;
-    name: string;
-    Productions: {
-      __typename: "ModelProductionConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  events: {
-    __typename: "ModelEventConnection";
-    items: Array<{
-      __typename: "Event";
-      id: string;
-      name: string;
-      datetime: string | null;
-      maxAdmission: number | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type DeleteProductionMutation = {
-  __typename: "Production";
-  id: string;
-  name: string;
-  company: {
-    __typename: "Company";
-    id: string;
-    name: string;
-    Productions: {
-      __typename: "ModelProductionConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  events: {
-    __typename: "ModelEventConnection";
-    items: Array<{
-      __typename: "Event";
-      id: string;
-      name: string;
-      datetime: string | null;
-      maxAdmission: number | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type CreateEventMutation = {
-  __typename: "Event";
-  id: string;
-  name: string;
-  production: {
-    __typename: "Production";
-    id: string;
-    name: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    events: {
-      __typename: "ModelEventConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  };
-  venue: {
-    __typename: "Venue";
-    id: string;
-    name: string;
-    events: {
-      __typename: "ModelEventConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  datetime: string | null;
-  seats: {
-    __typename: "ModelSeatConnection";
-    items: Array<{
-      __typename: "Seat";
-      id: string;
-      section: string;
-      row: string;
-      number: string;
-      status: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  maxAdmission: number | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type UpdateEventMutation = {
-  __typename: "Event";
-  id: string;
-  name: string;
-  production: {
-    __typename: "Production";
-    id: string;
-    name: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    events: {
-      __typename: "ModelEventConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  };
-  venue: {
-    __typename: "Venue";
-    id: string;
-    name: string;
-    events: {
-      __typename: "ModelEventConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  datetime: string | null;
-  seats: {
-    __typename: "ModelSeatConnection";
-    items: Array<{
-      __typename: "Seat";
-      id: string;
-      section: string;
-      row: string;
-      number: string;
-      status: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  maxAdmission: number | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type DeleteEventMutation = {
-  __typename: "Event";
-  id: string;
-  name: string;
-  production: {
-    __typename: "Production";
-    id: string;
-    name: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    events: {
-      __typename: "ModelEventConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  };
-  venue: {
-    __typename: "Venue";
-    id: string;
-    name: string;
-    events: {
-      __typename: "ModelEventConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  datetime: string | null;
-  seats: {
-    __typename: "ModelSeatConnection";
-    items: Array<{
-      __typename: "Seat";
-      id: string;
-      section: string;
-      row: string;
-      number: string;
-      status: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  maxAdmission: number | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -780,6 +739,7 @@ export type CreateSeatMutation = {
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     };
@@ -818,6 +778,7 @@ export type UpdateSeatMutation = {
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     };
@@ -856,6 +817,7 @@ export type DeleteSeatMutation = {
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     };
@@ -880,16 +842,17 @@ export type DeleteSeatMutation = {
   updatedAt: string;
 };
 
-export type GetCompanyQuery = {
-  __typename: "Company";
+export type GetTicketProviderQuery = {
+  __typename: "TicketProvider";
   id: string;
   name: string;
-  Productions: {
+  productions: {
     __typename: "ModelProductionConnection";
     items: Array<{
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -899,51 +862,14 @@ export type GetCompanyQuery = {
   updatedAt: string;
 };
 
-export type ListCompanysQuery = {
-  __typename: "ModelCompanyConnection";
+export type ListTicketProvidersQuery = {
+  __typename: "ModelTicketProviderConnection";
   items: Array<{
-    __typename: "Company";
+    __typename: "TicketProvider";
     id: string;
     name: string;
-    Productions: {
+    productions: {
       __typename: "ModelProductionConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  nextToken: string | null;
-};
-
-export type GetVenueQuery = {
-  __typename: "Venue";
-  id: string;
-  name: string;
-  events: {
-    __typename: "ModelEventConnection";
-    items: Array<{
-      __typename: "Event";
-      id: string;
-      name: string;
-      datetime: string | null;
-      maxAdmission: number | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type ListVenuesQuery = {
-  __typename: "ModelVenueConnection";
-  items: Array<{
-    __typename: "Venue";
-    id: string;
-    name: string;
-    events: {
-      __typename: "ModelEventConnection";
       nextToken: string | null;
     } | null;
     createdAt: string;
@@ -956,17 +882,7 @@ export type GetProductionQuery = {
   __typename: "Production";
   id: string;
   name: string;
-  company: {
-    __typename: "Company";
-    id: string;
-    name: string;
-    Productions: {
-      __typename: "ModelProductionConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
+  producer: string | null;
   events: {
     __typename: "ModelEventConnection";
     items: Array<{
@@ -990,13 +906,7 @@ export type ListProductionsQuery = {
     __typename: "Production";
     id: string;
     name: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
+    producer: string | null;
     events: {
       __typename: "ModelEventConnection";
       nextToken: string | null;
@@ -1015,13 +925,7 @@ export type GetEventQuery = {
     __typename: "Production";
     id: string;
     name: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
+    producer: string | null;
     events: {
       __typename: "ModelEventConnection";
       nextToken: string | null;
@@ -1070,6 +974,7 @@ export type ListEventsQuery = {
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     };
@@ -1086,6 +991,43 @@ export type ListEventsQuery = {
       nextToken: string | null;
     } | null;
     maxAdmission: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetVenueQuery = {
+  __typename: "Venue";
+  id: string;
+  name: string;
+  events: {
+    __typename: "ModelEventConnection";
+    items: Array<{
+      __typename: "Event";
+      id: string;
+      name: string;
+      datetime: string | null;
+      maxAdmission: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListVenuesQuery = {
+  __typename: "ModelVenueConnection";
+  items: Array<{
+    __typename: "Venue";
+    id: string;
+    name: string;
+    events: {
+      __typename: "ModelEventConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1173,6 +1115,7 @@ export type GetSeatQuery = {
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     };
@@ -1221,16 +1164,17 @@ export type ListSeatsQuery = {
   nextToken: string | null;
 };
 
-export type OnCreateCompanySubscription = {
-  __typename: "Company";
+export type OnCreateTicketProviderSubscription = {
+  __typename: "TicketProvider";
   id: string;
   name: string;
-  Productions: {
+  productions: {
     __typename: "ModelProductionConnection";
     items: Array<{
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -1240,16 +1184,17 @@ export type OnCreateCompanySubscription = {
   updatedAt: string;
 };
 
-export type OnUpdateCompanySubscription = {
-  __typename: "Company";
+export type OnUpdateTicketProviderSubscription = {
+  __typename: "TicketProvider";
   id: string;
   name: string;
-  Productions: {
+  productions: {
     __typename: "ModelProductionConnection";
     items: Array<{
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -1259,21 +1204,229 @@ export type OnUpdateCompanySubscription = {
   updatedAt: string;
 };
 
-export type OnDeleteCompanySubscription = {
-  __typename: "Company";
+export type OnDeleteTicketProviderSubscription = {
+  __typename: "TicketProvider";
   id: string;
   name: string;
-  Productions: {
+  productions: {
     __typename: "ModelProductionConnection";
     items: Array<{
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateProductionSubscription = {
+  __typename: "Production";
+  id: string;
+  name: string;
+  producer: string | null;
+  events: {
+    __typename: "ModelEventConnection";
+    items: Array<{
+      __typename: "Event";
+      id: string;
+      name: string;
+      datetime: string | null;
+      maxAdmission: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateProductionSubscription = {
+  __typename: "Production";
+  id: string;
+  name: string;
+  producer: string | null;
+  events: {
+    __typename: "ModelEventConnection";
+    items: Array<{
+      __typename: "Event";
+      id: string;
+      name: string;
+      datetime: string | null;
+      maxAdmission: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteProductionSubscription = {
+  __typename: "Production";
+  id: string;
+  name: string;
+  producer: string | null;
+  events: {
+    __typename: "ModelEventConnection";
+    items: Array<{
+      __typename: "Event";
+      id: string;
+      name: string;
+      datetime: string | null;
+      maxAdmission: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateEventSubscription = {
+  __typename: "Event";
+  id: string;
+  name: string;
+  production: {
+    __typename: "Production";
+    id: string;
+    name: string;
+    producer: string | null;
+    events: {
+      __typename: "ModelEventConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  venue: {
+    __typename: "Venue";
+    id: string;
+    name: string;
+    events: {
+      __typename: "ModelEventConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  datetime: string | null;
+  seats: {
+    __typename: "ModelSeatConnection";
+    items: Array<{
+      __typename: "Seat";
+      id: string;
+      section: string;
+      row: string;
+      number: string;
+      status: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  maxAdmission: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateEventSubscription = {
+  __typename: "Event";
+  id: string;
+  name: string;
+  production: {
+    __typename: "Production";
+    id: string;
+    name: string;
+    producer: string | null;
+    events: {
+      __typename: "ModelEventConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  venue: {
+    __typename: "Venue";
+    id: string;
+    name: string;
+    events: {
+      __typename: "ModelEventConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  datetime: string | null;
+  seats: {
+    __typename: "ModelSeatConnection";
+    items: Array<{
+      __typename: "Seat";
+      id: string;
+      section: string;
+      row: string;
+      number: string;
+      status: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  maxAdmission: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteEventSubscription = {
+  __typename: "Event";
+  id: string;
+  name: string;
+  production: {
+    __typename: "Production";
+    id: string;
+    name: string;
+    producer: string | null;
+    events: {
+      __typename: "ModelEventConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  venue: {
+    __typename: "Venue";
+    id: string;
+    name: string;
+    events: {
+      __typename: "ModelEventConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  datetime: string | null;
+  seats: {
+    __typename: "ModelSeatConnection";
+    items: Array<{
+      __typename: "Seat";
+      id: string;
+      section: string;
+      row: string;
+      number: string;
+      status: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  maxAdmission: number | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1337,261 +1490,6 @@ export type OnDeleteVenueSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnCreateProductionSubscription = {
-  __typename: "Production";
-  id: string;
-  name: string;
-  company: {
-    __typename: "Company";
-    id: string;
-    name: string;
-    Productions: {
-      __typename: "ModelProductionConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  events: {
-    __typename: "ModelEventConnection";
-    items: Array<{
-      __typename: "Event";
-      id: string;
-      name: string;
-      datetime: string | null;
-      maxAdmission: number | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnUpdateProductionSubscription = {
-  __typename: "Production";
-  id: string;
-  name: string;
-  company: {
-    __typename: "Company";
-    id: string;
-    name: string;
-    Productions: {
-      __typename: "ModelProductionConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  events: {
-    __typename: "ModelEventConnection";
-    items: Array<{
-      __typename: "Event";
-      id: string;
-      name: string;
-      datetime: string | null;
-      maxAdmission: number | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnDeleteProductionSubscription = {
-  __typename: "Production";
-  id: string;
-  name: string;
-  company: {
-    __typename: "Company";
-    id: string;
-    name: string;
-    Productions: {
-      __typename: "ModelProductionConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  events: {
-    __typename: "ModelEventConnection";
-    items: Array<{
-      __typename: "Event";
-      id: string;
-      name: string;
-      datetime: string | null;
-      maxAdmission: number | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnCreateEventSubscription = {
-  __typename: "Event";
-  id: string;
-  name: string;
-  production: {
-    __typename: "Production";
-    id: string;
-    name: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    events: {
-      __typename: "ModelEventConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  };
-  venue: {
-    __typename: "Venue";
-    id: string;
-    name: string;
-    events: {
-      __typename: "ModelEventConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  datetime: string | null;
-  seats: {
-    __typename: "ModelSeatConnection";
-    items: Array<{
-      __typename: "Seat";
-      id: string;
-      section: string;
-      row: string;
-      number: string;
-      status: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  maxAdmission: number | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnUpdateEventSubscription = {
-  __typename: "Event";
-  id: string;
-  name: string;
-  production: {
-    __typename: "Production";
-    id: string;
-    name: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    events: {
-      __typename: "ModelEventConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  };
-  venue: {
-    __typename: "Venue";
-    id: string;
-    name: string;
-    events: {
-      __typename: "ModelEventConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  datetime: string | null;
-  seats: {
-    __typename: "ModelSeatConnection";
-    items: Array<{
-      __typename: "Seat";
-      id: string;
-      section: string;
-      row: string;
-      number: string;
-      status: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  maxAdmission: number | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnDeleteEventSubscription = {
-  __typename: "Event";
-  id: string;
-  name: string;
-  production: {
-    __typename: "Production";
-    id: string;
-    name: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    events: {
-      __typename: "ModelEventConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  };
-  venue: {
-    __typename: "Venue";
-    id: string;
-    name: string;
-    events: {
-      __typename: "ModelEventConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  datetime: string | null;
-  seats: {
-    __typename: "ModelSeatConnection";
-    items: Array<{
-      __typename: "Seat";
-      id: string;
-      section: string;
-      row: string;
-      number: string;
-      status: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  maxAdmission: number | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1724,6 +1622,7 @@ export type OnCreateSeatSubscription = {
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     };
@@ -1762,6 +1661,7 @@ export type OnUpdateSeatSubscription = {
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     };
@@ -1800,6 +1700,7 @@ export type OnDeleteSeatSubscription = {
       __typename: "Production";
       id: string;
       name: string;
+      producer: string | null;
       createdAt: string;
       updatedAt: string;
     };
@@ -1828,21 +1729,22 @@ export type OnDeleteSeatSubscription = {
   providedIn: "root"
 })
 export class APIService {
-  async CreateCompany(
-    input: CreateCompanyInput,
-    condition?: ModelCompanyConditionInput
-  ): Promise<CreateCompanyMutation> {
-    const statement = `mutation CreateCompany($input: CreateCompanyInput!, $condition: ModelCompanyConditionInput) {
-        createCompany(input: $input, condition: $condition) {
+  async CreateTicketProvider(
+    input: CreateTicketProviderInput,
+    condition?: ModelTicketProviderConditionInput
+  ): Promise<CreateTicketProviderMutation> {
+    const statement = `mutation CreateTicketProvider($input: CreateTicketProviderInput!, $condition: ModelTicketProviderConditionInput) {
+        createTicketProvider(input: $input, condition: $condition) {
           __typename
           id
           name
-          Productions {
+          productions {
             __typename
             items {
               __typename
               id
               name
+              producer
               createdAt
               updatedAt
             }
@@ -1861,23 +1763,24 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <CreateCompanyMutation>response.data.createCompany;
+    return <CreateTicketProviderMutation>response.data.createTicketProvider;
   }
-  async UpdateCompany(
-    input: UpdateCompanyInput,
-    condition?: ModelCompanyConditionInput
-  ): Promise<UpdateCompanyMutation> {
-    const statement = `mutation UpdateCompany($input: UpdateCompanyInput!, $condition: ModelCompanyConditionInput) {
-        updateCompany(input: $input, condition: $condition) {
+  async UpdateTicketProvider(
+    input: UpdateTicketProviderInput,
+    condition?: ModelTicketProviderConditionInput
+  ): Promise<UpdateTicketProviderMutation> {
+    const statement = `mutation UpdateTicketProvider($input: UpdateTicketProviderInput!, $condition: ModelTicketProviderConditionInput) {
+        updateTicketProvider(input: $input, condition: $condition) {
           __typename
           id
           name
-          Productions {
+          productions {
             __typename
             items {
               __typename
               id
               name
+              producer
               createdAt
               updatedAt
             }
@@ -1896,23 +1799,24 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <UpdateCompanyMutation>response.data.updateCompany;
+    return <UpdateTicketProviderMutation>response.data.updateTicketProvider;
   }
-  async DeleteCompany(
-    input: DeleteCompanyInput,
-    condition?: ModelCompanyConditionInput
-  ): Promise<DeleteCompanyMutation> {
-    const statement = `mutation DeleteCompany($input: DeleteCompanyInput!, $condition: ModelCompanyConditionInput) {
-        deleteCompany(input: $input, condition: $condition) {
+  async DeleteTicketProvider(
+    input: DeleteTicketProviderInput,
+    condition?: ModelTicketProviderConditionInput
+  ): Promise<DeleteTicketProviderMutation> {
+    const statement = `mutation DeleteTicketProvider($input: DeleteTicketProviderInput!, $condition: ModelTicketProviderConditionInput) {
+        deleteTicketProvider(input: $input, condition: $condition) {
           __typename
           id
           name
-          Productions {
+          productions {
             __typename
             items {
               __typename
               id
               name
+              producer
               createdAt
               updatedAt
             }
@@ -1931,7 +1835,310 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <DeleteCompanyMutation>response.data.deleteCompany;
+    return <DeleteTicketProviderMutation>response.data.deleteTicketProvider;
+  }
+  async CreateProduction(
+    input: CreateProductionInput,
+    condition?: ModelProductionConditionInput
+  ): Promise<CreateProductionMutation> {
+    const statement = `mutation CreateProduction($input: CreateProductionInput!, $condition: ModelProductionConditionInput) {
+        createProduction(input: $input, condition: $condition) {
+          __typename
+          id
+          name
+          producer
+          events {
+            __typename
+            items {
+              __typename
+              id
+              name
+              datetime
+              maxAdmission
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateProductionMutation>response.data.createProduction;
+  }
+  async UpdateProduction(
+    input: UpdateProductionInput,
+    condition?: ModelProductionConditionInput
+  ): Promise<UpdateProductionMutation> {
+    const statement = `mutation UpdateProduction($input: UpdateProductionInput!, $condition: ModelProductionConditionInput) {
+        updateProduction(input: $input, condition: $condition) {
+          __typename
+          id
+          name
+          producer
+          events {
+            __typename
+            items {
+              __typename
+              id
+              name
+              datetime
+              maxAdmission
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateProductionMutation>response.data.updateProduction;
+  }
+  async DeleteProduction(
+    input: DeleteProductionInput,
+    condition?: ModelProductionConditionInput
+  ): Promise<DeleteProductionMutation> {
+    const statement = `mutation DeleteProduction($input: DeleteProductionInput!, $condition: ModelProductionConditionInput) {
+        deleteProduction(input: $input, condition: $condition) {
+          __typename
+          id
+          name
+          producer
+          events {
+            __typename
+            items {
+              __typename
+              id
+              name
+              datetime
+              maxAdmission
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteProductionMutation>response.data.deleteProduction;
+  }
+  async CreateEvent(
+    input: CreateEventInput,
+    condition?: ModelEventConditionInput
+  ): Promise<CreateEventMutation> {
+    const statement = `mutation CreateEvent($input: CreateEventInput!, $condition: ModelEventConditionInput) {
+        createEvent(input: $input, condition: $condition) {
+          __typename
+          id
+          name
+          production {
+            __typename
+            id
+            name
+            producer
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          venue {
+            __typename
+            id
+            name
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          datetime
+          seats {
+            __typename
+            items {
+              __typename
+              id
+              section
+              row
+              number
+              status
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          maxAdmission
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateEventMutation>response.data.createEvent;
+  }
+  async UpdateEvent(
+    input: UpdateEventInput,
+    condition?: ModelEventConditionInput
+  ): Promise<UpdateEventMutation> {
+    const statement = `mutation UpdateEvent($input: UpdateEventInput!, $condition: ModelEventConditionInput) {
+        updateEvent(input: $input, condition: $condition) {
+          __typename
+          id
+          name
+          production {
+            __typename
+            id
+            name
+            producer
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          venue {
+            __typename
+            id
+            name
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          datetime
+          seats {
+            __typename
+            items {
+              __typename
+              id
+              section
+              row
+              number
+              status
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          maxAdmission
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateEventMutation>response.data.updateEvent;
+  }
+  async DeleteEvent(
+    input: DeleteEventInput,
+    condition?: ModelEventConditionInput
+  ): Promise<DeleteEventMutation> {
+    const statement = `mutation DeleteEvent($input: DeleteEventInput!, $condition: ModelEventConditionInput) {
+        deleteEvent(input: $input, condition: $condition) {
+          __typename
+          id
+          name
+          production {
+            __typename
+            id
+            name
+            producer
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          venue {
+            __typename
+            id
+            name
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          datetime
+          seats {
+            __typename
+            items {
+              __typename
+              id
+              section
+              row
+              number
+              status
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          maxAdmission
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteEventMutation>response.data.deleteEvent;
   }
   async CreateVenue(
     input: CreateVenueInput,
@@ -2043,357 +2250,6 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteVenueMutation>response.data.deleteVenue;
-  }
-  async CreateProduction(
-    input: CreateProductionInput,
-    condition?: ModelProductionConditionInput
-  ): Promise<CreateProductionMutation> {
-    const statement = `mutation CreateProduction($input: CreateProductionInput!, $condition: ModelProductionConditionInput) {
-        createProduction(input: $input, condition: $condition) {
-          __typename
-          id
-          name
-          company {
-            __typename
-            id
-            name
-            Productions {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          events {
-            __typename
-            items {
-              __typename
-              id
-              name
-              datetime
-              maxAdmission
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <CreateProductionMutation>response.data.createProduction;
-  }
-  async UpdateProduction(
-    input: UpdateProductionInput,
-    condition?: ModelProductionConditionInput
-  ): Promise<UpdateProductionMutation> {
-    const statement = `mutation UpdateProduction($input: UpdateProductionInput!, $condition: ModelProductionConditionInput) {
-        updateProduction(input: $input, condition: $condition) {
-          __typename
-          id
-          name
-          company {
-            __typename
-            id
-            name
-            Productions {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          events {
-            __typename
-            items {
-              __typename
-              id
-              name
-              datetime
-              maxAdmission
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <UpdateProductionMutation>response.data.updateProduction;
-  }
-  async DeleteProduction(
-    input: DeleteProductionInput,
-    condition?: ModelProductionConditionInput
-  ): Promise<DeleteProductionMutation> {
-    const statement = `mutation DeleteProduction($input: DeleteProductionInput!, $condition: ModelProductionConditionInput) {
-        deleteProduction(input: $input, condition: $condition) {
-          __typename
-          id
-          name
-          company {
-            __typename
-            id
-            name
-            Productions {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          events {
-            __typename
-            items {
-              __typename
-              id
-              name
-              datetime
-              maxAdmission
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <DeleteProductionMutation>response.data.deleteProduction;
-  }
-  async CreateEvent(
-    input: CreateEventInput,
-    condition?: ModelEventConditionInput
-  ): Promise<CreateEventMutation> {
-    const statement = `mutation CreateEvent($input: CreateEventInput!, $condition: ModelEventConditionInput) {
-        createEvent(input: $input, condition: $condition) {
-          __typename
-          id
-          name
-          production {
-            __typename
-            id
-            name
-            company {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          venue {
-            __typename
-            id
-            name
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          datetime
-          seats {
-            __typename
-            items {
-              __typename
-              id
-              section
-              row
-              number
-              status
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          maxAdmission
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <CreateEventMutation>response.data.createEvent;
-  }
-  async UpdateEvent(
-    input: UpdateEventInput,
-    condition?: ModelEventConditionInput
-  ): Promise<UpdateEventMutation> {
-    const statement = `mutation UpdateEvent($input: UpdateEventInput!, $condition: ModelEventConditionInput) {
-        updateEvent(input: $input, condition: $condition) {
-          __typename
-          id
-          name
-          production {
-            __typename
-            id
-            name
-            company {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          venue {
-            __typename
-            id
-            name
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          datetime
-          seats {
-            __typename
-            items {
-              __typename
-              id
-              section
-              row
-              number
-              status
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          maxAdmission
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <UpdateEventMutation>response.data.updateEvent;
-  }
-  async DeleteEvent(
-    input: DeleteEventInput,
-    condition?: ModelEventConditionInput
-  ): Promise<DeleteEventMutation> {
-    const statement = `mutation DeleteEvent($input: DeleteEventInput!, $condition: ModelEventConditionInput) {
-        deleteEvent(input: $input, condition: $condition) {
-          __typename
-          id
-          name
-          production {
-            __typename
-            id
-            name
-            company {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          venue {
-            __typename
-            id
-            name
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          datetime
-          seats {
-            __typename
-            items {
-              __typename
-              id
-              section
-              row
-              number
-              status
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          maxAdmission
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <DeleteEventMutation>response.data.deleteEvent;
   }
   async CreateSeatingChart(
     input: CreateSeatingChartInput,
@@ -2576,6 +2432,7 @@ export class APIService {
               __typename
               id
               name
+              producer
               createdAt
               updatedAt
             }
@@ -2630,6 +2487,7 @@ export class APIService {
               __typename
               id
               name
+              producer
               createdAt
               updatedAt
             }
@@ -2684,6 +2542,7 @@ export class APIService {
               __typename
               id
               name
+              producer
               createdAt
               updatedAt
             }
@@ -2719,18 +2578,19 @@ export class APIService {
     )) as any;
     return <DeleteSeatMutation>response.data.deleteSeat;
   }
-  async GetCompany(id: string): Promise<GetCompanyQuery> {
-    const statement = `query GetCompany($id: ID!) {
-        getCompany(id: $id) {
+  async GetTicketProvider(id: string): Promise<GetTicketProviderQuery> {
+    const statement = `query GetTicketProvider($id: ID!) {
+        getTicketProvider(id: $id) {
           __typename
           id
           name
-          Productions {
+          productions {
             __typename
             items {
               __typename
               id
               name
+              producer
               createdAt
               updatedAt
             }
@@ -2746,21 +2606,21 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <GetCompanyQuery>response.data.getCompany;
+    return <GetTicketProviderQuery>response.data.getTicketProvider;
   }
-  async ListCompanys(
-    filter?: ModelCompanyFilterInput,
+  async ListTicketProviders(
+    filter?: ModelTicketProviderFilterInput,
     limit?: number,
     nextToken?: string
-  ): Promise<ListCompanysQuery> {
-    const statement = `query ListCompanys($filter: ModelCompanyFilterInput, $limit: Int, $nextToken: String) {
-        listCompanys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  ): Promise<ListTicketProvidersQuery> {
+    const statement = `query ListTicketProviders($filter: ModelTicketProviderFilterInput, $limit: Int, $nextToken: String) {
+        listTicketProviders(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
             id
             name
-            Productions {
+            productions {
               __typename
               nextToken
             }
@@ -2783,7 +2643,188 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <ListCompanysQuery>response.data.listCompanys;
+    return <ListTicketProvidersQuery>response.data.listTicketProviders;
+  }
+  async GetProduction(id: string): Promise<GetProductionQuery> {
+    const statement = `query GetProduction($id: ID!) {
+        getProduction(id: $id) {
+          __typename
+          id
+          name
+          producer
+          events {
+            __typename
+            items {
+              __typename
+              id
+              name
+              datetime
+              maxAdmission
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetProductionQuery>response.data.getProduction;
+  }
+  async ListProductions(
+    filter?: ModelProductionFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListProductionsQuery> {
+    const statement = `query ListProductions($filter: ModelProductionFilterInput, $limit: Int, $nextToken: String) {
+        listProductions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            name
+            producer
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListProductionsQuery>response.data.listProductions;
+  }
+  async GetEvent(id: string): Promise<GetEventQuery> {
+    const statement = `query GetEvent($id: ID!) {
+        getEvent(id: $id) {
+          __typename
+          id
+          name
+          production {
+            __typename
+            id
+            name
+            producer
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          venue {
+            __typename
+            id
+            name
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          datetime
+          seats {
+            __typename
+            items {
+              __typename
+              id
+              section
+              row
+              number
+              status
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          maxAdmission
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetEventQuery>response.data.getEvent;
+  }
+  async ListEvents(
+    filter?: ModelEventFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListEventsQuery> {
+    const statement = `query ListEvents($filter: ModelEventFilterInput, $limit: Int, $nextToken: String) {
+        listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            name
+            production {
+              __typename
+              id
+              name
+              producer
+              createdAt
+              updatedAt
+            }
+            venue {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
+            datetime
+            seats {
+              __typename
+              nextToken
+            }
+            maxAdmission
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListEventsQuery>response.data.listEvents;
   }
   async GetVenue(id: string): Promise<GetVenueQuery> {
     const statement = `query GetVenue($id: ID!) {
@@ -2852,208 +2893,6 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListVenuesQuery>response.data.listVenues;
-  }
-  async GetProduction(id: string): Promise<GetProductionQuery> {
-    const statement = `query GetProduction($id: ID!) {
-        getProduction(id: $id) {
-          __typename
-          id
-          name
-          company {
-            __typename
-            id
-            name
-            Productions {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          events {
-            __typename
-            items {
-              __typename
-              id
-              name
-              datetime
-              maxAdmission
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      id
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <GetProductionQuery>response.data.getProduction;
-  }
-  async ListProductions(
-    filter?: ModelProductionFilterInput,
-    limit?: number,
-    nextToken?: string
-  ): Promise<ListProductionsQuery> {
-    const statement = `query ListProductions($filter: ModelProductionFilterInput, $limit: Int, $nextToken: String) {
-        listProductions(filter: $filter, limit: $limit, nextToken: $nextToken) {
-          __typename
-          items {
-            __typename
-            id
-            name
-            company {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
-    }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <ListProductionsQuery>response.data.listProductions;
-  }
-  async GetEvent(id: string): Promise<GetEventQuery> {
-    const statement = `query GetEvent($id: ID!) {
-        getEvent(id: $id) {
-          __typename
-          id
-          name
-          production {
-            __typename
-            id
-            name
-            company {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          venue {
-            __typename
-            id
-            name
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          datetime
-          seats {
-            __typename
-            items {
-              __typename
-              id
-              section
-              row
-              number
-              status
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          maxAdmission
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      id
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <GetEventQuery>response.data.getEvent;
-  }
-  async ListEvents(
-    filter?: ModelEventFilterInput,
-    limit?: number,
-    nextToken?: string
-  ): Promise<ListEventsQuery> {
-    const statement = `query ListEvents($filter: ModelEventFilterInput, $limit: Int, $nextToken: String) {
-        listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
-          __typename
-          items {
-            __typename
-            id
-            name
-            production {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            venue {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            datetime
-            seats {
-              __typename
-              nextToken
-            }
-            maxAdmission
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
-    }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <ListEventsQuery>response.data.listEvents;
   }
   async GetSeatingChart(id: string): Promise<GetSeatingChartQuery> {
     const statement = `query GetSeatingChart($id: ID!) {
@@ -3169,6 +3008,7 @@ export class APIService {
               __typename
               id
               name
+              producer
               createdAt
               updatedAt
             }
@@ -3246,21 +3086,22 @@ export class APIService {
     )) as any;
     return <ListSeatsQuery>response.data.listSeats;
   }
-  OnCreateCompanyListener: Observable<
-    OnCreateCompanySubscription
+  OnCreateTicketProviderListener: Observable<
+    OnCreateTicketProviderSubscription
   > = API.graphql(
     graphqlOperation(
-      `subscription OnCreateCompany {
-        onCreateCompany {
+      `subscription OnCreateTicketProvider {
+        onCreateTicketProvider {
           __typename
           id
           name
-          Productions {
+          productions {
             __typename
             items {
               __typename
               id
               name
+              producer
               createdAt
               updatedAt
             }
@@ -3271,23 +3112,24 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnCreateCompanySubscription>;
+  ) as Observable<OnCreateTicketProviderSubscription>;
 
-  OnUpdateCompanyListener: Observable<
-    OnUpdateCompanySubscription
+  OnUpdateTicketProviderListener: Observable<
+    OnUpdateTicketProviderSubscription
   > = API.graphql(
     graphqlOperation(
-      `subscription OnUpdateCompany {
-        onUpdateCompany {
+      `subscription OnUpdateTicketProvider {
+        onUpdateTicketProvider {
           __typename
           id
           name
-          Productions {
+          productions {
             __typename
             items {
               __typename
               id
               name
+              producer
               createdAt
               updatedAt
             }
@@ -3298,23 +3140,24 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnUpdateCompanySubscription>;
+  ) as Observable<OnUpdateTicketProviderSubscription>;
 
-  OnDeleteCompanyListener: Observable<
-    OnDeleteCompanySubscription
+  OnDeleteTicketProviderListener: Observable<
+    OnDeleteTicketProviderSubscription
   > = API.graphql(
     graphqlOperation(
-      `subscription OnDeleteCompany {
-        onDeleteCompany {
+      `subscription OnDeleteTicketProvider {
+        onDeleteTicketProvider {
           __typename
           id
           name
-          Productions {
+          productions {
             __typename
             items {
               __typename
               id
               name
+              producer
               createdAt
               updatedAt
             }
@@ -3325,7 +3168,256 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnDeleteCompanySubscription>;
+  ) as Observable<OnDeleteTicketProviderSubscription>;
+
+  OnCreateProductionListener: Observable<
+    OnCreateProductionSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateProduction {
+        onCreateProduction {
+          __typename
+          id
+          name
+          producer
+          events {
+            __typename
+            items {
+              __typename
+              id
+              name
+              datetime
+              maxAdmission
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateProductionSubscription>;
+
+  OnUpdateProductionListener: Observable<
+    OnUpdateProductionSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateProduction {
+        onUpdateProduction {
+          __typename
+          id
+          name
+          producer
+          events {
+            __typename
+            items {
+              __typename
+              id
+              name
+              datetime
+              maxAdmission
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateProductionSubscription>;
+
+  OnDeleteProductionListener: Observable<
+    OnDeleteProductionSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteProduction {
+        onDeleteProduction {
+          __typename
+          id
+          name
+          producer
+          events {
+            __typename
+            items {
+              __typename
+              id
+              name
+              datetime
+              maxAdmission
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteProductionSubscription>;
+
+  OnCreateEventListener: Observable<OnCreateEventSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateEvent {
+        onCreateEvent {
+          __typename
+          id
+          name
+          production {
+            __typename
+            id
+            name
+            producer
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          venue {
+            __typename
+            id
+            name
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          datetime
+          seats {
+            __typename
+            items {
+              __typename
+              id
+              section
+              row
+              number
+              status
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          maxAdmission
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateEventSubscription>;
+
+  OnUpdateEventListener: Observable<OnUpdateEventSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateEvent {
+        onUpdateEvent {
+          __typename
+          id
+          name
+          production {
+            __typename
+            id
+            name
+            producer
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          venue {
+            __typename
+            id
+            name
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          datetime
+          seats {
+            __typename
+            items {
+              __typename
+              id
+              section
+              row
+              number
+              status
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          maxAdmission
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateEventSubscription>;
+
+  OnDeleteEventListener: Observable<OnDeleteEventSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteEvent {
+        onDeleteEvent {
+          __typename
+          id
+          name
+          production {
+            __typename
+            id
+            name
+            producer
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          venue {
+            __typename
+            id
+            name
+            events {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          datetime
+          seats {
+            __typename
+            items {
+              __typename
+              id
+              section
+              row
+              number
+              status
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          maxAdmission
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteEventSubscription>;
 
   OnCreateVenueListener: Observable<OnCreateVenueSubscription> = API.graphql(
     graphqlOperation(
@@ -3407,303 +3499,6 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteVenueSubscription>;
-
-  OnCreateProductionListener: Observable<
-    OnCreateProductionSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateProduction {
-        onCreateProduction {
-          __typename
-          id
-          name
-          company {
-            __typename
-            id
-            name
-            Productions {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          events {
-            __typename
-            items {
-              __typename
-              id
-              name
-              datetime
-              maxAdmission
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnCreateProductionSubscription>;
-
-  OnUpdateProductionListener: Observable<
-    OnUpdateProductionSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateProduction {
-        onUpdateProduction {
-          __typename
-          id
-          name
-          company {
-            __typename
-            id
-            name
-            Productions {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          events {
-            __typename
-            items {
-              __typename
-              id
-              name
-              datetime
-              maxAdmission
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnUpdateProductionSubscription>;
-
-  OnDeleteProductionListener: Observable<
-    OnDeleteProductionSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteProduction {
-        onDeleteProduction {
-          __typename
-          id
-          name
-          company {
-            __typename
-            id
-            name
-            Productions {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          events {
-            __typename
-            items {
-              __typename
-              id
-              name
-              datetime
-              maxAdmission
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnDeleteProductionSubscription>;
-
-  OnCreateEventListener: Observable<OnCreateEventSubscription> = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateEvent {
-        onCreateEvent {
-          __typename
-          id
-          name
-          production {
-            __typename
-            id
-            name
-            company {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          venue {
-            __typename
-            id
-            name
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          datetime
-          seats {
-            __typename
-            items {
-              __typename
-              id
-              section
-              row
-              number
-              status
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          maxAdmission
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnCreateEventSubscription>;
-
-  OnUpdateEventListener: Observable<OnUpdateEventSubscription> = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateEvent {
-        onUpdateEvent {
-          __typename
-          id
-          name
-          production {
-            __typename
-            id
-            name
-            company {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          venue {
-            __typename
-            id
-            name
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          datetime
-          seats {
-            __typename
-            items {
-              __typename
-              id
-              section
-              row
-              number
-              status
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          maxAdmission
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnUpdateEventSubscription>;
-
-  OnDeleteEventListener: Observable<OnDeleteEventSubscription> = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteEvent {
-        onDeleteEvent {
-          __typename
-          id
-          name
-          production {
-            __typename
-            id
-            name
-            company {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          venue {
-            __typename
-            id
-            name
-            events {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          datetime
-          seats {
-            __typename
-            items {
-              __typename
-              id
-              section
-              row
-              number
-              status
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          maxAdmission
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnDeleteEventSubscription>;
 
   OnCreateSeatingChartListener: Observable<
     OnCreateSeatingChartSubscription
@@ -3860,6 +3655,7 @@ export class APIService {
               __typename
               id
               name
+              producer
               createdAt
               updatedAt
             }
@@ -3904,6 +3700,7 @@ export class APIService {
               __typename
               id
               name
+              producer
               createdAt
               updatedAt
             }
@@ -3948,6 +3745,7 @@ export class APIService {
               __typename
               id
               name
+              producer
               createdAt
               updatedAt
             }

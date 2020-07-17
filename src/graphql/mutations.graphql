@@ -1,15 +1,16 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateCompany(
-  $input: CreateCompanyInput!
-  $condition: ModelCompanyConditionInput
+mutation CreateTicketProvider(
+  $input: CreateTicketProviderInput!
+  $condition: ModelTicketProviderConditionInput
 ) {
-  createCompany(input: $input, condition: $condition) {
+  createTicketProvider(input: $input, condition: $condition) {
     id
     name
-    Productions {
+    productions {
       items {
         id
         name
+        producer
         createdAt
         updatedAt
       }
@@ -19,17 +20,18 @@ mutation CreateCompany(
     updatedAt
   }
 }
-mutation UpdateCompany(
-  $input: UpdateCompanyInput!
-  $condition: ModelCompanyConditionInput
+mutation UpdateTicketProvider(
+  $input: UpdateTicketProviderInput!
+  $condition: ModelTicketProviderConditionInput
 ) {
-  updateCompany(input: $input, condition: $condition) {
+  updateTicketProvider(input: $input, condition: $condition) {
     id
     name
-    Productions {
+    productions {
       items {
         id
         name
+        producer
         createdAt
         updatedAt
       }
@@ -39,22 +41,224 @@ mutation UpdateCompany(
     updatedAt
   }
 }
-mutation DeleteCompany(
-  $input: DeleteCompanyInput!
-  $condition: ModelCompanyConditionInput
+mutation DeleteTicketProvider(
+  $input: DeleteTicketProviderInput!
+  $condition: ModelTicketProviderConditionInput
 ) {
-  deleteCompany(input: $input, condition: $condition) {
+  deleteTicketProvider(input: $input, condition: $condition) {
     id
     name
-    Productions {
+    productions {
       items {
         id
         name
+        producer
         createdAt
         updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateProduction(
+  $input: CreateProductionInput!
+  $condition: ModelProductionConditionInput
+) {
+  createProduction(input: $input, condition: $condition) {
+    id
+    name
+    producer
+    events {
+      items {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateProduction(
+  $input: UpdateProductionInput!
+  $condition: ModelProductionConditionInput
+) {
+  updateProduction(input: $input, condition: $condition) {
+    id
+    name
+    producer
+    events {
+      items {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteProduction(
+  $input: DeleteProductionInput!
+  $condition: ModelProductionConditionInput
+) {
+  deleteProduction(input: $input, condition: $condition) {
+    id
+    name
+    producer
+    events {
+      items {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateEvent(
+  $input: CreateEventInput!
+  $condition: ModelEventConditionInput
+) {
+  createEvent(input: $input, condition: $condition) {
+    id
+    name
+    production {
+      id
+      name
+      producer
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    venue {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    datetime
+    seats {
+      items {
+        id
+        section
+        row
+        number
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    maxAdmission
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateEvent(
+  $input: UpdateEventInput!
+  $condition: ModelEventConditionInput
+) {
+  updateEvent(input: $input, condition: $condition) {
+    id
+    name
+    production {
+      id
+      name
+      producer
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    venue {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    datetime
+    seats {
+      items {
+        id
+        section
+        row
+        number
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    maxAdmission
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteEvent(
+  $input: DeleteEventInput!
+  $condition: ModelEventConditionInput
+) {
+  deleteEvent(input: $input, condition: $condition) {
+    id
+    name
+    production {
+      id
+      name
+      producer
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    venue {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    datetime
+    seats {
+      items {
+        id
+        section
+        row
+        number
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    maxAdmission
     createdAt
     updatedAt
   }
@@ -121,246 +325,6 @@ mutation DeleteVenue(
       }
       nextToken
     }
-    createdAt
-    updatedAt
-  }
-}
-mutation CreateProduction(
-  $input: CreateProductionInput!
-  $condition: ModelProductionConditionInput
-) {
-  createProduction(input: $input, condition: $condition) {
-    id
-    name
-    company {
-      id
-      name
-      Productions {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    events {
-      items {
-        id
-        name
-        datetime
-        maxAdmission
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-  }
-}
-mutation UpdateProduction(
-  $input: UpdateProductionInput!
-  $condition: ModelProductionConditionInput
-) {
-  updateProduction(input: $input, condition: $condition) {
-    id
-    name
-    company {
-      id
-      name
-      Productions {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    events {
-      items {
-        id
-        name
-        datetime
-        maxAdmission
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-  }
-}
-mutation DeleteProduction(
-  $input: DeleteProductionInput!
-  $condition: ModelProductionConditionInput
-) {
-  deleteProduction(input: $input, condition: $condition) {
-    id
-    name
-    company {
-      id
-      name
-      Productions {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    events {
-      items {
-        id
-        name
-        datetime
-        maxAdmission
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-  }
-}
-mutation CreateEvent(
-  $input: CreateEventInput!
-  $condition: ModelEventConditionInput
-) {
-  createEvent(input: $input, condition: $condition) {
-    id
-    name
-    production {
-      id
-      name
-      company {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    venue {
-      id
-      name
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    datetime
-    seats {
-      items {
-        id
-        section
-        row
-        number
-        status
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    maxAdmission
-    createdAt
-    updatedAt
-  }
-}
-mutation UpdateEvent(
-  $input: UpdateEventInput!
-  $condition: ModelEventConditionInput
-) {
-  updateEvent(input: $input, condition: $condition) {
-    id
-    name
-    production {
-      id
-      name
-      company {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    venue {
-      id
-      name
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    datetime
-    seats {
-      items {
-        id
-        section
-        row
-        number
-        status
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    maxAdmission
-    createdAt
-    updatedAt
-  }
-}
-mutation DeleteEvent(
-  $input: DeleteEventInput!
-  $condition: ModelEventConditionInput
-) {
-  deleteEvent(input: $input, condition: $condition) {
-    id
-    name
-    production {
-      id
-      name
-      company {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    venue {
-      id
-      name
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    datetime
-    seats {
-      items {
-        id
-        section
-        row
-        number
-        status
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    maxAdmission
     createdAt
     updatedAt
   }
@@ -491,6 +455,7 @@ mutation CreateSeat(
       production {
         id
         name
+        producer
         createdAt
         updatedAt
       }
@@ -528,6 +493,7 @@ mutation UpdateSeat(
       production {
         id
         name
+        producer
         createdAt
         updatedAt
       }
@@ -565,6 +531,7 @@ mutation DeleteSeat(
       production {
         id
         name
+        producer
         createdAt
         updatedAt
       }

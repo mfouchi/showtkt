@@ -1,19 +1,13 @@
-type Company @model {
+type TicketProvider @model {
   id: ID!
   name: String!
-  Productions: [Production] @connection(name: "companyProductions")
-}
-
-type Venue @model {
-  id: ID!
-  name: String!
-  events: [Event] @connection(name: "venueEvents")
+  productions: [Production] @connection
 }
 
 type Production @model {
   id: ID!
   name: String!
-  company: Company @connection(name: "companyProductions")
+  producer: String
   events: [Event] @connection(name: "productionEvents")
 }
 
@@ -25,6 +19,12 @@ type Event @model {
   datetime: AWSDateTime
   seats: [Seat] @connection(name: "eventSeats")
   maxAdmission: Int
+}
+
+type Venue @model {
+  id: ID!
+  name: String!
+  events: [Event] @connection(name: "venueEvents")
 }
 
 # The seating chart is simply a template to populate a new event's seats

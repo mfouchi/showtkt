@@ -1,12 +1,13 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateCompany {
-  onCreateCompany {
+subscription OnCreateTicketProvider {
+  onCreateTicketProvider {
     id
     name
-    Productions {
+    productions {
       items {
         id
         name
+        producer
         createdAt
         updatedAt
       }
@@ -16,14 +17,15 @@ subscription OnCreateCompany {
     updatedAt
   }
 }
-subscription OnUpdateCompany {
-  onUpdateCompany {
+subscription OnUpdateTicketProvider {
+  onUpdateTicketProvider {
     id
     name
-    Productions {
+    productions {
       items {
         id
         name
+        producer
         createdAt
         updatedAt
       }
@@ -33,19 +35,203 @@ subscription OnUpdateCompany {
     updatedAt
   }
 }
-subscription OnDeleteCompany {
-  onDeleteCompany {
+subscription OnDeleteTicketProvider {
+  onDeleteTicketProvider {
     id
     name
-    Productions {
+    productions {
       items {
         id
         name
+        producer
         createdAt
         updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateProduction {
+  onCreateProduction {
+    id
+    name
+    producer
+    events {
+      items {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateProduction {
+  onUpdateProduction {
+    id
+    name
+    producer
+    events {
+      items {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteProduction {
+  onDeleteProduction {
+    id
+    name
+    producer
+    events {
+      items {
+        id
+        name
+        datetime
+        maxAdmission
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateEvent {
+  onCreateEvent {
+    id
+    name
+    production {
+      id
+      name
+      producer
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    venue {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    datetime
+    seats {
+      items {
+        id
+        section
+        row
+        number
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    maxAdmission
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateEvent {
+  onUpdateEvent {
+    id
+    name
+    production {
+      id
+      name
+      producer
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    venue {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    datetime
+    seats {
+      items {
+        id
+        section
+        row
+        number
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    maxAdmission
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteEvent {
+  onDeleteEvent {
+    id
+    name
+    production {
+      id
+      name
+      producer
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    venue {
+      id
+      name
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    datetime
+    seats {
+      items {
+        id
+        section
+        row
+        number
+        status
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    maxAdmission
     createdAt
     updatedAt
   }
@@ -103,228 +289,6 @@ subscription OnDeleteVenue {
       }
       nextToken
     }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnCreateProduction {
-  onCreateProduction {
-    id
-    name
-    company {
-      id
-      name
-      Productions {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    events {
-      items {
-        id
-        name
-        datetime
-        maxAdmission
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateProduction {
-  onUpdateProduction {
-    id
-    name
-    company {
-      id
-      name
-      Productions {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    events {
-      items {
-        id
-        name
-        datetime
-        maxAdmission
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteProduction {
-  onDeleteProduction {
-    id
-    name
-    company {
-      id
-      name
-      Productions {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    events {
-      items {
-        id
-        name
-        datetime
-        maxAdmission
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnCreateEvent {
-  onCreateEvent {
-    id
-    name
-    production {
-      id
-      name
-      company {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    venue {
-      id
-      name
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    datetime
-    seats {
-      items {
-        id
-        section
-        row
-        number
-        status
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    maxAdmission
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateEvent {
-  onUpdateEvent {
-    id
-    name
-    production {
-      id
-      name
-      company {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    venue {
-      id
-      name
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    datetime
-    seats {
-      items {
-        id
-        section
-        row
-        number
-        status
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    maxAdmission
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteEvent {
-  onDeleteEvent {
-    id
-    name
-    production {
-      id
-      name
-      company {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    venue {
-      id
-      name
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    datetime
-    seats {
-      items {
-        id
-        section
-        row
-        number
-        status
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    maxAdmission
     createdAt
     updatedAt
   }
@@ -443,6 +407,7 @@ subscription OnCreateSeat {
       production {
         id
         name
+        producer
         createdAt
         updatedAt
       }
@@ -477,6 +442,7 @@ subscription OnUpdateSeat {
       production {
         id
         name
+        producer
         createdAt
         updatedAt
       }
@@ -511,6 +477,7 @@ subscription OnDeleteSeat {
       production {
         id
         name
+        producer
         createdAt
         updatedAt
       }
