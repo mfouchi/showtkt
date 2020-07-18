@@ -81,6 +81,15 @@ mutation CreateProduction(
       }
       nextToken
     }
+    ticketProvider {
+      id
+      name
+      productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -103,6 +112,15 @@ mutation UpdateProduction(
         updatedAt
       }
       nextToken
+    }
+    ticketProvider {
+      id
+      name
+      productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
     }
     createdAt
     updatedAt
@@ -127,6 +145,15 @@ mutation DeleteProduction(
       }
       nextToken
     }
+    ticketProvider {
+      id
+      name
+      productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -145,6 +172,12 @@ mutation CreateEvent(
       events {
         nextToken
       }
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -171,6 +204,15 @@ mutation CreateEvent(
       nextToken
     }
     maxAdmission
+    ticketProvider {
+      id
+      name
+      productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -189,6 +231,12 @@ mutation UpdateEvent(
       events {
         nextToken
       }
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -215,6 +263,15 @@ mutation UpdateEvent(
       nextToken
     }
     maxAdmission
+    ticketProvider {
+      id
+      name
+      productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -233,6 +290,12 @@ mutation DeleteEvent(
       events {
         nextToken
       }
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -259,6 +322,15 @@ mutation DeleteEvent(
       nextToken
     }
     maxAdmission
+    ticketProvider {
+      id
+      name
+      productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -470,6 +542,12 @@ mutation CreateSeat(
         nextToken
       }
       maxAdmission
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -508,6 +586,12 @@ mutation UpdateSeat(
         nextToken
       }
       maxAdmission
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -546,6 +630,12 @@ mutation DeleteSeat(
         nextToken
       }
       maxAdmission
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

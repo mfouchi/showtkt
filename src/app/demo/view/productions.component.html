@@ -1,0 +1,18 @@
+<div class="p-grid">
+  <div class="p-col-12">
+    <div class="card">
+      <h1>Empty Page</h1>
+      <p>Use this page to start from scratch and place your custom content.</p>
+      <button
+        pButton
+        type="button"
+        label="Add Ticket Provider"
+        (click)="createCompany()"
+      ></button>
+      <!-- <button (click)="deleteCompany()">Delete Company</button> -->
+      <ul>
+        <li *ngFor="let item of ticketProviders">{{ item.name }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -71,6 +71,7 @@ export type CreateProductionInput = {
   name: string;
   producer?: string | null;
   ticketProviderProductionsId?: string | null;
+  productionTicketProviderId?: string | null;
 };
 
 export type ModelProductionConditionInput = {
@@ -86,6 +87,7 @@ export type UpdateProductionInput = {
   name?: string | null;
   producer?: string | null;
   ticketProviderProductionsId?: string | null;
+  productionTicketProviderId?: string | null;
 };
 
 export type DeleteProductionInput = {
@@ -99,6 +101,7 @@ export type CreateEventInput = {
   maxAdmission?: number | null;
   eventProductionId: string;
   eventVenueId?: string | null;
+  eventTicketProviderId?: string | null;
 };
 
 export type ModelEventConditionInput = {
@@ -129,6 +132,7 @@ export type UpdateEventInput = {
   maxAdmission?: number | null;
   eventProductionId?: string | null;
   eventVenueId?: string | null;
+  eventTicketProviderId?: string | null;
 };
 
 export type DeleteEventInput = {
@@ -359,6 +363,17 @@ export type CreateProductionMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  ticketProvider: {
+    __typename: "TicketProvider";
+    id: string;
+    name: string;
+    productions: {
+      __typename: "ModelProductionConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -380,6 +395,17 @@ export type UpdateProductionMutation = {
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
+  } | null;
+  ticketProvider: {
+    __typename: "TicketProvider";
+    id: string;
+    name: string;
+    productions: {
+      __typename: "ModelProductionConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
   } | null;
   createdAt: string;
   updatedAt: string;
@@ -403,6 +429,17 @@ export type DeleteProductionMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  ticketProvider: {
+    __typename: "TicketProvider";
+    id: string;
+    name: string;
+    productions: {
+      __typename: "ModelProductionConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -420,6 +457,13 @@ export type CreateEventMutation = {
       __typename: "ModelEventConnection";
       nextToken: string | null;
     } | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -450,6 +494,17 @@ export type CreateEventMutation = {
     nextToken: string | null;
   } | null;
   maxAdmission: number | null;
+  ticketProvider: {
+    __typename: "TicketProvider";
+    id: string;
+    name: string;
+    productions: {
+      __typename: "ModelProductionConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -467,6 +522,13 @@ export type UpdateEventMutation = {
       __typename: "ModelEventConnection";
       nextToken: string | null;
     } | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -497,6 +559,17 @@ export type UpdateEventMutation = {
     nextToken: string | null;
   } | null;
   maxAdmission: number | null;
+  ticketProvider: {
+    __typename: "TicketProvider";
+    id: string;
+    name: string;
+    productions: {
+      __typename: "ModelProductionConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -514,6 +587,13 @@ export type DeleteEventMutation = {
       __typename: "ModelEventConnection";
       nextToken: string | null;
     } | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -544,6 +624,17 @@ export type DeleteEventMutation = {
     nextToken: string | null;
   } | null;
   maxAdmission: number | null;
+  ticketProvider: {
+    __typename: "TicketProvider";
+    id: string;
+    name: string;
+    productions: {
+      __typename: "ModelProductionConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -756,6 +847,13 @@ export type CreateSeatMutation = {
       nextToken: string | null;
     } | null;
     maxAdmission: number | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -795,6 +893,13 @@ export type UpdateSeatMutation = {
       nextToken: string | null;
     } | null;
     maxAdmission: number | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -834,6 +939,13 @@ export type DeleteSeatMutation = {
       nextToken: string | null;
     } | null;
     maxAdmission: number | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -896,6 +1008,17 @@ export type GetProductionQuery = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  ticketProvider: {
+    __typename: "TicketProvider";
+    id: string;
+    name: string;
+    productions: {
+      __typename: "ModelProductionConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -910,6 +1033,13 @@ export type ListProductionsQuery = {
     events: {
       __typename: "ModelEventConnection";
       nextToken: string | null;
+    } | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
     } | null;
     createdAt: string;
     updatedAt: string;
@@ -929,6 +1059,13 @@ export type GetEventQuery = {
     events: {
       __typename: "ModelEventConnection";
       nextToken: string | null;
+    } | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
     } | null;
     createdAt: string;
     updatedAt: string;
@@ -960,6 +1097,17 @@ export type GetEventQuery = {
     nextToken: string | null;
   } | null;
   maxAdmission: number | null;
+  ticketProvider: {
+    __typename: "TicketProvider";
+    id: string;
+    name: string;
+    productions: {
+      __typename: "ModelProductionConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -991,6 +1139,13 @@ export type ListEventsQuery = {
       nextToken: string | null;
     } | null;
     maxAdmission: number | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -1132,6 +1287,13 @@ export type GetSeatQuery = {
       nextToken: string | null;
     } | null;
     maxAdmission: number | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1242,6 +1404,17 @@ export type OnCreateProductionSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  ticketProvider: {
+    __typename: "TicketProvider";
+    id: string;
+    name: string;
+    productions: {
+      __typename: "ModelProductionConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1263,6 +1436,17 @@ export type OnUpdateProductionSubscription = {
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
+  } | null;
+  ticketProvider: {
+    __typename: "TicketProvider";
+    id: string;
+    name: string;
+    productions: {
+      __typename: "ModelProductionConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
   } | null;
   createdAt: string;
   updatedAt: string;
@@ -1286,6 +1470,17 @@ export type OnDeleteProductionSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  ticketProvider: {
+    __typename: "TicketProvider";
+    id: string;
+    name: string;
+    productions: {
+      __typename: "ModelProductionConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1303,6 +1498,13 @@ export type OnCreateEventSubscription = {
       __typename: "ModelEventConnection";
       nextToken: string | null;
     } | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1333,6 +1535,17 @@ export type OnCreateEventSubscription = {
     nextToken: string | null;
   } | null;
   maxAdmission: number | null;
+  ticketProvider: {
+    __typename: "TicketProvider";
+    id: string;
+    name: string;
+    productions: {
+      __typename: "ModelProductionConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1350,6 +1563,13 @@ export type OnUpdateEventSubscription = {
       __typename: "ModelEventConnection";
       nextToken: string | null;
     } | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1380,6 +1600,17 @@ export type OnUpdateEventSubscription = {
     nextToken: string | null;
   } | null;
   maxAdmission: number | null;
+  ticketProvider: {
+    __typename: "TicketProvider";
+    id: string;
+    name: string;
+    productions: {
+      __typename: "ModelProductionConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1397,6 +1628,13 @@ export type OnDeleteEventSubscription = {
       __typename: "ModelEventConnection";
       nextToken: string | null;
     } | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -1427,6 +1665,17 @@ export type OnDeleteEventSubscription = {
     nextToken: string | null;
   } | null;
   maxAdmission: number | null;
+  ticketProvider: {
+    __typename: "TicketProvider";
+    id: string;
+    name: string;
+    productions: {
+      __typename: "ModelProductionConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1639,6 +1888,13 @@ export type OnCreateSeatSubscription = {
       nextToken: string | null;
     } | null;
     maxAdmission: number | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1678,6 +1934,13 @@ export type OnUpdateSeatSubscription = {
       nextToken: string | null;
     } | null;
     maxAdmission: number | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1717,6 +1980,13 @@ export type OnDeleteSeatSubscription = {
       nextToken: string | null;
     } | null;
     maxAdmission: number | null;
+    ticketProvider: {
+      __typename: "TicketProvider";
+      id: string;
+      name: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -1860,6 +2130,17 @@ export class APIService {
             }
             nextToken
           }
+          ticketProvider {
+            __typename
+            id
+            name
+            productions {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1897,6 +2178,17 @@ export class APIService {
               updatedAt
             }
             nextToken
+          }
+          ticketProvider {
+            __typename
+            id
+            name
+            productions {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
           }
           createdAt
           updatedAt
@@ -1936,6 +2228,17 @@ export class APIService {
             }
             nextToken
           }
+          ticketProvider {
+            __typename
+            id
+            name
+            productions {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1969,6 +2272,13 @@ export class APIService {
               __typename
               nextToken
             }
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -1999,6 +2309,17 @@ export class APIService {
             nextToken
           }
           maxAdmission
+          ticketProvider {
+            __typename
+            id
+            name
+            productions {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -2032,6 +2353,13 @@ export class APIService {
               __typename
               nextToken
             }
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2062,6 +2390,17 @@ export class APIService {
             nextToken
           }
           maxAdmission
+          ticketProvider {
+            __typename
+            id
+            name
+            productions {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -2095,6 +2434,13 @@ export class APIService {
               __typename
               nextToken
             }
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2125,6 +2471,17 @@ export class APIService {
             nextToken
           }
           maxAdmission
+          ticketProvider {
+            __typename
+            id
+            name
+            productions {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -2449,6 +2806,13 @@ export class APIService {
               nextToken
             }
             maxAdmission
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2504,6 +2868,13 @@ export class APIService {
               nextToken
             }
             maxAdmission
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2559,6 +2930,13 @@ export class APIService {
               nextToken
             }
             maxAdmission
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2665,6 +3043,17 @@ export class APIService {
             }
             nextToken
           }
+          ticketProvider {
+            __typename
+            id
+            name
+            productions {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -2693,6 +3082,13 @@ export class APIService {
             events {
               __typename
               nextToken
+            }
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
             }
             createdAt
             updatedAt
@@ -2730,6 +3126,13 @@ export class APIService {
               __typename
               nextToken
             }
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -2760,6 +3163,17 @@ export class APIService {
             nextToken
           }
           maxAdmission
+          ticketProvider {
+            __typename
+            id
+            name
+            productions {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -2805,6 +3219,13 @@ export class APIService {
               nextToken
             }
             maxAdmission
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3025,6 +3446,13 @@ export class APIService {
               nextToken
             }
             maxAdmission
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3193,6 +3621,17 @@ export class APIService {
             }
             nextToken
           }
+          ticketProvider {
+            __typename
+            id
+            name
+            productions {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -3222,6 +3661,17 @@ export class APIService {
               updatedAt
             }
             nextToken
+          }
+          ticketProvider {
+            __typename
+            id
+            name
+            productions {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
           }
           createdAt
           updatedAt
@@ -3253,6 +3703,17 @@ export class APIService {
             }
             nextToken
           }
+          ticketProvider {
+            __typename
+            id
+            name
+            productions {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -3276,6 +3737,13 @@ export class APIService {
               __typename
               nextToken
             }
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3306,6 +3774,17 @@ export class APIService {
             nextToken
           }
           maxAdmission
+          ticketProvider {
+            __typename
+            id
+            name
+            productions {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -3329,6 +3808,13 @@ export class APIService {
               __typename
               nextToken
             }
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3359,6 +3845,17 @@ export class APIService {
             nextToken
           }
           maxAdmission
+          ticketProvider {
+            __typename
+            id
+            name
+            productions {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -3382,6 +3879,13 @@ export class APIService {
               __typename
               nextToken
             }
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3412,6 +3916,17 @@ export class APIService {
             nextToken
           }
           maxAdmission
+          ticketProvider {
+            __typename
+            id
+            name
+            productions {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -3672,6 +4187,13 @@ export class APIService {
               nextToken
             }
             maxAdmission
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3717,6 +4239,13 @@ export class APIService {
               nextToken
             }
             maxAdmission
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -3762,6 +4291,13 @@ export class APIService {
               nextToken
             }
             maxAdmission
+            ticketProvider {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }

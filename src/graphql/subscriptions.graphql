@@ -69,6 +69,15 @@ subscription OnCreateProduction {
       }
       nextToken
     }
+    ticketProvider {
+      id
+      name
+      productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -88,6 +97,15 @@ subscription OnUpdateProduction {
         updatedAt
       }
       nextToken
+    }
+    ticketProvider {
+      id
+      name
+      productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
     }
     createdAt
     updatedAt
@@ -109,6 +127,15 @@ subscription OnDeleteProduction {
       }
       nextToken
     }
+    ticketProvider {
+      id
+      name
+      productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -124,6 +151,12 @@ subscription OnCreateEvent {
       events {
         nextToken
       }
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -150,6 +183,15 @@ subscription OnCreateEvent {
       nextToken
     }
     maxAdmission
+    ticketProvider {
+      id
+      name
+      productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -165,6 +207,12 @@ subscription OnUpdateEvent {
       events {
         nextToken
       }
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -191,6 +239,15 @@ subscription OnUpdateEvent {
       nextToken
     }
     maxAdmission
+    ticketProvider {
+      id
+      name
+      productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -206,6 +263,12 @@ subscription OnDeleteEvent {
       events {
         nextToken
       }
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -232,6 +295,15 @@ subscription OnDeleteEvent {
       nextToken
     }
     maxAdmission
+    ticketProvider {
+      id
+      name
+      productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -422,6 +494,12 @@ subscription OnCreateSeat {
         nextToken
       }
       maxAdmission
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -457,6 +535,12 @@ subscription OnUpdateSeat {
         nextToken
       }
       maxAdmission
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -492,6 +576,12 @@ subscription OnDeleteSeat {
         nextToken
       }
       maxAdmission
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

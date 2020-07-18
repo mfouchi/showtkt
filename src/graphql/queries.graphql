@@ -51,6 +51,15 @@ query GetProduction($id: ID!) {
       }
       nextToken
     }
+    ticketProvider {
+      id
+      name
+      productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -68,6 +77,12 @@ query ListProductions(
       events {
         nextToken
       }
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -84,6 +99,12 @@ query GetEvent($id: ID!) {
       producer
       events {
         nextToken
+      }
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -111,6 +132,15 @@ query GetEvent($id: ID!) {
       nextToken
     }
     maxAdmission
+    ticketProvider {
+      id
+      name
+      productions {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -142,6 +172,12 @@ query ListEvents(
         nextToken
       }
       maxAdmission
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -276,6 +312,12 @@ query GetSeat($id: ID!) {
         nextToken
       }
       maxAdmission
+      ticketProvider {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }

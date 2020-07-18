@@ -1,0 +1,12 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "name": "Peter and the Starcatcher Event Title",
+      "maxAdmission": 299,
+      "datetime": "2020-03-01T20:00:00-06:00",
+      "eventVenueId": "1",
+      "eventProductionId": "1"
+    }
+  ]
+}
