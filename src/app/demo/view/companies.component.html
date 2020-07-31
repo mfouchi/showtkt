@@ -1,0 +1,97 @@
+<div class="p-grid">
+  <div class="p-col-12">
+    <div class="card">
+      <h1>ShowTkt Companies</h1>
+      <button
+        pButton
+        type="button"
+        label="Open modal dialog"
+        (click)="this.displayModal = true"
+      ></button>
+      <div *ngIf="loading">
+        Loading...
+      </div>
+      <div *ngIf="error">
+        Error :(
+      </div>
+      <p-table
+        [columns]="cols"
+        selectionMode="single"
+        [(selection)]="selectedCompany"
+        (onRowSelect)="onRowSelect($event)"
+        [paginator]="true"
+        [rows]="15"
+        [value]="company$ | async"
+        [resizableColumns]="true"
+      >
+        <ng-template pTemplate="colgroup" let-columns>
+          <colgroup>
+            <col *ngFor="let col of columns" [style.width]="col.width" />
+          </colgroup>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" pResizableColumn>
+              {{ col.header }}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-company let-columns="columns">
+          <tr [pSelectableRow]="company">
+            <td *ngFor="let col of columns" class="ui-resizable-column">
+              {{ company[col.field] }}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-dialog
+        header="Company Details"
+        [(visible)]="displayDialog"
+        [focusOnShow]="false"
+        [responsive]="true"
+        showEffect="fade"
+        [modal]="true"
+        [style]="{ width: '300px' }"
+      >
+        <div class="p-grid ui-fluid" *ngIf="company">
+          <div class="p-col-4">
+            <label for="name">Name</label>
+          </div>
+          <div class="p-col-8">
+            <input pInputText id="name" [(ngModel)]="company.name" autofocus />
+          </div>
+          <div class="p-col-4">
+            <label for="city">City</label>
+          </div>
+          <div class="p-col-8">
+            <input pInputText id="city" [(ngModel)]="company.city" />
+          </div>
+          <div class="p-col-4">
+            <label for="state">State</label>
+          </div>
+          <div class="p-col-8">
+            <input pInputText id="state" [(ngModel)]="company.state" />
+          </div>
+        </div>
+        <p-footer>
+          <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button
+              type="button"
+              pButton
+              icon="pi pi-times"
+              (click)="delete()"
+              label="Delete"
+            ></button>
+            <button
+              type="button"
+              pButton
+              icon="pi pi-check"
+              (click)="save()"
+              label="Save"
+            ></button>
+          </div>
+        </p-footer>
+      </p-dialog>
+    </div>
+  </div>
+</div>

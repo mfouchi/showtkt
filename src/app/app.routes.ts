@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from "@angular/router";
 import { ModuleWithProviders } from "@angular/core";
 import { ProductionsComponent } from "./demo/view/productions.component";
+import { CompaniesComponent } from "./demo/view/companies.component";
 import { AppMainComponent } from "./app.main.component";
 import { AppNotfoundComponent } from "./pages/app.notfound.component";
 import { AppErrorComponent } from "./pages/app.error.component";
@@ -13,8 +14,8 @@ export const routes: Routes = [
     path: "",
     component: AppMainComponent,
     children: [
-      { path: "", component: ProductionsComponent },
-      { path: "productions", component: ProductionsComponent },
+      { path: "", component: CompaniesComponent },
+      { path: "companies", component: CompaniesComponent },
     ],
   },
   { path: "error", component: AppErrorComponent },
