@@ -1,0 +1,8 @@
+query allCompanies {
+  companies(orderBy: { name: asc }) {
+    id
+    name
+    city
+    state
+  }
+}
