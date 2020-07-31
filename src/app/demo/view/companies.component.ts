@@ -45,6 +45,12 @@ export class CompaniesComponent implements OnInit {
     this.displayDialog = true;
   }
 
+  onAddClicked() {
+    this.newCompany = true;
+    this.company = { id: null, name: "", city: "", state: "" };
+    this.displayDialog = true;
+  }
+
   cloneCompany(c: Company): Company {
     let company: Company;
 

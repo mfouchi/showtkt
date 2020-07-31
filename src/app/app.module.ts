@@ -11,6 +11,7 @@ import { ButtonModule } from "primeng/button";
 import { CheckboxModule } from "primeng/checkbox";
 import { DialogModule } from "primeng/dialog";
 import { DropdownModule } from "primeng/dropdown";
+import { InputTextModule } from "primeng/inputtext";
 import { MegaMenuModule } from "primeng/megamenu";
 import { MenubarModule } from "primeng/menubar";
 import { MenuModule } from "primeng/menu";
@@ -60,6 +61,7 @@ import { GraphQLModule } from "./graphql.module";
     CheckboxModule,
     DialogModule,
     DropdownModule,
+    InputTextModule,
     MegaMenuModule,
     MenuModule,
     MenubarModule,
