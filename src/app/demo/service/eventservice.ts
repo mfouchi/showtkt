@@ -1,15 +1,17 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+// import { Injectable } from "@angular/core";
+// import { HttpClient } from "@angular/common/http";
 
-@Injectable()
-export class EventService {
+// @Injectable({
+//   providedIn: "root",
+// })
+// export class EventService {
+//   constructor(private http: HttpClient) {}
 
-    constructor(private http: HttpClient) {}
-
-    getEvents() {
-        return this.http.get<any>('assets/demo/data/scheduleevents.json')
-                    .toPromise()
-                    .then(res => res.data as any[])
-                    .then(data => data);
-    }
-}
+//   ListEvents() {
+//     return this.http
+//       .get<any>("assets/data/events.json")
+//       .toPromise()
+//       .then((res) => res.data as Event[])
+//       .then((data) => data);
+//   }
+// }
