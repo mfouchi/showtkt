@@ -1,194 +1,206 @@
-import {Component, Renderer2} from '@angular/core';
-import { MenuService } from './app.menu.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Component, Renderer2 } from "@angular/core";
+import { MenuService } from "./app.menu.service";
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from "@angular/animations";
 
 @Component({
-    selector: 'app-main',
-    templateUrl: './app.main.component.html',
-    animations: [
-        trigger('mask-anim', [
-            state('void', style({
-                opacity: 0
-            })),
-            state('visible', style({
-                opacity: 0.8
-            })),
-            transition('* => *', animate('250ms cubic-bezier(0, 0, 0.2, 1)'))
-        ])
-    ]
+  selector: "app-main",
+  templateUrl: "./app.main.component.html",
+  animations: [
+    trigger("mask-anim", [
+      state(
+        "void",
+        style({
+          opacity: 0,
+        })
+      ),
+      state(
+        "visible",
+        style({
+          opacity: 0.8,
+        })
+      ),
+      transition("* => *", animate("250ms cubic-bezier(0, 0, 0.2, 1)")),
+    ]),
+  ],
 })
 export class AppMainComponent {
+  horizontalMenu: boolean = true;
 
-    horizontalMenu: boolean;
+  darkMode = false;
 
-    darkMode = false;
+  menuColorMode = "light";
 
-    menuColorMode = 'light';
+  menuColor = "layout-menu-light";
 
-    menuColor = 'layout-menu-light';
+  themeColor = "blue";
 
-    themeColor = 'blue';
+  layoutColor = "blue";
 
-    layoutColor = 'blue';
+  rightPanelClick: boolean;
 
-    rightPanelClick: boolean;
+  rightPanelActive: boolean;
 
-    rightPanelActive: boolean;
+  menuClick: boolean;
 
-    menuClick: boolean;
+  staticMenuActive: boolean;
 
-    staticMenuActive: boolean;
+  menuMobileActive: boolean;
 
-    menuMobileActive: boolean;
+  megaMenuClick: boolean;
 
-    megaMenuClick: boolean;
+  megaMenuActive: boolean;
 
-    megaMenuActive: boolean;
+  megaMenuMobileClick: boolean;
 
-    megaMenuMobileClick: boolean;
+  megaMenuMobileActive: boolean;
 
-    megaMenuMobileActive: boolean;
+  topbarItemClick: boolean;
 
-    topbarItemClick: boolean;
+  topbarMobileMenuClick: boolean;
 
-    topbarMobileMenuClick: boolean;
+  topbarMobileMenuActive: boolean;
 
-    topbarMobileMenuActive: boolean;
+  configDialogActive: boolean;
 
-    configDialogActive: boolean;
+  sidebarActive: boolean;
 
-    sidebarActive: boolean;
+  activeTopbarItem: any;
 
-    activeTopbarItem: any;
+  topbarMenuActive: boolean;
 
-    topbarMenuActive: boolean;
+  menuHoverActive: boolean;
 
-    menuHoverActive: boolean;
+  constructor(public renderer: Renderer2, private menuService: MenuService) {}
 
-    constructor(public renderer: Renderer2, private menuService: MenuService) {}
-
-    onLayoutClick() {
-        if (!this.topbarItemClick) {
-            this.activeTopbarItem = null;
-            this.topbarMenuActive = false;
-        }
-
-        if (!this.rightPanelClick) {
-            this.rightPanelActive = false;
-        }
-
-        if (!this.megaMenuClick) {
-            this.megaMenuActive = false;
-        }
-
-        if (!this.megaMenuMobileClick) {
-            this.megaMenuMobileActive = false;
-        }
-
-        if (!this.menuClick) {
-            if (this.isHorizontal()) {
-                this.menuService.reset();
-            }
-
-            if (this.menuMobileActive) {
-                this.menuMobileActive = false;
-            }
-
-            this.menuHoverActive = false;
-        }
-
-        this.menuClick = false;
-        this.topbarItemClick = false;
-        this.megaMenuClick = false;
-        this.megaMenuMobileClick = false;
-        this.rightPanelClick = false;
+  onLayoutClick() {
+    if (!this.topbarItemClick) {
+      this.activeTopbarItem = null;
+      this.topbarMenuActive = false;
     }
 
-    onMegaMenuButtonClick(event) {
-        this.megaMenuClick = true;
-        this.megaMenuActive = !this.megaMenuActive;
-        event.preventDefault();
+    if (!this.rightPanelClick) {
+      this.rightPanelActive = false;
     }
 
-    onMegaMenuClick(event) {
-        this.megaMenuClick = true;
-        event.preventDefault();
+    if (!this.megaMenuClick) {
+      this.megaMenuActive = false;
     }
 
-    onTopbarItemClick(event, item) {
-        this.topbarItemClick = true;
-
-        if (this.activeTopbarItem === item) {
-            this.activeTopbarItem = null; } else {
-            this.activeTopbarItem = item; }
-
-        event.preventDefault();
+    if (!this.megaMenuMobileClick) {
+      this.megaMenuMobileActive = false;
     }
 
-    onRightPanelButtonClick(event) {
-        this.rightPanelClick = true;
-        this.rightPanelActive = !this.rightPanelActive;
+    if (!this.menuClick) {
+      if (this.isHorizontal()) {
+        this.menuService.reset();
+      }
 
-        event.preventDefault();
+      if (this.menuMobileActive) {
+        this.menuMobileActive = false;
+      }
+
+      this.menuHoverActive = false;
     }
 
-    onRightPanelClose(event) {
-        this.rightPanelActive = false;
-        this.rightPanelClick = false;
+    this.menuClick = false;
+    this.topbarItemClick = false;
+    this.megaMenuClick = false;
+    this.megaMenuMobileClick = false;
+    this.rightPanelClick = false;
+  }
 
-        event.preventDefault();
+  onMegaMenuButtonClick(event) {
+    this.megaMenuClick = true;
+    this.megaMenuActive = !this.megaMenuActive;
+    event.preventDefault();
+  }
+
+  onMegaMenuClick(event) {
+    this.megaMenuClick = true;
+    event.preventDefault();
+  }
+
+  onTopbarItemClick(event, item) {
+    this.topbarItemClick = true;
+
+    if (this.activeTopbarItem === item) {
+      this.activeTopbarItem = null;
+    } else {
+      this.activeTopbarItem = item;
     }
 
-    onRightPanelClick(event) {
-        this.rightPanelClick = true;
+    event.preventDefault();
+  }
 
-        event.preventDefault();
+  onRightPanelButtonClick(event) {
+    this.rightPanelClick = true;
+    this.rightPanelActive = !this.rightPanelActive;
+
+    event.preventDefault();
+  }
+
+  onRightPanelClose(event) {
+    this.rightPanelActive = false;
+    this.rightPanelClick = false;
+
+    event.preventDefault();
+  }
+
+  onRightPanelClick(event) {
+    this.rightPanelClick = true;
+
+    event.preventDefault();
+  }
+
+  onTopbarMobileMenuButtonClick(event) {
+    this.topbarMobileMenuClick = true;
+    this.topbarMobileMenuActive = !this.topbarMobileMenuActive;
+
+    event.preventDefault();
+  }
+
+  onMegaMenuMobileButtonClick(event) {
+    this.megaMenuMobileClick = true;
+    this.megaMenuMobileActive = !this.megaMenuMobileActive;
+
+    event.preventDefault();
+  }
+
+  onMenuButtonClick(event) {
+    this.menuClick = true;
+    this.topbarMenuActive = false;
+
+    if (this.isMobile()) {
+      this.menuMobileActive = !this.menuMobileActive;
     }
 
-    onTopbarMobileMenuButtonClick(event) {
-        this.topbarMobileMenuClick = true;
-        this.topbarMobileMenuActive = !this.topbarMobileMenuActive;
+    event.preventDefault();
+  }
 
-        event.preventDefault();
-    }
+  onSidebarClick(event: Event) {
+    this.menuClick = true;
+  }
 
-    onMegaMenuMobileButtonClick(event) {
-        this.megaMenuMobileClick = true;
-        this.megaMenuMobileActive = !this.megaMenuMobileActive;
+  onToggleMenuClick(event: Event) {
+    this.staticMenuActive = !this.staticMenuActive;
+    event.preventDefault();
+  }
 
-        event.preventDefault();
-    }
+  isDesktop() {
+    return window.innerWidth > 991;
+  }
 
-    onMenuButtonClick(event) {
-        this.menuClick = true;
-        this.topbarMenuActive = false;
+  isMobile() {
+    return window.innerWidth <= 991;
+  }
 
-        if (this.isMobile()) {
-            this.menuMobileActive = !this.menuMobileActive;
-        }
-
-        event.preventDefault();
-    }
-
-    onSidebarClick(event: Event) {
-        this.menuClick = true;
-    }
-
-    onToggleMenuClick(event: Event) {
-        this.staticMenuActive = !this.staticMenuActive;
-        event.preventDefault();
-    }
-
-    isDesktop() {
-        return window.innerWidth > 991;
-    }
-
-    isMobile() {
-        return window.innerWidth <= 991;
-    }
-
-    isHorizontal() {
-        return this.horizontalMenu === true;
-    }
-
+  isHorizontal() {
+    return this.horizontalMenu === true;
+  }
 }
