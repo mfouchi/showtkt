@@ -1,12 +1,8 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { BreadcrumbService } from "src/app/breadcrumb.service";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import {
-  AllCompaniesGQL,
-  AllCompaniesQuery,
-  Company,
-} from "../../../generated/graphql";
+import { Company } from "../../../generated/graphql";
+import { DBService } from "../service/dbservice";
 
 @Component({
   templateUrl: "./companies.component.html",
@@ -14,21 +10,16 @@ import {
 export class CompaniesComponent implements OnInit {
   displayDialog: boolean;
   company: Company;
-  company$: Observable<AllCompaniesQuery["companies"]>;
+  company$: Observable<any>;
   selectedCompany: Company;
   newCompany: boolean;
   cols: any[];
   loading = false;
   error: any;
 
-  constructor(
-    private breadcrumbService: BreadcrumbService,
-    companiesGQL: AllCompaniesGQL
-  ) {
+  constructor(private breadcrumbService: BreadcrumbService, db: DBService) {
     this.breadcrumbService.setItems([{ label: "Companies" }]);
-    this.company$ = companiesGQL
-      .watch()
-      .valueChanges.pipe(map((result) => result.data.companies));
+    this.company$ = db.GetAllCompanies();
   }
 
   ngOnInit() {
@@ -51,12 +42,8 @@ export class CompaniesComponent implements OnInit {
     this.displayDialog = true;
   }
 
-  cloneCompany(c: Company): Company {
-    let company: Company;
-
-    for (let prop in c) {
-      company[prop] = c[prop];
-    }
-    return company;
+  save() {
+    this.company = null;
+    this.displayDialog = false;
   }
 }
