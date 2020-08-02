@@ -1,6 +1,6 @@
 <div class="p-grid">
   <div class="p-col-12">
-    <div class="card">
+    <div class="card" style="max-width: 100rem; margin: 0 auto;">
       <h1>ShowTkt Companies</h1>
 
       <div *ngIf="loading">
@@ -9,63 +9,70 @@
       <div *ngIf="error">
         Error :(
       </div>
-
-      <p-table
-        #dt
-        [columns]="cols"
-        [resizableColumns]="true"
-        selectionMode="single"
-        [(selection)]="selectedCompany"
-        (onRowSelect)="onRowSelect($event)"
-        [paginator]="true"
-        [rows]="15"
-        [value]="company$ | async"
-      >
-        <ng-template pTemplate="caption">
-          <div class="p-grid" style="flex-wrap: nowrap;">
-            <div class="p-col" style="text-align: left;">
-              <button
-                pButton
-                type="button"
-                icon="pi pi-plus"
-                label="Add"
-                (click)="onAddClicked()"
-              ></button>
-            </div>
-            <div class="p-col" style="white-space: nowrap;">
-              <div style="text-align: right;">
-                <i class="pi pi-search" style="margin: 4px 4px 0 0;"></i>
-                <input
-                  type="text"
-                  pInputText
-                  placeholder="Search"
-                  (input)="dt.filterGlobal($event.target.value, 'contains')"
-                  style="width: 75%; max-width: 15.6rem;"
-                />
+      <ng-container *ngIf="company$ | async as companies; else dt">
+        <p-table
+          #dt
+          [columns]="cols"
+          [lazy]="true"
+          (onLazyLoad)="loadDataLazy($event)"
+          [resizableColumns]="true"
+          selectionMode="single"
+          [(selection)]="selectedCompany"
+          (onRowSelect)="onRowSelect($event)"
+          [paginator]="true"
+          [rows]="1"
+          [totalRecords]="3"
+          [loading]="loading"
+          [value]="companies"
+          [style]="{ margin: '0 auto' }"
+        >
+          <ng-template pTemplate="caption">
+            <div class="p-grid" style="flex-wrap: nowrap;">
+              <div class="p-col" style="text-align: left;">
+                <button
+                  pButton
+                  type="button"
+                  icon="pi pi-plus"
+                  label="Add"
+                  (click)="onAddClicked()"
+                ></button>
+              </div>
+              <div class="p-col" style="white-space: nowrap;">
+                <div style="text-align: right;">
+                  <span class="md-inputfield search-input-wrapper">
+                    <input
+                      pInputText
+                      placeholder="Search..."
+                      (input)="dt.filterGlobal($event.target.value, 'contains')"
+                      style="width: 75%; max-width: 15.6rem;"
+                    />
+                    <i class="pi pi-search"></i>
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        </ng-template>
-        <ng-template pTemplate="colgroup" let-columns>
-          <colgroup>
-            <col *ngFor="let col of columns" [style.width]="col.width" />
-          </colgroup>
-        </ng-template>
-        <ng-template pTemplate="header" let-columns>
-          <tr>
-            <th *ngFor="let col of columns" pResizableColumn>
-              {{ col.header }}
-            </th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-          <tr [pSelectableRow]="rowData">
-            <td *ngFor="let col of columns">
-              {{ rowData[col.field] }}
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
+          </ng-template>
+          <ng-template pTemplate="colgroup" let-columns>
+            <colgroup>
+              <col *ngFor="let col of columns" [style.width]="col.width" />
+            </colgroup>
+          </ng-template>
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th *ngFor="let col of columns" pResizableColumn>
+                {{ col.header }}
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+              <td *ngFor="let col of columns">
+                {{ rowData[col.field] }}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </ng-container>
       <p-dialog
         header="Company Details"
         [(visible)]="displayDialog"
@@ -73,7 +80,7 @@
         [responsive]="true"
         showEffect="fade"
         [modal]="true"
-        [style]="{ width: '300px' }"
+        [style]="{ 'max-width': '500px' }"
       >
         <div class="p-grid ui-fluid" *ngIf="company">
           <div class="p-col-4">
@@ -100,16 +107,9 @@
             <button
               type="button"
               pButton
-              icon="pi pi-times"
-              (click)="delete()"
-              label="Delete"
-            ></button>
-            <button
-              type="button"
-              pButton
               icon="pi pi-check"
               (click)="save()"
-              label="Save"
+              label="{{ newCompany ? 'Add' : 'Update' }}"
             ></button>
           </div>
         </p-footer>

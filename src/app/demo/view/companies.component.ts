@@ -1,28 +1,33 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { BreadcrumbService } from "src/app/breadcrumb.service";
-import { Observable } from "rxjs";
-import { Company } from "../../../generated/graphql";
+import { Observable, Subscription } from "rxjs";
 import { DBService } from "../service/dbservice";
+import { Company } from "../models/models";
 
 @Component({
   templateUrl: "./companies.component.html",
 })
-export class CompaniesComponent implements OnInit {
+export class CompaniesComponent implements OnInit, OnDestroy {
   displayDialog: boolean;
-  company: Company;
-  company$: Observable<any>;
-  selectedCompany: Company;
+  company: Company = <Company>{};
+  selectedCompany: Company = <Company>{};
+  company$: Observable<Company[]>;
+  private sub = Subscription;
   newCompany: boolean;
   cols: any[];
   loading = false;
   error: any;
 
-  constructor(private breadcrumbService: BreadcrumbService, db: DBService) {
+  constructor(
+    private breadcrumbService: BreadcrumbService,
+    private db: DBService
+  ) {
     this.breadcrumbService.setItems([{ label: "Companies" }]);
-    this.company$ = db.GetAllCompanies();
   }
 
   ngOnInit() {
+    this.company$ = this.db.GetAllCompanies();
+
     this.cols = [
       { field: "name", header: "Name", width: "50%" },
       { field: "city", header: "City", width: "25%" },
@@ -38,12 +43,24 @@ export class CompaniesComponent implements OnInit {
 
   onAddClicked() {
     this.newCompany = true;
-    this.company = { id: null, name: "", city: "", state: "" };
+    this.company = <Company>{};
+    //this.company = { id: null, name: "", city: "", state: "" };
     this.displayDialog = true;
   }
 
+  loadDataLazy() {
+    this.loadCompanies();
+  }
+
+  loadCompanies() {
+    this.company$ = this.db.GetAllCompanies();
+  }
   save() {
     this.company = null;
     this.displayDialog = false;
+  }
+
+  ngOnDestroy() {
+    // this.sub.unsubscribe();
   }
 }

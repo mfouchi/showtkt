@@ -1,0 +1,27 @@
+query allCompanies {
+  companies(orderBy: { name: asc }) {
+    ...companyFields
+  }
+}
+
+query company($id: ID!) {
+  company(where: { id: $id }) {
+    ...companyFields
+  }
+}
+
+mutation updateCompany($id: ID!, $name: String, $city: String, $state: String) {
+  updateOneCompany(
+    where: { id: $id }
+    data: { name: "$name", city: "$city", state: "$state" }
+  ) {
+    ...companyFields
+  }
+}
+
+fragment companyFields on Company {
+  id
+  name
+  city
+  state
+}
