@@ -1,16 +1,26 @@
-query allCompanies {
-  companies(orderBy: { name: asc }) {
+query companies($take: Int) {
+  companies(first: $take, orderBy: { name: asc }) {
     ...companyFields
   }
 }
 
-query company($id: ID!) {
+query companiesPaged($take: Int, $after: Int) {
+  companies(first: $take, after: { id: $after }, orderBy: { name: asc }) {
+    ...companyFields
+  }
+}
+
+query company($id: Int) {
   company(where: { id: $id }) {
     ...companyFields
   }
 }
 
-mutation updateCompany($id: ID!, $name: String, $city: String, $state: String) {
+query companiesCount {
+  companiesCount
+}
+
+mutation updateCompany($id: Int, $name: String, $city: String, $state: String) {
   updateOneCompany(
     where: { id: $id }
     data: { name: "$name", city: "$city", state: "$state" }

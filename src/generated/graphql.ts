@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
-import { Injectable } from "@angular/core";
-import * as Apollo from "apollo-angular";
+import gql from 'graphql-tag';
+import { Injectable } from '@angular/core';
+import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: any }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
@@ -16,61 +16,67 @@ export type Scalars = {
   Json: any;
 };
 
+
+
 export type AuthPayload = {
-  __typename?: "AuthPayload";
-  token?: Maybe<Scalars["String"]>;
+  __typename?: 'AuthPayload';
+  token?: Maybe<Scalars['String']>;
   user?: Maybe<User>;
 };
 
 export type BatchPayload = {
-  __typename?: "BatchPayload";
-  count: Scalars["Int"];
+  __typename?: 'BatchPayload';
+  count: Scalars['Int'];
 };
 
 export type Company = {
-  __typename?: "Company";
-  id: Scalars["Int"];
-  name: Scalars["String"];
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
-  Producers?: Array<Producer>;
-  Productions?: Array<Production>;
-  Events?: Array<Event>;
-  Venues?: Array<Venue>;
+  __typename?: 'Company';
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
+  Producers: Array<Producer>;
+  Productions: Array<Production>;
+  Events: Array<Event>;
+  Venues: Array<Venue>;
 };
 
+
 export type CompanyProducersArgs = {
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<ProducerWhereUniqueInput>;
   after?: Maybe<ProducerWhereUniqueInput>;
 };
 
+
 export type CompanyProductionsArgs = {
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<ProductionWhereUniqueInput>;
   after?: Maybe<ProductionWhereUniqueInput>;
 };
 
+
 export type CompanyEventsArgs = {
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<EventWhereUniqueInput>;
   after?: Maybe<EventWhereUniqueInput>;
 };
 
+
 export type CompanyVenuesArgs = {
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<VenueWhereUniqueInput>;
   after?: Maybe<VenueWhereUniqueInput>;
 };
 
 export type CompanyCreateInput = {
-  name: Scalars["String"];
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
+  name: Scalars['String'];
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
   Producers?: Maybe<ProducerCreateManyWithoutCompanyInput>;
   Productions?: Maybe<ProductionCreateManyWithoutCompanyInput>;
   Events?: Maybe<EventCreateManyWithoutCompanyInput>;
@@ -104,9 +110,9 @@ export type CompanyCreateOneWithoutUserInput = {
 };
 
 export type CompanyCreateWithoutEventsInput = {
-  name: Scalars["String"];
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
+  name: Scalars['String'];
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
   Producers?: Maybe<ProducerCreateManyWithoutCompanyInput>;
   Productions?: Maybe<ProductionCreateManyWithoutCompanyInput>;
   Venues?: Maybe<VenueCreateManyWithoutCompaniesInput>;
@@ -114,9 +120,9 @@ export type CompanyCreateWithoutEventsInput = {
 };
 
 export type CompanyCreateWithoutProducersInput = {
-  name: Scalars["String"];
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
+  name: Scalars['String'];
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
   Productions?: Maybe<ProductionCreateManyWithoutCompanyInput>;
   Events?: Maybe<EventCreateManyWithoutCompanyInput>;
   Venues?: Maybe<VenueCreateManyWithoutCompaniesInput>;
@@ -124,9 +130,9 @@ export type CompanyCreateWithoutProducersInput = {
 };
 
 export type CompanyCreateWithoutProductionsInput = {
-  name: Scalars["String"];
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
+  name: Scalars['String'];
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
   Producers?: Maybe<ProducerCreateManyWithoutCompanyInput>;
   Events?: Maybe<EventCreateManyWithoutCompanyInput>;
   Venues?: Maybe<VenueCreateManyWithoutCompaniesInput>;
@@ -134,9 +140,9 @@ export type CompanyCreateWithoutProductionsInput = {
 };
 
 export type CompanyCreateWithoutUserInput = {
-  name: Scalars["String"];
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
+  name: Scalars['String'];
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
   Producers?: Maybe<ProducerCreateManyWithoutCompanyInput>;
   Productions?: Maybe<ProductionCreateManyWithoutCompanyInput>;
   Events?: Maybe<EventCreateManyWithoutCompanyInput>;
@@ -144,9 +150,9 @@ export type CompanyCreateWithoutUserInput = {
 };
 
 export type CompanyCreateWithoutVenuesInput = {
-  name: Scalars["String"];
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
+  name: Scalars['String'];
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
   Producers?: Maybe<ProducerCreateManyWithoutCompanyInput>;
   Productions?: Maybe<ProductionCreateManyWithoutCompanyInput>;
   Events?: Maybe<EventCreateManyWithoutCompanyInput>;
@@ -182,10 +188,10 @@ export type CompanyScalarWhereInput = {
 };
 
 export type CompanyUpdateInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
   Producers?: Maybe<ProducerUpdateManyWithoutCompanyInput>;
   Productions?: Maybe<ProductionUpdateManyWithoutCompanyInput>;
   Events?: Maybe<EventUpdateManyWithoutCompanyInput>;
@@ -194,17 +200,17 @@ export type CompanyUpdateInput = {
 };
 
 export type CompanyUpdateManyDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
 };
 
 export type CompanyUpdateManyMutationInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
 };
 
 export type CompanyUpdateManyWithoutVenuesInput = {
@@ -253,10 +259,10 @@ export type CompanyUpdateOneRequiredWithoutUserInput = {
 };
 
 export type CompanyUpdateWithoutEventsDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
   Producers?: Maybe<ProducerUpdateManyWithoutCompanyInput>;
   Productions?: Maybe<ProductionUpdateManyWithoutCompanyInput>;
   Venues?: Maybe<VenueUpdateManyWithoutCompaniesInput>;
@@ -264,10 +270,10 @@ export type CompanyUpdateWithoutEventsDataInput = {
 };
 
 export type CompanyUpdateWithoutProducersDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
   Productions?: Maybe<ProductionUpdateManyWithoutCompanyInput>;
   Events?: Maybe<EventUpdateManyWithoutCompanyInput>;
   Venues?: Maybe<VenueUpdateManyWithoutCompaniesInput>;
@@ -275,10 +281,10 @@ export type CompanyUpdateWithoutProducersDataInput = {
 };
 
 export type CompanyUpdateWithoutProductionsDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
   Producers?: Maybe<ProducerUpdateManyWithoutCompanyInput>;
   Events?: Maybe<EventUpdateManyWithoutCompanyInput>;
   Venues?: Maybe<VenueUpdateManyWithoutCompaniesInput>;
@@ -286,10 +292,10 @@ export type CompanyUpdateWithoutProductionsDataInput = {
 };
 
 export type CompanyUpdateWithoutUserDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
   Producers?: Maybe<ProducerUpdateManyWithoutCompanyInput>;
   Productions?: Maybe<ProductionUpdateManyWithoutCompanyInput>;
   Events?: Maybe<EventUpdateManyWithoutCompanyInput>;
@@ -297,10 +303,10 @@ export type CompanyUpdateWithoutUserDataInput = {
 };
 
 export type CompanyUpdateWithoutVenuesDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  city?: Maybe<Scalars["String"]>;
-  state?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
   Producers?: Maybe<ProducerUpdateManyWithoutCompanyInput>;
   Productions?: Maybe<ProductionUpdateManyWithoutCompanyInput>;
   Events?: Maybe<EventUpdateManyWithoutCompanyInput>;
@@ -354,46 +360,48 @@ export type CompanyWhereInput = {
 };
 
 export type CompanyWhereUniqueInput = {
-  id?: Maybe<Scalars["Int"]>;
+  id?: Maybe<Scalars['Int']>;
 };
 
+
 export type DateTimeFilter = {
-  equals?: Maybe<Scalars["DateTime"]>;
-  not?: Maybe<Scalars["DateTime"]>;
-  in?: Maybe<Array<Scalars["DateTime"]>>;
-  notIn?: Maybe<Array<Scalars["DateTime"]>>;
-  lt?: Maybe<Scalars["DateTime"]>;
-  lte?: Maybe<Scalars["DateTime"]>;
-  gt?: Maybe<Scalars["DateTime"]>;
-  gte?: Maybe<Scalars["DateTime"]>;
+  equals?: Maybe<Scalars['DateTime']>;
+  not?: Maybe<Scalars['DateTime']>;
+  in?: Maybe<Array<Scalars['DateTime']>>;
+  notIn?: Maybe<Array<Scalars['DateTime']>>;
+  lt?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  gt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
 };
 
 export type Event = {
-  __typename?: "Event";
-  id: Scalars["Int"];
-  name?: Maybe<Scalars["String"]>;
-  maxAdmission?: Maybe<Scalars["Int"]>;
-  dateTime: Scalars["DateTime"];
-  venueId: Scalars["Int"];
-  productionId: Scalars["Int"];
-  companyId: Scalars["Int"];
+  __typename?: 'Event';
+  id: Scalars['Int'];
+  name?: Maybe<Scalars['String']>;
+  maxAdmission?: Maybe<Scalars['Int']>;
+  dateTime: Scalars['DateTime'];
+  venueId: Scalars['Int'];
+  productionId: Scalars['Int'];
+  companyId: Scalars['Int'];
   Company: Company;
   Production: Production;
   Venue: Venue;
   Seats: Array<Seat>;
 };
 
+
 export type EventSeatsArgs = {
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<SeatWhereUniqueInput>;
   after?: Maybe<SeatWhereUniqueInput>;
 };
 
 export type EventCreateInput = {
-  name?: Maybe<Scalars["String"]>;
-  maxAdmission?: Maybe<Scalars["Int"]>;
-  dateTime: Scalars["DateTime"];
+  name?: Maybe<Scalars['String']>;
+  maxAdmission?: Maybe<Scalars['Int']>;
+  dateTime: Scalars['DateTime'];
   Company: CompanyCreateOneWithoutEventsInput;
   Production: ProductionCreateOneWithoutEventsInput;
   Venue: VenueCreateOneWithoutEventsInput;
@@ -421,36 +429,36 @@ export type EventCreateOneWithoutSeatsInput = {
 };
 
 export type EventCreateWithoutCompanyInput = {
-  name?: Maybe<Scalars["String"]>;
-  maxAdmission?: Maybe<Scalars["Int"]>;
-  dateTime: Scalars["DateTime"];
+  name?: Maybe<Scalars['String']>;
+  maxAdmission?: Maybe<Scalars['Int']>;
+  dateTime: Scalars['DateTime'];
   Production: ProductionCreateOneWithoutEventsInput;
   Venue: VenueCreateOneWithoutEventsInput;
   Seats?: Maybe<SeatCreateManyWithoutEventInput>;
 };
 
 export type EventCreateWithoutProductionInput = {
-  name?: Maybe<Scalars["String"]>;
-  maxAdmission?: Maybe<Scalars["Int"]>;
-  dateTime: Scalars["DateTime"];
+  name?: Maybe<Scalars['String']>;
+  maxAdmission?: Maybe<Scalars['Int']>;
+  dateTime: Scalars['DateTime'];
   Company: CompanyCreateOneWithoutEventsInput;
   Venue: VenueCreateOneWithoutEventsInput;
   Seats?: Maybe<SeatCreateManyWithoutEventInput>;
 };
 
 export type EventCreateWithoutSeatsInput = {
-  name?: Maybe<Scalars["String"]>;
-  maxAdmission?: Maybe<Scalars["Int"]>;
-  dateTime: Scalars["DateTime"];
+  name?: Maybe<Scalars['String']>;
+  maxAdmission?: Maybe<Scalars['Int']>;
+  dateTime: Scalars['DateTime'];
   Company: CompanyCreateOneWithoutEventsInput;
   Production: ProductionCreateOneWithoutEventsInput;
   Venue: VenueCreateOneWithoutEventsInput;
 };
 
 export type EventCreateWithoutVenueInput = {
-  name?: Maybe<Scalars["String"]>;
-  maxAdmission?: Maybe<Scalars["Int"]>;
-  dateTime: Scalars["DateTime"];
+  name?: Maybe<Scalars['String']>;
+  maxAdmission?: Maybe<Scalars['Int']>;
+  dateTime: Scalars['DateTime'];
   Company: CompanyCreateOneWithoutEventsInput;
   Production: ProductionCreateOneWithoutEventsInput;
   Seats?: Maybe<SeatCreateManyWithoutEventInput>;
@@ -487,10 +495,10 @@ export type EventScalarWhereInput = {
 };
 
 export type EventUpdateInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  maxAdmission?: Maybe<Scalars["Int"]>;
-  dateTime?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  maxAdmission?: Maybe<Scalars['Int']>;
+  dateTime?: Maybe<Scalars['DateTime']>;
   Company?: Maybe<CompanyUpdateOneRequiredWithoutEventsInput>;
   Production?: Maybe<ProductionUpdateOneRequiredWithoutEventsInput>;
   Venue?: Maybe<VenueUpdateOneRequiredWithoutEventsInput>;
@@ -498,17 +506,17 @@ export type EventUpdateInput = {
 };
 
 export type EventUpdateManyDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  maxAdmission?: Maybe<Scalars["Int"]>;
-  dateTime?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  maxAdmission?: Maybe<Scalars['Int']>;
+  dateTime?: Maybe<Scalars['DateTime']>;
 };
 
 export type EventUpdateManyMutationInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  maxAdmission?: Maybe<Scalars["Int"]>;
-  dateTime?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  maxAdmission?: Maybe<Scalars['Int']>;
+  dateTime?: Maybe<Scalars['DateTime']>;
 };
 
 export type EventUpdateManyWithoutCompanyInput = {
@@ -555,47 +563,47 @@ export type EventUpdateManyWithWhereNestedInput = {
 export type EventUpdateOneWithoutSeatsInput = {
   create?: Maybe<EventCreateWithoutSeatsInput>;
   connect?: Maybe<EventWhereUniqueInput>;
-  disconnect?: Maybe<Scalars["Boolean"]>;
-  delete?: Maybe<Scalars["Boolean"]>;
+  disconnect?: Maybe<Scalars['Boolean']>;
+  delete?: Maybe<Scalars['Boolean']>;
   update?: Maybe<EventUpdateWithoutSeatsDataInput>;
   upsert?: Maybe<EventUpsertWithoutSeatsInput>;
 };
 
 export type EventUpdateWithoutCompanyDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  maxAdmission?: Maybe<Scalars["Int"]>;
-  dateTime?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  maxAdmission?: Maybe<Scalars['Int']>;
+  dateTime?: Maybe<Scalars['DateTime']>;
   Production?: Maybe<ProductionUpdateOneRequiredWithoutEventsInput>;
   Venue?: Maybe<VenueUpdateOneRequiredWithoutEventsInput>;
   Seats?: Maybe<SeatUpdateManyWithoutEventInput>;
 };
 
 export type EventUpdateWithoutProductionDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  maxAdmission?: Maybe<Scalars["Int"]>;
-  dateTime?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  maxAdmission?: Maybe<Scalars['Int']>;
+  dateTime?: Maybe<Scalars['DateTime']>;
   Company?: Maybe<CompanyUpdateOneRequiredWithoutEventsInput>;
   Venue?: Maybe<VenueUpdateOneRequiredWithoutEventsInput>;
   Seats?: Maybe<SeatUpdateManyWithoutEventInput>;
 };
 
 export type EventUpdateWithoutSeatsDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  maxAdmission?: Maybe<Scalars["Int"]>;
-  dateTime?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  maxAdmission?: Maybe<Scalars['Int']>;
+  dateTime?: Maybe<Scalars['DateTime']>;
   Company?: Maybe<CompanyUpdateOneRequiredWithoutEventsInput>;
   Production?: Maybe<ProductionUpdateOneRequiredWithoutEventsInput>;
   Venue?: Maybe<VenueUpdateOneRequiredWithoutEventsInput>;
 };
 
 export type EventUpdateWithoutVenueDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
-  maxAdmission?: Maybe<Scalars["Int"]>;
-  dateTime?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  maxAdmission?: Maybe<Scalars['Int']>;
+  dateTime?: Maybe<Scalars['DateTime']>;
   Company?: Maybe<CompanyUpdateOneRequiredWithoutEventsInput>;
   Production?: Maybe<ProductionUpdateOneRequiredWithoutEventsInput>;
   Seats?: Maybe<SeatUpdateManyWithoutEventInput>;
@@ -657,25 +665,26 @@ export type EventWhereInput = {
 };
 
 export type EventWhereUniqueInput = {
-  id?: Maybe<Scalars["Int"]>;
-  venueId?: Maybe<Scalars["Int"]>;
-  productionId?: Maybe<Scalars["Int"]>;
-  companyId?: Maybe<Scalars["Int"]>;
+  id?: Maybe<Scalars['Int']>;
+  venueId?: Maybe<Scalars['Int']>;
+  productionId?: Maybe<Scalars['Int']>;
+  companyId?: Maybe<Scalars['Int']>;
 };
 
 export type IntFilter = {
-  equals?: Maybe<Scalars["Int"]>;
-  not?: Maybe<Scalars["Int"]>;
-  in?: Maybe<Array<Scalars["Int"]>>;
-  notIn?: Maybe<Array<Scalars["Int"]>>;
-  lt?: Maybe<Scalars["Int"]>;
-  lte?: Maybe<Scalars["Int"]>;
-  gt?: Maybe<Scalars["Int"]>;
-  gte?: Maybe<Scalars["Int"]>;
+  equals?: Maybe<Scalars['Int']>;
+  not?: Maybe<Scalars['Int']>;
+  in?: Maybe<Array<Scalars['Int']>>;
+  notIn?: Maybe<Array<Scalars['Int']>>;
+  lt?: Maybe<Scalars['Int']>;
+  lte?: Maybe<Scalars['Int']>;
+  gt?: Maybe<Scalars['Int']>;
+  gte?: Maybe<Scalars['Int']>;
 };
 
+
 export type Mutation = {
-  __typename?: "Mutation";
+  __typename?: 'Mutation';
   signup?: Maybe<AuthPayload>;
   login?: Maybe<AuthPayload>;
   createOneCompany: Company;
@@ -728,25 +737,30 @@ export type Mutation = {
   deleteManyVenue: BatchPayload;
 };
 
+
 export type MutationSignupArgs = {
-  name?: Maybe<Scalars["String"]>;
-  email: Scalars["String"];
-  password: Scalars["String"];
+  name?: Maybe<Scalars['String']>;
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
+
 export type MutationLoginArgs = {
-  email: Scalars["String"];
-  password: Scalars["String"];
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
+
 
 export type MutationCreateOneCompanyArgs = {
   data: CompanyCreateInput;
 };
 
+
 export type MutationUpdateOneCompanyArgs = {
   data: CompanyUpdateInput;
   where: CompanyWhereUniqueInput;
 };
+
 
 export type MutationUpsertOneCompanyArgs = {
   where: CompanyWhereUniqueInput;
@@ -754,27 +768,33 @@ export type MutationUpsertOneCompanyArgs = {
   update: CompanyUpdateInput;
 };
 
+
 export type MutationDeleteOneCompanyArgs = {
   where: CompanyWhereUniqueInput;
 };
+
 
 export type MutationUpdateManyCompanyArgs = {
   data: CompanyUpdateManyMutationInput;
   where?: Maybe<CompanyWhereInput>;
 };
 
+
 export type MutationDeleteManyCompanyArgs = {
   where?: Maybe<CompanyWhereInput>;
 };
+
 
 export type MutationCreateOneEventArgs = {
   data: EventCreateInput;
 };
 
+
 export type MutationUpdateOneEventArgs = {
   data: EventUpdateInput;
   where: EventWhereUniqueInput;
 };
+
 
 export type MutationUpsertOneEventArgs = {
   where: EventWhereUniqueInput;
@@ -782,27 +802,33 @@ export type MutationUpsertOneEventArgs = {
   update: EventUpdateInput;
 };
 
+
 export type MutationDeleteOneEventArgs = {
   where: EventWhereUniqueInput;
 };
+
 
 export type MutationUpdateManyEventArgs = {
   data: EventUpdateManyMutationInput;
   where?: Maybe<EventWhereInput>;
 };
 
+
 export type MutationDeleteManyEventArgs = {
   where?: Maybe<EventWhereInput>;
 };
+
 
 export type MutationCreateOneProducerArgs = {
   data: ProducerCreateInput;
 };
 
+
 export type MutationUpdateOneProducerArgs = {
   data: ProducerUpdateInput;
   where: ProducerWhereUniqueInput;
 };
+
 
 export type MutationUpsertOneProducerArgs = {
   where: ProducerWhereUniqueInput;
@@ -810,27 +836,33 @@ export type MutationUpsertOneProducerArgs = {
   update: ProducerUpdateInput;
 };
 
+
 export type MutationDeleteOneProducerArgs = {
   where: ProducerWhereUniqueInput;
 };
+
 
 export type MutationUpdateManyProducerArgs = {
   data: ProducerUpdateManyMutationInput;
   where?: Maybe<ProducerWhereInput>;
 };
 
+
 export type MutationDeleteManyProducerArgs = {
   where?: Maybe<ProducerWhereInput>;
 };
+
 
 export type MutationCreateOneProductionArgs = {
   data: ProductionCreateInput;
 };
 
+
 export type MutationUpdateOneProductionArgs = {
   data: ProductionUpdateInput;
   where: ProductionWhereUniqueInput;
 };
+
 
 export type MutationUpsertOneProductionArgs = {
   where: ProductionWhereUniqueInput;
@@ -838,27 +870,33 @@ export type MutationUpsertOneProductionArgs = {
   update: ProductionUpdateInput;
 };
 
+
 export type MutationDeleteOneProductionArgs = {
   where: ProductionWhereUniqueInput;
 };
+
 
 export type MutationUpdateManyProductionArgs = {
   data: ProductionUpdateManyMutationInput;
   where?: Maybe<ProductionWhereInput>;
 };
 
+
 export type MutationDeleteManyProductionArgs = {
   where?: Maybe<ProductionWhereInput>;
 };
+
 
 export type MutationCreateOneSeatArgs = {
   data: SeatCreateInput;
 };
 
+
 export type MutationUpdateOneSeatArgs = {
   data: SeatUpdateInput;
   where: SeatWhereUniqueInput;
 };
+
 
 export type MutationUpsertOneSeatArgs = {
   where: SeatWhereUniqueInput;
@@ -866,27 +904,33 @@ export type MutationUpsertOneSeatArgs = {
   update: SeatUpdateInput;
 };
 
+
 export type MutationDeleteOneSeatArgs = {
   where: SeatWhereUniqueInput;
 };
+
 
 export type MutationUpdateManySeatArgs = {
   data: SeatUpdateManyMutationInput;
   where?: Maybe<SeatWhereInput>;
 };
 
+
 export type MutationDeleteManySeatArgs = {
   where?: Maybe<SeatWhereInput>;
 };
+
 
 export type MutationCreateOneSeatingChartArgs = {
   data: SeatingChartCreateInput;
 };
 
+
 export type MutationUpdateOneSeatingChartArgs = {
   data: SeatingChartUpdateInput;
   where: SeatingChartWhereUniqueInput;
 };
+
 
 export type MutationUpsertOneSeatingChartArgs = {
   where: SeatingChartWhereUniqueInput;
@@ -894,27 +938,33 @@ export type MutationUpsertOneSeatingChartArgs = {
   update: SeatingChartUpdateInput;
 };
 
+
 export type MutationDeleteOneSeatingChartArgs = {
   where: SeatingChartWhereUniqueInput;
 };
+
 
 export type MutationUpdateManySeatingChartArgs = {
   data: SeatingChartUpdateManyMutationInput;
   where?: Maybe<SeatingChartWhereInput>;
 };
 
+
 export type MutationDeleteManySeatingChartArgs = {
   where?: Maybe<SeatingChartWhereInput>;
 };
+
 
 export type MutationCreateOneUserArgs = {
   data: UserCreateInput;
 };
 
+
 export type MutationUpdateOneUserArgs = {
   data: UserUpdateInput;
   where: UserWhereUniqueInput;
 };
+
 
 export type MutationUpsertOneUserArgs = {
   where: UserWhereUniqueInput;
@@ -922,27 +972,33 @@ export type MutationUpsertOneUserArgs = {
   update: UserUpdateInput;
 };
 
+
 export type MutationDeleteOneUserArgs = {
   where: UserWhereUniqueInput;
 };
+
 
 export type MutationUpdateManyUserArgs = {
   data: UserUpdateManyMutationInput;
   where?: Maybe<UserWhereInput>;
 };
 
+
 export type MutationDeleteManyUserArgs = {
   where?: Maybe<UserWhereInput>;
 };
+
 
 export type MutationCreateOneVenueArgs = {
   data: VenueCreateInput;
 };
 
+
 export type MutationUpdateOneVenueArgs = {
   data: VenueUpdateInput;
   where: VenueWhereUniqueInput;
 };
+
 
 export type MutationUpsertOneVenueArgs = {
   where: VenueWhereUniqueInput;
@@ -950,67 +1006,71 @@ export type MutationUpsertOneVenueArgs = {
   update: VenueUpdateInput;
 };
 
+
 export type MutationDeleteOneVenueArgs = {
   where: VenueWhereUniqueInput;
 };
+
 
 export type MutationUpdateManyVenueArgs = {
   data: VenueUpdateManyMutationInput;
   where?: Maybe<VenueWhereInput>;
 };
 
+
 export type MutationDeleteManyVenueArgs = {
   where?: Maybe<VenueWhereInput>;
 };
 
 export type NullableIntFilter = {
-  equals?: Maybe<Scalars["Int"]>;
-  not?: Maybe<Scalars["Int"]>;
-  in?: Maybe<Array<Scalars["Int"]>>;
-  notIn?: Maybe<Array<Scalars["Int"]>>;
-  lt?: Maybe<Scalars["Int"]>;
-  lte?: Maybe<Scalars["Int"]>;
-  gt?: Maybe<Scalars["Int"]>;
-  gte?: Maybe<Scalars["Int"]>;
+  equals?: Maybe<Scalars['Int']>;
+  not?: Maybe<Scalars['Int']>;
+  in?: Maybe<Array<Scalars['Int']>>;
+  notIn?: Maybe<Array<Scalars['Int']>>;
+  lt?: Maybe<Scalars['Int']>;
+  lte?: Maybe<Scalars['Int']>;
+  gt?: Maybe<Scalars['Int']>;
+  gte?: Maybe<Scalars['Int']>;
 };
 
 export type NullableStringFilter = {
-  equals?: Maybe<Scalars["String"]>;
-  not?: Maybe<Scalars["String"]>;
-  in?: Maybe<Array<Scalars["String"]>>;
-  notIn?: Maybe<Array<Scalars["String"]>>;
-  lt?: Maybe<Scalars["String"]>;
-  lte?: Maybe<Scalars["String"]>;
-  gt?: Maybe<Scalars["String"]>;
-  gte?: Maybe<Scalars["String"]>;
-  contains?: Maybe<Scalars["String"]>;
-  startsWith?: Maybe<Scalars["String"]>;
-  endsWith?: Maybe<Scalars["String"]>;
+  equals?: Maybe<Scalars['String']>;
+  not?: Maybe<Scalars['String']>;
+  in?: Maybe<Array<Scalars['String']>>;
+  notIn?: Maybe<Array<Scalars['String']>>;
+  lt?: Maybe<Scalars['String']>;
+  lte?: Maybe<Scalars['String']>;
+  gt?: Maybe<Scalars['String']>;
+  gte?: Maybe<Scalars['String']>;
+  contains?: Maybe<Scalars['String']>;
+  startsWith?: Maybe<Scalars['String']>;
+  endsWith?: Maybe<Scalars['String']>;
 };
 
 export enum OrderByArg {
-  Asc = "asc",
-  Desc = "desc",
+  Asc = 'asc',
+  Desc = 'desc'
 }
 
 export type Producer = {
-  __typename?: "Producer";
-  id: Scalars["Int"];
-  name: Scalars["String"];
-  companyId: Scalars["Int"];
+  __typename?: 'Producer';
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  companyId: Scalars['Int'];
   Company: Company;
   Productions: Array<Production>;
 };
 
+
 export type ProducerProductionsArgs = {
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<ProductionWhereUniqueInput>;
   after?: Maybe<ProductionWhereUniqueInput>;
 };
 
 export type ProducerCreateInput = {
-  name: Scalars["String"];
+  name: Scalars['String'];
   Company: CompanyCreateOneWithoutProducersInput;
   Productions?: Maybe<ProductionCreateManyWithoutProducerInput>;
 };
@@ -1026,12 +1086,12 @@ export type ProducerCreateOneWithoutProductionsInput = {
 };
 
 export type ProducerCreateWithoutCompanyInput = {
-  name: Scalars["String"];
+  name: Scalars['String'];
   Productions?: Maybe<ProductionCreateManyWithoutProducerInput>;
 };
 
 export type ProducerCreateWithoutProductionsInput = {
-  name: Scalars["String"];
+  name: Scalars['String'];
   Company: CompanyCreateOneWithoutProducersInput;
 };
 
@@ -1058,20 +1118,20 @@ export type ProducerScalarWhereInput = {
 };
 
 export type ProducerUpdateInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
   Company?: Maybe<CompanyUpdateOneRequiredWithoutProducersInput>;
   Productions?: Maybe<ProductionUpdateManyWithoutProducerInput>;
 };
 
 export type ProducerUpdateManyDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type ProducerUpdateManyMutationInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type ProducerUpdateManyWithoutCompanyInput = {
@@ -1099,14 +1159,14 @@ export type ProducerUpdateOneRequiredWithoutProductionsInput = {
 };
 
 export type ProducerUpdateWithoutCompanyDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
   Productions?: Maybe<ProductionUpdateManyWithoutProducerInput>;
 };
 
 export type ProducerUpdateWithoutProductionsDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
   Company?: Maybe<CompanyUpdateOneRequiredWithoutProducersInput>;
 };
 
@@ -1138,30 +1198,31 @@ export type ProducerWhereInput = {
 };
 
 export type ProducerWhereUniqueInput = {
-  id?: Maybe<Scalars["Int"]>;
-  companyId?: Maybe<Scalars["Int"]>;
+  id?: Maybe<Scalars['Int']>;
+  companyId?: Maybe<Scalars['Int']>;
 };
 
 export type Production = {
-  __typename?: "Production";
-  id: Scalars["Int"];
-  name: Scalars["String"];
-  producerId: Scalars["Int"];
-  companyId: Scalars["Int"];
+  __typename?: 'Production';
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  producerId: Scalars['Int'];
+  companyId: Scalars['Int'];
   Company: Company;
   Producer: Producer;
   Events: Array<Event>;
 };
 
+
 export type ProductionEventsArgs = {
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<EventWhereUniqueInput>;
   after?: Maybe<EventWhereUniqueInput>;
 };
 
 export type ProductionCreateInput = {
-  name: Scalars["String"];
+  name: Scalars['String'];
   Company: CompanyCreateOneWithoutProductionsInput;
   Producer: ProducerCreateOneWithoutProductionsInput;
   Events?: Maybe<EventCreateManyWithoutProductionInput>;
@@ -1183,19 +1244,19 @@ export type ProductionCreateOneWithoutEventsInput = {
 };
 
 export type ProductionCreateWithoutCompanyInput = {
-  name: Scalars["String"];
+  name: Scalars['String'];
   Producer: ProducerCreateOneWithoutProductionsInput;
   Events?: Maybe<EventCreateManyWithoutProductionInput>;
 };
 
 export type ProductionCreateWithoutEventsInput = {
-  name: Scalars["String"];
+  name: Scalars['String'];
   Company: CompanyCreateOneWithoutProductionsInput;
   Producer: ProducerCreateOneWithoutProductionsInput;
 };
 
 export type ProductionCreateWithoutProducerInput = {
-  name: Scalars["String"];
+  name: Scalars['String'];
   Company: CompanyCreateOneWithoutProductionsInput;
   Events?: Maybe<EventCreateManyWithoutProductionInput>;
 };
@@ -1225,21 +1286,21 @@ export type ProductionScalarWhereInput = {
 };
 
 export type ProductionUpdateInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
   Company?: Maybe<CompanyUpdateOneRequiredWithoutProductionsInput>;
   Producer?: Maybe<ProducerUpdateOneRequiredWithoutProductionsInput>;
   Events?: Maybe<EventUpdateManyWithoutProductionInput>;
 };
 
 export type ProductionUpdateManyDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type ProductionUpdateManyMutationInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type ProductionUpdateManyWithoutCompanyInput = {
@@ -1279,22 +1340,22 @@ export type ProductionUpdateOneRequiredWithoutEventsInput = {
 };
 
 export type ProductionUpdateWithoutCompanyDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
   Producer?: Maybe<ProducerUpdateOneRequiredWithoutProductionsInput>;
   Events?: Maybe<EventUpdateManyWithoutProductionInput>;
 };
 
 export type ProductionUpdateWithoutEventsDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
   Company?: Maybe<CompanyUpdateOneRequiredWithoutProductionsInput>;
   Producer?: Maybe<ProducerUpdateOneRequiredWithoutProductionsInput>;
 };
 
 export type ProductionUpdateWithoutProducerDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
   Company?: Maybe<CompanyUpdateOneRequiredWithoutProductionsInput>;
   Events?: Maybe<EventUpdateManyWithoutProductionInput>;
 };
@@ -1340,200 +1401,224 @@ export type ProductionWhereInput = {
 };
 
 export type ProductionWhereUniqueInput = {
-  id?: Maybe<Scalars["Int"]>;
-  producerId?: Maybe<Scalars["Int"]>;
-  companyId?: Maybe<Scalars["Int"]>;
+  id?: Maybe<Scalars['Int']>;
+  producerId?: Maybe<Scalars['Int']>;
+  companyId?: Maybe<Scalars['Int']>;
 };
 
 export type Query = {
-  __typename?: "Query";
+  __typename?: 'Query';
   me?: Maybe<User>;
   company?: Maybe<Company>;
   companies: Array<Company>;
-  companiesCount?: Maybe<Scalars["Int"]>;
+  companiesCount?: Maybe<Scalars['Int']>;
   event?: Maybe<Event>;
   events: Array<Event>;
-  eventsCount?: Maybe<Scalars["Int"]>;
+  eventsCount?: Maybe<Scalars['Int']>;
   producer?: Maybe<Producer>;
   producers: Array<Producer>;
-  producersCount?: Maybe<Scalars["Int"]>;
+  producersCount?: Maybe<Scalars['Int']>;
   production?: Maybe<Production>;
   productions: Array<Production>;
-  productionsCount?: Maybe<Scalars["Int"]>;
+  productionsCount?: Maybe<Scalars['Int']>;
   seat?: Maybe<Seat>;
   seats: Array<Seat>;
-  seatsCount?: Maybe<Scalars["Int"]>;
+  seatsCount?: Maybe<Scalars['Int']>;
   seatingChart?: Maybe<SeatingChart>;
   seatingCharts: Array<SeatingChart>;
-  seatingChartsCount?: Maybe<Scalars["Int"]>;
+  seatingChartsCount?: Maybe<Scalars['Int']>;
   user?: Maybe<User>;
   users: Array<User>;
-  usersCount?: Maybe<Scalars["Int"]>;
+  usersCount?: Maybe<Scalars['Int']>;
   venue?: Maybe<Venue>;
   venues: Array<Venue>;
-  venuesCount?: Maybe<Scalars["Int"]>;
+  venuesCount?: Maybe<Scalars['Int']>;
 };
+
 
 export type QueryCompanyArgs = {
   where: CompanyWhereUniqueInput;
 };
 
+
 export type QueryCompaniesArgs = {
   where?: Maybe<CompanyWhereInput>;
   orderBy?: Maybe<CompanyOrderByInput>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<CompanyWhereUniqueInput>;
   after?: Maybe<CompanyWhereUniqueInput>;
 };
+
 
 export type QueryCompaniesCountArgs = {
   where?: Maybe<CompanyWhereInput>;
 };
 
+
 export type QueryEventArgs = {
   where: EventWhereUniqueInput;
 };
 
+
 export type QueryEventsArgs = {
   where?: Maybe<EventWhereInput>;
   orderBy?: Maybe<EventOrderByInput>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<EventWhereUniqueInput>;
   after?: Maybe<EventWhereUniqueInput>;
 };
+
 
 export type QueryEventsCountArgs = {
   where?: Maybe<EventWhereInput>;
 };
 
+
 export type QueryProducerArgs = {
   where: ProducerWhereUniqueInput;
 };
 
+
 export type QueryProducersArgs = {
   where?: Maybe<ProducerWhereInput>;
   orderBy?: Maybe<ProducerOrderByInput>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<ProducerWhereUniqueInput>;
   after?: Maybe<ProducerWhereUniqueInput>;
 };
+
 
 export type QueryProducersCountArgs = {
   where?: Maybe<ProducerWhereInput>;
 };
 
+
 export type QueryProductionArgs = {
   where: ProductionWhereUniqueInput;
 };
 
+
 export type QueryProductionsArgs = {
   where?: Maybe<ProductionWhereInput>;
   orderBy?: Maybe<ProductionOrderByInput>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<ProductionWhereUniqueInput>;
   after?: Maybe<ProductionWhereUniqueInput>;
 };
+
 
 export type QueryProductionsCountArgs = {
   where?: Maybe<ProductionWhereInput>;
 };
 
+
 export type QuerySeatArgs = {
   where: SeatWhereUniqueInput;
 };
 
+
 export type QuerySeatsArgs = {
   where?: Maybe<SeatWhereInput>;
   orderBy?: Maybe<SeatOrderByInput>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<SeatWhereUniqueInput>;
   after?: Maybe<SeatWhereUniqueInput>;
 };
+
 
 export type QuerySeatsCountArgs = {
   where?: Maybe<SeatWhereInput>;
 };
 
+
 export type QuerySeatingChartArgs = {
   where: SeatingChartWhereUniqueInput;
 };
 
+
 export type QuerySeatingChartsArgs = {
   where?: Maybe<SeatingChartWhereInput>;
   orderBy?: Maybe<SeatingChartOrderByInput>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<SeatingChartWhereUniqueInput>;
   after?: Maybe<SeatingChartWhereUniqueInput>;
 };
+
 
 export type QuerySeatingChartsCountArgs = {
   where?: Maybe<SeatingChartWhereInput>;
 };
 
+
 export type QueryUserArgs = {
   where: UserWhereUniqueInput;
 };
 
+
 export type QueryUsersArgs = {
   where?: Maybe<UserWhereInput>;
   orderBy?: Maybe<UserOrderByInput>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<UserWhereUniqueInput>;
   after?: Maybe<UserWhereUniqueInput>;
 };
+
 
 export type QueryUsersCountArgs = {
   where?: Maybe<UserWhereInput>;
 };
 
+
 export type QueryVenueArgs = {
   where: VenueWhereUniqueInput;
 };
 
+
 export type QueryVenuesArgs = {
   where?: Maybe<VenueWhereInput>;
   orderBy?: Maybe<VenueOrderByInput>;
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<VenueWhereUniqueInput>;
   after?: Maybe<VenueWhereUniqueInput>;
 };
+
 
 export type QueryVenuesCountArgs = {
   where?: Maybe<VenueWhereInput>;
 };
 
 export enum RoleType {
-  SuperAdmin = "SuperAdmin",
-  CompanyAdmin = "CompanyAdmin",
-  Customer = "Customer",
+  SuperAdmin = 'SuperAdmin',
+  CompanyAdmin = 'CompanyAdmin',
+  Customer = 'Customer'
 }
 
 export type Seat = {
-  __typename?: "Seat";
-  id: Scalars["Int"];
-  section?: Maybe<Scalars["String"]>;
-  row?: Maybe<Scalars["String"]>;
-  number?: Maybe<Scalars["String"]>;
-  level?: Maybe<Scalars["String"]>;
-  status?: Maybe<Scalars["Int"]>;
-  eventId?: Maybe<Scalars["Int"]>;
+  __typename?: 'Seat';
+  id: Scalars['Int'];
+  section?: Maybe<Scalars['String']>;
+  row?: Maybe<Scalars['String']>;
+  number?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['Int']>;
+  eventId?: Maybe<Scalars['Int']>;
   Event?: Maybe<Event>;
 };
 
 export type SeatCreateInput = {
-  section?: Maybe<Scalars["String"]>;
-  row?: Maybe<Scalars["String"]>;
-  number?: Maybe<Scalars["String"]>;
-  level?: Maybe<Scalars["String"]>;
-  status?: Maybe<Scalars["Int"]>;
+  section?: Maybe<Scalars['String']>;
+  row?: Maybe<Scalars['String']>;
+  number?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['Int']>;
   Event?: Maybe<EventCreateOneWithoutSeatsInput>;
 };
 
@@ -1543,11 +1628,11 @@ export type SeatCreateManyWithoutEventInput = {
 };
 
 export type SeatCreateWithoutEventInput = {
-  section?: Maybe<Scalars["String"]>;
-  row?: Maybe<Scalars["String"]>;
-  number?: Maybe<Scalars["String"]>;
-  level?: Maybe<Scalars["String"]>;
-  status?: Maybe<Scalars["Int"]>;
+  section?: Maybe<Scalars['String']>;
+  row?: Maybe<Scalars['String']>;
+  number?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['Int']>;
 };
 
 export type SeatFilter = {
@@ -1557,15 +1642,15 @@ export type SeatFilter = {
 };
 
 export type SeatingChart = {
-  __typename?: "SeatingChart";
-  id: Scalars["Int"];
-  name: Scalars["String"];
-  venueId?: Maybe<Scalars["Int"]>;
+  __typename?: 'SeatingChart';
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  venueId?: Maybe<Scalars['Int']>;
   Venue?: Maybe<Venue>;
 };
 
 export type SeatingChartCreateInput = {
-  name: Scalars["String"];
+  name: Scalars['String'];
   Venue?: Maybe<VenueCreateOneWithoutSeatingChartsInput>;
 };
 
@@ -1575,7 +1660,7 @@ export type SeatingChartCreateManyWithoutVenueInput = {
 };
 
 export type SeatingChartCreateWithoutVenueInput = {
-  name: Scalars["String"];
+  name: Scalars['String'];
 };
 
 export type SeatingChartFilter = {
@@ -1600,19 +1685,19 @@ export type SeatingChartScalarWhereInput = {
 };
 
 export type SeatingChartUpdateInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
   Venue?: Maybe<VenueUpdateOneWithoutSeatingChartsInput>;
 };
 
 export type SeatingChartUpdateManyDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type SeatingChartUpdateManyMutationInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type SeatingChartUpdateManyWithoutVenueInput = {
@@ -1633,8 +1718,8 @@ export type SeatingChartUpdateManyWithWhereNestedInput = {
 };
 
 export type SeatingChartUpdateWithoutVenueDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type SeatingChartUpdateWithWhereUniqueWithoutVenueInput = {
@@ -1659,8 +1744,8 @@ export type SeatingChartWhereInput = {
 };
 
 export type SeatingChartWhereUniqueInput = {
-  id?: Maybe<Scalars["Int"]>;
-  venueId?: Maybe<Scalars["Int"]>;
+  id?: Maybe<Scalars['Int']>;
+  venueId?: Maybe<Scalars['Int']>;
 };
 
 export type SeatOrderByInput = {
@@ -1687,31 +1772,31 @@ export type SeatScalarWhereInput = {
 };
 
 export type SeatUpdateInput = {
-  id?: Maybe<Scalars["Int"]>;
-  section?: Maybe<Scalars["String"]>;
-  row?: Maybe<Scalars["String"]>;
-  number?: Maybe<Scalars["String"]>;
-  level?: Maybe<Scalars["String"]>;
-  status?: Maybe<Scalars["Int"]>;
+  id?: Maybe<Scalars['Int']>;
+  section?: Maybe<Scalars['String']>;
+  row?: Maybe<Scalars['String']>;
+  number?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['Int']>;
   Event?: Maybe<EventUpdateOneWithoutSeatsInput>;
 };
 
 export type SeatUpdateManyDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  section?: Maybe<Scalars["String"]>;
-  row?: Maybe<Scalars["String"]>;
-  number?: Maybe<Scalars["String"]>;
-  level?: Maybe<Scalars["String"]>;
-  status?: Maybe<Scalars["Int"]>;
+  id?: Maybe<Scalars['Int']>;
+  section?: Maybe<Scalars['String']>;
+  row?: Maybe<Scalars['String']>;
+  number?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['Int']>;
 };
 
 export type SeatUpdateManyMutationInput = {
-  id?: Maybe<Scalars["Int"]>;
-  section?: Maybe<Scalars["String"]>;
-  row?: Maybe<Scalars["String"]>;
-  number?: Maybe<Scalars["String"]>;
-  level?: Maybe<Scalars["String"]>;
-  status?: Maybe<Scalars["Int"]>;
+  id?: Maybe<Scalars['Int']>;
+  section?: Maybe<Scalars['String']>;
+  row?: Maybe<Scalars['String']>;
+  number?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['Int']>;
 };
 
 export type SeatUpdateManyWithoutEventInput = {
@@ -1732,12 +1817,12 @@ export type SeatUpdateManyWithWhereNestedInput = {
 };
 
 export type SeatUpdateWithoutEventDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  section?: Maybe<Scalars["String"]>;
-  row?: Maybe<Scalars["String"]>;
-  number?: Maybe<Scalars["String"]>;
-  level?: Maybe<Scalars["String"]>;
-  status?: Maybe<Scalars["Int"]>;
+  id?: Maybe<Scalars['Int']>;
+  section?: Maybe<Scalars['String']>;
+  row?: Maybe<Scalars['String']>;
+  number?: Maybe<Scalars['String']>;
+  level?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['Int']>;
 };
 
 export type SeatUpdateWithWhereUniqueWithoutEventInput = {
@@ -1766,39 +1851,39 @@ export type SeatWhereInput = {
 };
 
 export type SeatWhereUniqueInput = {
-  id?: Maybe<Scalars["Int"]>;
-  eventId?: Maybe<Scalars["Int"]>;
+  id?: Maybe<Scalars['Int']>;
+  eventId?: Maybe<Scalars['Int']>;
 };
 
 export type StringFilter = {
-  equals?: Maybe<Scalars["String"]>;
-  not?: Maybe<Scalars["String"]>;
-  in?: Maybe<Array<Scalars["String"]>>;
-  notIn?: Maybe<Array<Scalars["String"]>>;
-  lt?: Maybe<Scalars["String"]>;
-  lte?: Maybe<Scalars["String"]>;
-  gt?: Maybe<Scalars["String"]>;
-  gte?: Maybe<Scalars["String"]>;
-  contains?: Maybe<Scalars["String"]>;
-  startsWith?: Maybe<Scalars["String"]>;
-  endsWith?: Maybe<Scalars["String"]>;
+  equals?: Maybe<Scalars['String']>;
+  not?: Maybe<Scalars['String']>;
+  in?: Maybe<Array<Scalars['String']>>;
+  notIn?: Maybe<Array<Scalars['String']>>;
+  lt?: Maybe<Scalars['String']>;
+  lte?: Maybe<Scalars['String']>;
+  gt?: Maybe<Scalars['String']>;
+  gte?: Maybe<Scalars['String']>;
+  contains?: Maybe<Scalars['String']>;
+  startsWith?: Maybe<Scalars['String']>;
+  endsWith?: Maybe<Scalars['String']>;
 };
 
 export type User = {
-  __typename?: "User";
-  id: Scalars["Int"];
-  email: Scalars["String"];
-  password: Scalars["String"];
-  name?: Maybe<Scalars["String"]>;
-  companyId: Scalars["Int"];
+  __typename?: 'User';
+  id: Scalars['Int'];
+  email: Scalars['String'];
+  password: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  companyId: Scalars['Int'];
   Company: Company;
   roleType: RoleType;
 };
 
 export type UserCreateInput = {
-  email: Scalars["String"];
-  password: Scalars["String"];
-  name?: Maybe<Scalars["String"]>;
+  email: Scalars['String'];
+  password: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
   roleType: RoleType;
   Company: CompanyCreateOneWithoutUserInput;
 };
@@ -1809,9 +1894,9 @@ export type UserCreateManyWithoutCompanyInput = {
 };
 
 export type UserCreateWithoutCompanyInput = {
-  email: Scalars["String"];
-  password: Scalars["String"];
-  name?: Maybe<Scalars["String"]>;
+  email: Scalars['String'];
+  password: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
   roleType: RoleType;
 };
 
@@ -1843,27 +1928,27 @@ export type UserScalarWhereInput = {
 };
 
 export type UserUpdateInput = {
-  id?: Maybe<Scalars["Int"]>;
-  email?: Maybe<Scalars["String"]>;
-  password?: Maybe<Scalars["String"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  email?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
   roleType?: Maybe<RoleType>;
   Company?: Maybe<CompanyUpdateOneRequiredWithoutUserInput>;
 };
 
 export type UserUpdateManyDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  email?: Maybe<Scalars["String"]>;
-  password?: Maybe<Scalars["String"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  email?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
   roleType?: Maybe<RoleType>;
 };
 
 export type UserUpdateManyMutationInput = {
-  id?: Maybe<Scalars["Int"]>;
-  email?: Maybe<Scalars["String"]>;
-  password?: Maybe<Scalars["String"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  email?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
   roleType?: Maybe<RoleType>;
 };
 
@@ -1885,10 +1970,10 @@ export type UserUpdateManyWithWhereNestedInput = {
 };
 
 export type UserUpdateWithoutCompanyDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  email?: Maybe<Scalars["String"]>;
-  password?: Maybe<Scalars["String"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  email?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
   roleType?: Maybe<RoleType>;
 };
 
@@ -1917,42 +2002,45 @@ export type UserWhereInput = {
 };
 
 export type UserWhereUniqueInput = {
-  id?: Maybe<Scalars["Int"]>;
-  email?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  email?: Maybe<Scalars['String']>;
 };
 
 export type Venue = {
-  __typename?: "Venue";
-  id: Scalars["Int"];
-  name: Scalars["String"];
+  __typename?: 'Venue';
+  id: Scalars['Int'];
+  name: Scalars['String'];
   Events: Array<Event>;
   SeatingCharts: Array<SeatingChart>;
   Companies: Array<Company>;
 };
 
+
 export type VenueEventsArgs = {
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<EventWhereUniqueInput>;
   after?: Maybe<EventWhereUniqueInput>;
 };
 
+
 export type VenueSeatingChartsArgs = {
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<SeatingChartWhereUniqueInput>;
   after?: Maybe<SeatingChartWhereUniqueInput>;
 };
 
+
 export type VenueCompaniesArgs = {
-  first?: Maybe<Scalars["Int"]>;
-  last?: Maybe<Scalars["Int"]>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   before?: Maybe<CompanyWhereUniqueInput>;
   after?: Maybe<CompanyWhereUniqueInput>;
 };
 
 export type VenueCreateInput = {
-  name: Scalars["String"];
+  name: Scalars['String'];
   Events?: Maybe<EventCreateManyWithoutVenueInput>;
   SeatingCharts?: Maybe<SeatingChartCreateManyWithoutVenueInput>;
   Companies?: Maybe<CompanyCreateManyWithoutVenuesInput>;
@@ -1974,19 +2062,19 @@ export type VenueCreateOneWithoutSeatingChartsInput = {
 };
 
 export type VenueCreateWithoutCompaniesInput = {
-  name: Scalars["String"];
+  name: Scalars['String'];
   Events?: Maybe<EventCreateManyWithoutVenueInput>;
   SeatingCharts?: Maybe<SeatingChartCreateManyWithoutVenueInput>;
 };
 
 export type VenueCreateWithoutEventsInput = {
-  name: Scalars["String"];
+  name: Scalars['String'];
   SeatingCharts?: Maybe<SeatingChartCreateManyWithoutVenueInput>;
   Companies?: Maybe<CompanyCreateManyWithoutVenuesInput>;
 };
 
 export type VenueCreateWithoutSeatingChartsInput = {
-  name: Scalars["String"];
+  name: Scalars['String'];
   Events?: Maybe<EventCreateManyWithoutVenueInput>;
   Companies?: Maybe<CompanyCreateManyWithoutVenuesInput>;
 };
@@ -2014,21 +2102,21 @@ export type VenueScalarWhereInput = {
 };
 
 export type VenueUpdateInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
   Events?: Maybe<EventUpdateManyWithoutVenueInput>;
   SeatingCharts?: Maybe<SeatingChartUpdateManyWithoutVenueInput>;
   Companies?: Maybe<CompanyUpdateManyWithoutVenuesInput>;
 };
 
 export type VenueUpdateManyDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type VenueUpdateManyMutationInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type VenueUpdateManyWithoutCompaniesInput = {
@@ -2058,29 +2146,29 @@ export type VenueUpdateOneRequiredWithoutEventsInput = {
 export type VenueUpdateOneWithoutSeatingChartsInput = {
   create?: Maybe<VenueCreateWithoutSeatingChartsInput>;
   connect?: Maybe<VenueWhereUniqueInput>;
-  disconnect?: Maybe<Scalars["Boolean"]>;
-  delete?: Maybe<Scalars["Boolean"]>;
+  disconnect?: Maybe<Scalars['Boolean']>;
+  delete?: Maybe<Scalars['Boolean']>;
   update?: Maybe<VenueUpdateWithoutSeatingChartsDataInput>;
   upsert?: Maybe<VenueUpsertWithoutSeatingChartsInput>;
 };
 
 export type VenueUpdateWithoutCompaniesDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
   Events?: Maybe<EventUpdateManyWithoutVenueInput>;
   SeatingCharts?: Maybe<SeatingChartUpdateManyWithoutVenueInput>;
 };
 
 export type VenueUpdateWithoutEventsDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
   SeatingCharts?: Maybe<SeatingChartUpdateManyWithoutVenueInput>;
   Companies?: Maybe<CompanyUpdateManyWithoutVenuesInput>;
 };
 
 export type VenueUpdateWithoutSeatingChartsDataInput = {
-  id?: Maybe<Scalars["Int"]>;
-  name?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
   Events?: Maybe<EventUpdateManyWithoutVenueInput>;
   Companies?: Maybe<CompanyUpdateManyWithoutVenuesInput>;
 };
@@ -2118,34 +2206,156 @@ export type VenueWhereInput = {
 };
 
 export type VenueWhereUniqueInput = {
-  id?: Maybe<Scalars["Int"]>;
+  id?: Maybe<Scalars['Int']>;
 };
 
-export type AllCompaniesQueryVariables = Exact<{ [key: string]: never }>;
+export type CompaniesQueryVariables = Exact<{
+  take?: Maybe<Scalars['Int']>;
+}>;
 
-export type AllCompaniesQuery = { __typename?: "Query" } & {
-  companies: Array<
-    { __typename?: "Company" } & Pick<Company, "id" | "name" | "city" | "state">
-  >;
-};
 
-export const AllCompaniesDocument = gql`
-  query allCompanies {
-    companies(orderBy: { name: asc }) {
-      id
-      name
-      city
-      state
-    }
-  }
-`;
+export type CompaniesQuery = (
+  { __typename?: 'Query' }
+  & { companies: Array<(
+    { __typename?: 'Company' }
+    & CompanyFieldsFragment
+  )> }
+);
 
-@Injectable({
-  providedIn: "root",
-})
-export class AllCompaniesGQL extends Apollo.Query<
-  AllCompaniesQuery,
-  AllCompaniesQueryVariables
-> {
-  document = AllCompaniesDocument;
+export type CompaniesPagedQueryVariables = Exact<{
+  take?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type CompaniesPagedQuery = (
+  { __typename?: 'Query' }
+  & { companies: Array<(
+    { __typename?: 'Company' }
+    & CompanyFieldsFragment
+  )> }
+);
+
+export type CompanyQueryVariables = Exact<{
+  id?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type CompanyQuery = (
+  { __typename?: 'Query' }
+  & { company?: Maybe<(
+    { __typename?: 'Company' }
+    & CompanyFieldsFragment
+  )> }
+);
+
+export type CompaniesCountQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CompaniesCountQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'companiesCount'>
+);
+
+export type UpdateCompanyMutationVariables = Exact<{
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateCompanyMutation = (
+  { __typename?: 'Mutation' }
+  & { updateOneCompany?: Maybe<(
+    { __typename?: 'Company' }
+    & CompanyFieldsFragment
+  )> }
+);
+
+export type CompanyFieldsFragment = (
+  { __typename?: 'Company' }
+  & Pick<Company, 'id' | 'name' | 'city' | 'state'>
+);
+
+export const CompanyFieldsFragmentDoc = gql`
+    fragment companyFields on Company {
+  id
+  name
+  city
+  state
 }
+    `;
+export const CompaniesDocument = gql`
+    query companies($take: Int) {
+  companies(first: $take, orderBy: {name: asc}) {
+    ...companyFields
+  }
+}
+    ${CompanyFieldsFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CompaniesGQL extends Apollo.Query<CompaniesQuery, CompaniesQueryVariables> {
+    document = CompaniesDocument;
+    
+  }
+export const CompaniesPagedDocument = gql`
+    query companiesPaged($take: Int, $after: Int) {
+  companies(first: $take, after: {id: $after}, orderBy: {name: asc}) {
+    ...companyFields
+  }
+}
+    ${CompanyFieldsFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CompaniesPagedGQL extends Apollo.Query<CompaniesPagedQuery, CompaniesPagedQueryVariables> {
+    document = CompaniesPagedDocument;
+    
+  }
+export const CompanyDocument = gql`
+    query company($id: Int) {
+  company(where: {id: $id}) {
+    ...companyFields
+  }
+}
+    ${CompanyFieldsFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CompanyGQL extends Apollo.Query<CompanyQuery, CompanyQueryVariables> {
+    document = CompanyDocument;
+    
+  }
+export const CompaniesCountDocument = gql`
+    query companiesCount {
+  companiesCount
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CompaniesCountGQL extends Apollo.Query<CompaniesCountQuery, CompaniesCountQueryVariables> {
+    document = CompaniesCountDocument;
+    
+  }
+export const UpdateCompanyDocument = gql`
+    mutation updateCompany($id: Int, $name: String, $city: String, $state: String) {
+  updateOneCompany(where: {id: $id}, data: {name: "$name", city: "$city", state: "$state"}) {
+    ...companyFields
+  }
+}
+    ${CompanyFieldsFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateCompanyGQL extends Apollo.Mutation<UpdateCompanyMutation, UpdateCompanyMutationVariables> {
+    document = UpdateCompanyDocument;
+    
+  }
