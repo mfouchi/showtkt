@@ -14,6 +14,7 @@ export class CompaniesComponent implements OnInit, OnDestroy {
   selectedCompany: Company = <Company>{};
   companies: Company[];
   private querySubscription: Subscription;
+  private countSubscription: Subscription;
   newCompany: boolean;
   cursor: number = null;
   cols: any[];
@@ -57,17 +58,19 @@ export class CompaniesComponent implements OnInit, OnDestroy {
   constructor(
     private breadcrumbService: BreadcrumbService,
     private db: DBService
-  ) {
-    this.breadcrumbService.setItems([{ label: "Companies" }]);
-  }
+  ) {}
 
   ngOnInit() {
+    this.breadcrumbService.setItems([{ label: "Companies" }]);
+
     this.cols = [
       { field: "name", header: "Name", width: "50%" },
       { field: "city", header: "City", width: "25%" },
       { field: "state", header: "State", width: "25%" },
     ];
-    this.totalRecords = 0;
+    this.countSubscription = this.db
+      .CountCompanies()
+      .subscribe(({ data }) => (this.totalRecords = data.companiesCount));
   }
 
   onRowSelect(event) {
@@ -100,5 +103,6 @@ export class CompaniesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.querySubscription.unsubscribe();
+    this.countSubscription.unsubscribe();
   }
 }

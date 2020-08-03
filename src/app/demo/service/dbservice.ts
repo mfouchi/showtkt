@@ -21,13 +21,13 @@ export class DBService {
     private companiesCountGQL: CompaniesCountGQL
   ) {}
 
-  // left after as 'any' in case Int id changes to uuid later
-  GetCompanies(_take: number, _after?: any): Observable<any> {
-    if (_after) {
-      return this.companiesPagedGQL.watch({ take: _take, after: _after })
+  // left 'after' as 'any' in case Int id changes to uuid later
+  GetCompanies(take: number, after?: any): Observable<any> {
+    if (after) {
+      return this.companiesPagedGQL.watch({ take: take, after: after })
         .valueChanges;
     } else {
-      return this.companiesGQL.watch({ take: _take }).valueChanges;
+      return this.companiesGQL.watch({ take: take }).valueChanges;
     }
   }
 
@@ -38,9 +38,7 @@ export class DBService {
   }
 
   CountCompanies(): Observable<any> {
-    return this.companiesCountGQL
-      .watch()
-      .valueChanges.pipe(map((result) => result.data));
+    return this.companiesCountGQL.watch().valueChanges;
   }
 
   UpdateCompany(id: number): Observable<any> {
