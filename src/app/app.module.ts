@@ -35,10 +35,6 @@ import { AppRightPanelComponent } from "./app.rightpanel.component";
 import { AppTopBarComponent } from "./app.topbar.component";
 import { AppFooterComponent } from "./app.footer.component";
 
-// Demo pages
-import { ProductionsComponent } from "./demo/view/productions.component";
-import { CompaniesComponent } from "./demo/view/companies.component";
-
 // Application services
 import { BreadcrumbService } from "./breadcrumb.service";
 import { MenuService } from "./app.menu.service";
@@ -49,6 +45,9 @@ import { ApolloModule, APOLLO_OPTIONS } from "apollo-angular";
 import { HttpLinkModule, HttpLink } from "apollo-angular-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { GraphQLModule } from "./graphql.module";
+
+// ShowTkt pages
+import { CompaniesComponent } from "./demo/view/companies.component";
 
 @NgModule({
   imports: [
@@ -87,7 +86,6 @@ import { GraphQLModule } from "./graphql.module";
     AppErrorComponent,
     AppAccessdeniedComponent,
     AppLoginComponent,
-    ProductionsComponent,
     CompaniesComponent,
     AuthComponent,
   ],

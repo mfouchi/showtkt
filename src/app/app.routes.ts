@@ -1,6 +1,5 @@
 import { Routes, RouterModule } from "@angular/router";
 import { ModuleWithProviders } from "@angular/core";
-import { ProductionsComponent } from "./demo/view/productions.component";
 import { CompaniesComponent } from "./demo/view/companies.component";
 import { AppMainComponent } from "./app.main.component";
 import { AppNotfoundComponent } from "./pages/app.notfound.component";
