@@ -13,7 +13,7 @@ import { AppMainComponent } from "./app.main.component";
                 src="assets/layout/images/logo-mirage@2x.png"
                 alt="mirage-layout"
               />
-              <span class="app-name">Mirage</span>
+              <span class="app-name">ShowTkt</span>
             </a>
           </div>
 
