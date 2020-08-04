@@ -11,20 +11,15 @@
       </div>
 
       <p-table
-        #dt
         [columns]="cols"
         [value]="companies"
+        [rows]="10"
+        [paginator]="true"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         selectionMode="single"
         [(selection)]="selectedCompany"
         (onRowSelect)="onRowSelect($event)"
-        [scrollable]="true"
-        [rows]="rows"
-        [scrollHeight]="scrollHeight"
-        [virtualRowHeight]="rowHeight"
-        [virtualScroll]="true"
-        [lazy]="true"
-        (onLazyLoad)="loadDataLazy($event)"
-        [totalRecords]="totalRecords"
         [loading]="loading"
         [style]="{ margin: '0 auto' }"
       >
@@ -42,9 +37,9 @@
             <div class="p-col" style="white-space: nowrap;">
               <div style="text-align: right;">
                 <span class="md-inputfield search-input-wrapper">
-                  <!-- (input)="dt.filterGlobal($event.target.value, 'contains')" -->
                   <input
                     pInputText
+                    (input)="dt.filterGlobal($event.target.value, 'contains')"
                     placeholder="Search..."
                     style="width: 75%; max-width: 15.6rem;"
                   />
@@ -61,15 +56,21 @@
         </ng-template>
         <ng-template pTemplate="header" let-columns>
           <tr>
-            <th *ngFor="let col of columns" pResizableColumn>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
               {{ col.header }}
+              <p-sortIcon
+                [field]="col.field"
+                ariaLabel="Click to sort"
+                ariaLabelDesc="Click to sort in descending order"
+                ariaLabelAsc="Click to sort in ascending order"
+              ></p-sortIcon>
             </th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-company let-columns="columns">
-          <tr [pSelectableRow]="company">
+        <ng-template pTemplate="body" let-data let-columns="columns">
+          <tr [pSelectableRow]="data">
             <td *ngFor="let col of columns">
-              {{ company[col.field] }}
+              {{ data[col.field] }}
             </td>
           </tr>
         </ng-template>

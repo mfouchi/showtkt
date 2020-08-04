@@ -23,11 +23,11 @@ export class DBService {
 
   // left 'after' as 'any' in case Int id changes to uuid later
   GetCompanies(take: number, after?: any): Observable<any> {
-    if (after) {
+    if (after === 0) {
+      return this.companiesGQL.watch({ take: take }).valueChanges;
+    } else {
       return this.companiesPagedGQL.watch({ take: take, after: after })
         .valueChanges;
-    } else {
-      return this.companiesGQL.watch({ take: take }).valueChanges;
     }
   }
 

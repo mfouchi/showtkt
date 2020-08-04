@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { BreadcrumbService } from "src/app/breadcrumb.service";
-import { Observable, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 import { DBService } from "../service/dbservice";
 import { Company } from "../models/models";
 import { LazyLoadEvent } from "primeng/api";
@@ -14,46 +14,11 @@ export class CompaniesComponent implements OnInit, OnDestroy {
   selectedCompany: Company = <Company>{};
   companies: Company[];
   private querySubscription: Subscription;
-  private countSubscription: Subscription;
   newCompany: boolean;
-  cursor: number = null;
+  cursor: number = 0;
   cols: any[];
+  loading: boolean = false;
   error: any;
-
-  /**
-   * The total amount of records in that could be shown in the table.
-   * NOTE: This is equal to the length of the {@link datasource}
-   * NOTE: This doesn't work correctly with pagination, since the pagination is only updated
-   * once in the code of the table
-   */
-  totalRecords: number;
-
-  /**
-   * Whether or not the data is currectly loading
-   */
-  loading: boolean;
-
-  /**
-   * The height of a row within the table
-   * This is used by the p-table to determine the number of rows it should render
-   */
-  readonly rowHeight = 40;
-
-  /**
-   * The height of the table.
-   * NOTE: You should use this in combination with `[scrollable]="true"` if you want to
-   * use infinite scrolling
-   */
-  readonly scrollHeight = "240px";
-
-  /**
-   * The amount of rows within the table. This is needed for loading new data
-   * from the {@link datasource}.
-   */
-  get rows(): number {
-    const height = parseInt(this.scrollHeight.replace(/px|%/gi, ""), 10);
-    return height / this.rowHeight;
-  }
 
   constructor(
     private breadcrumbService: BreadcrumbService,
@@ -68,9 +33,15 @@ export class CompaniesComponent implements OnInit, OnDestroy {
       { field: "city", header: "City", width: "25%" },
       { field: "state", header: "State", width: "25%" },
     ];
-    this.countSubscription = this.db
-      .CountCompanies()
-      .subscribe(({ data }) => (this.totalRecords = data.companiesCount));
+
+    this.querySubscription = this.db
+      .GetCompanies(15, this.cursor)
+      .subscribe(({ data, loading }) => {
+        console.log("data:");
+        console.dir(data);
+        this.loading = loading;
+        this.companies = data.companies;
+      });
   }
 
   onRowSelect(event) {
@@ -86,12 +57,29 @@ export class CompaniesComponent implements OnInit, OnDestroy {
   }
 
   loadDataLazy(event: LazyLoadEvent) {
-    console.log("lazy loading data...");
+    console.log("first: " + event.first + "; rows: " + event.rows);
     this.querySubscription = this.db
-      .GetCompanies(1)
+      .GetCompanies(event.rows, this.cursor)
       .subscribe(({ data, loading }) => {
+        console.log("data:");
+        console.dir(data);
         this.loading = loading;
-        this.companies = data.companies;
+
+        //populate page
+        Array.prototype.splice.apply(this.companies, [
+          ...[event.first, event.rows],
+          ...data.companies,
+        ]);
+
+        //trigger change detection
+        this.companies = [...this.companies];
+
+        //this.companies = data.companies;
+        if (data.companies) {
+          console.log("cursor before: " + this.cursor);
+          this.cursor = data.companies[data.companies.length - 1].id;
+          console.log("cursor after: " + this.cursor);
+        }
       });
   }
 
@@ -103,6 +91,5 @@ export class CompaniesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.querySubscription.unsubscribe();
-    this.countSubscription.unsubscribe();
   }
 }
