@@ -3,7 +3,6 @@ import { BreadcrumbService } from "src/app/breadcrumb.service";
 import { Subscription } from "rxjs";
 import { DBService } from "../service/dbservice";
 import { Company } from "../models/models";
-import { LazyLoadEvent } from "primeng/api";
 
 @Component({
   templateUrl: "./companies.component.html",
@@ -15,7 +14,6 @@ export class CompaniesComponent implements OnInit, OnDestroy {
   companies: Company[];
   private querySubscription: Subscription;
   newCompany: boolean;
-  cursor: number = 0;
   cols: any[];
   loading: boolean = false;
   error: any;
@@ -35,10 +33,8 @@ export class CompaniesComponent implements OnInit, OnDestroy {
     ];
 
     this.querySubscription = this.db
-      .GetCompanies(15, this.cursor)
+      .GetCompanies()
       .subscribe(({ data, loading }) => {
-        console.log("data:");
-        console.dir(data);
         this.loading = loading;
         this.companies = data.companies;
       });
@@ -51,42 +47,27 @@ export class CompaniesComponent implements OnInit, OnDestroy {
   }
 
   onAddClicked() {
+    this.selectedCompany = <Company>{};
     this.newCompany = true;
     this.company = <Company>{};
     this.displayDialog = true;
   }
 
-  loadDataLazy(event: LazyLoadEvent) {
-    console.log("first: " + event.first + "; rows: " + event.rows);
-    this.querySubscription = this.db
-      .GetCompanies(event.rows, this.cursor)
-      .subscribe(({ data, loading }) => {
-        console.log("data:");
-        console.dir(data);
-        this.loading = loading;
-
-        //populate page
-        Array.prototype.splice.apply(this.companies, [
-          ...[event.first, event.rows],
-          ...data.companies,
-        ]);
-
-        //trigger change detection
-        this.companies = [...this.companies];
-
-        //this.companies = data.companies;
-        if (data.companies) {
-          console.log("cursor before: " + this.cursor);
-          this.cursor = data.companies[data.companies.length - 1].id;
-          console.log("cursor after: " + this.cursor);
-        }
-      });
-  }
-
-  save(id: number) {
-    this.db.UpdateCompany(id);
-    this.company = null;
-    this.displayDialog = false;
+  save() {
+    try {
+      if (this.company.id) {
+        this.querySubscription = this.db
+          .UpdateCompany(this.company)
+          .subscribe((data) => {
+            this.company = null;
+            this.displayDialog = false;
+          });
+      } else {
+        //add new
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   ngOnDestroy() {

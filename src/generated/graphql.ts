@@ -2209,26 +2209,15 @@ export type VenueWhereUniqueInput = {
   id?: Maybe<Scalars['Int']>;
 };
 
-export type CompaniesQueryVariables = Exact<{
-  take?: Maybe<Scalars['Int']>;
-}>;
+export type CompanyFieldsFragment = (
+  { __typename?: 'Company' }
+  & Pick<Company, 'id' | 'name' | 'city' | 'state'>
+);
+
+export type CompaniesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type CompaniesQuery = (
-  { __typename?: 'Query' }
-  & { companies: Array<(
-    { __typename?: 'Company' }
-    & CompanyFieldsFragment
-  )> }
-);
-
-export type CompaniesPagedQueryVariables = Exact<{
-  take?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['Int']>;
-}>;
-
-
-export type CompaniesPagedQuery = (
   { __typename?: 'Query' }
   & { companies: Array<(
     { __typename?: 'Company' }
@@ -2273,11 +2262,6 @@ export type UpdateCompanyMutation = (
   )> }
 );
 
-export type CompanyFieldsFragment = (
-  { __typename?: 'Company' }
-  & Pick<Company, 'id' | 'name' | 'city' | 'state'>
-);
-
 export const CompanyFieldsFragmentDoc = gql`
     fragment companyFields on Company {
   id
@@ -2287,8 +2271,8 @@ export const CompanyFieldsFragmentDoc = gql`
 }
     `;
 export const CompaniesDocument = gql`
-    query companies($take: Int) {
-  companies(first: $take, orderBy: {name: asc}) {
+    query companies {
+  companies(orderBy: {name: asc}) {
     ...companyFields
   }
 }
@@ -2299,21 +2283,6 @@ export const CompaniesDocument = gql`
   })
   export class CompaniesGQL extends Apollo.Query<CompaniesQuery, CompaniesQueryVariables> {
     document = CompaniesDocument;
-    
-  }
-export const CompaniesPagedDocument = gql`
-    query companiesPaged($take: Int, $after: Int) {
-  companies(first: $take, after: {id: $after}, orderBy: {name: asc}) {
-    ...companyFields
-  }
-}
-    ${CompanyFieldsFragmentDoc}`;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class CompaniesPagedGQL extends Apollo.Query<CompaniesPagedQuery, CompaniesPagedQueryVariables> {
-    document = CompaniesPagedDocument;
     
   }
 export const CompanyDocument = gql`
@@ -2346,7 +2315,7 @@ export const CompaniesCountDocument = gql`
   }
 export const UpdateCompanyDocument = gql`
     mutation updateCompany($id: Int, $name: String, $city: String, $state: String) {
-  updateOneCompany(where: {id: $id}, data: {name: "$name", city: "$city", state: "$state"}) {
+  updateOneCompany(where: {id: $id}, data: {name: $name, city: $city, state: $state}) {
     ...companyFields
   }
 }

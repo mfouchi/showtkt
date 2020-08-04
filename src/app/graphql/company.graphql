@@ -1,11 +1,12 @@
-query companies($take: Int) {
-  companies(first: $take, orderBy: { name: asc }) {
-    ...companyFields
-  }
+fragment companyFields on Company {
+  id
+  name
+  city
+  state
 }
 
-query companiesPaged($take: Int, $after: Int) {
-  companies(first: $take, after: { id: $after }, orderBy: { name: asc }) {
+query companies {
+  companies(orderBy: { name: asc }) {
     ...companyFields
   }
 }
@@ -23,15 +24,8 @@ query companiesCount {
 mutation updateCompany($id: Int, $name: String, $city: String, $state: String) {
   updateOneCompany(
     where: { id: $id }
-    data: { name: "$name", city: "$city", state: "$state" }
+    data: { name: $name, city: $city, state: $state }
   ) {
     ...companyFields
   }
-}
-
-fragment companyFields on Company {
-  id
-  name
-  city
-  state
 }

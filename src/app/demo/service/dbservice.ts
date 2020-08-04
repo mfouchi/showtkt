@@ -3,11 +3,13 @@ import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import {
   CompaniesGQL,
-  CompaniesPagedGQL,
   CompanyGQL,
   UpdateCompanyGQL,
   CompaniesCountGQL,
 } from "../../../generated/graphql";
+import { Company } from "../models/models";
+
+import { isCompositeType } from "graphql";
 
 @Injectable({
   providedIn: "root",
@@ -15,20 +17,13 @@ import {
 export class DBService {
   constructor(
     private companiesGQL: CompaniesGQL,
-    private companiesPagedGQL: CompaniesPagedGQL,
     private companyGQL: CompanyGQL,
     private updateCompanyGQL: UpdateCompanyGQL,
     private companiesCountGQL: CompaniesCountGQL
   ) {}
 
-  // left 'after' as 'any' in case Int id changes to uuid later
-  GetCompanies(take: number, after?: any): Observable<any> {
-    if (after === 0) {
-      return this.companiesGQL.watch({ take: take }).valueChanges;
-    } else {
-      return this.companiesPagedGQL.watch({ take: take, after: after })
-        .valueChanges;
-    }
+  GetCompanies(): Observable<any> {
+    return this.companiesGQL.watch().valueChanges;
   }
 
   GetCompany(id: number): Observable<any> {
@@ -41,9 +36,10 @@ export class DBService {
     return this.companiesCountGQL.watch().valueChanges;
   }
 
-  UpdateCompany(id: number): Observable<any> {
-    return this.updateCompanyGQL.mutate({
-      id: id,
+  UpdateCompany(company: Company): Observable<any> {
+    const obs: Observable<any> = this.updateCompanyGQL.mutate({
+      ...company,
     });
+    return obs;
   }
 }
