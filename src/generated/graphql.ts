@@ -2262,6 +2262,21 @@ export type UpdateCompanyMutation = (
   )> }
 );
 
+export type CreateCompanyMutationVariables = Exact<{
+  name: Scalars['String'];
+  city?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
+}>;
+
+
+export type CreateCompanyMutation = (
+  { __typename?: 'Mutation' }
+  & { createOneCompany: (
+    { __typename?: 'Company' }
+    & CompanyFieldsFragment
+  ) }
+);
+
 export const CompanyFieldsFragmentDoc = gql`
     fragment companyFields on Company {
   id
@@ -2326,5 +2341,20 @@ export const UpdateCompanyDocument = gql`
   })
   export class UpdateCompanyGQL extends Apollo.Mutation<UpdateCompanyMutation, UpdateCompanyMutationVariables> {
     document = UpdateCompanyDocument;
+    
+  }
+export const CreateCompanyDocument = gql`
+    mutation createCompany($name: String!, $city: String, $state: String) {
+  createOneCompany(data: {name: $name, city: $city, state: $state}) {
+    ...companyFields
+  }
+}
+    ${CompanyFieldsFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateCompanyGQL extends Apollo.Mutation<CreateCompanyMutation, CreateCompanyMutationVariables> {
+    document = CreateCompanyDocument;
     
   }

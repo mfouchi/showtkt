@@ -29,3 +29,9 @@ mutation updateCompany($id: Int, $name: String, $city: String, $state: String) {
     ...companyFields
   }
 }
+
+mutation createCompany($name: String!, $city: String, $state: String) {
+  createOneCompany(data: { name: $name, city: $city, state: $state }) {
+    ...companyFields
+  }
+}

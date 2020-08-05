@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { BreadcrumbService } from "src/app/breadcrumb.service";
 import { Subscription } from "rxjs";
-import { DBService } from "../service/dbservice";
+import { DBService } from "../service/db-service";
+import { MessageService } from "primeng/api";
 import { Company } from "../models/models";
 
 @Component({
   templateUrl: "./companies.component.html",
+  providers: [MessageService],
 })
 export class CompaniesComponent implements OnInit, OnDestroy {
   displayDialog: boolean;
@@ -20,6 +22,7 @@ export class CompaniesComponent implements OnInit, OnDestroy {
 
   constructor(
     private breadcrumbService: BreadcrumbService,
+    private messageService: MessageService,
     private db: DBService
   ) {}
 
@@ -56,14 +59,36 @@ export class CompaniesComponent implements OnInit, OnDestroy {
   save() {
     try {
       if (this.company.id) {
+        //update
         this.querySubscription = this.db
           .UpdateCompany(this.company)
           .subscribe((data) => {
+            this.companies = [...this.companies];
             this.company = null;
             this.displayDialog = false;
+            this.messageService.add({
+              key: "tc",
+              severity: "success",
+              summary: "Success",
+              detail: "Company updated successfully",
+            });
           });
       } else {
         //add new
+        this.querySubscription = this.db
+          .CreateCompany(this.company)
+          .subscribe(({ data }) => {
+            this.companies = [data.createOneCompany, ...this.companies];
+            this.selectedCompany = this.company;
+            this.company = null;
+            this.displayDialog = false;
+            this.messageService.add({
+              key: "tc",
+              severity: "success",
+              summary: "Success",
+              detail: "Company added successfully",
+            });
+          });
       }
     } catch (err) {
       console.log(err);

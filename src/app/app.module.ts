@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { AppRoutes } from "./app.routes";
 
-// PrimeNG Components for demos
+// PrimeNG Components
 import { ButtonModule } from "primeng/button";
 import { CheckboxModule } from "primeng/checkbox";
 import { DialogModule } from "primeng/dialog";
@@ -19,6 +19,7 @@ import { MultiSelectModule } from "primeng/multiselect";
 import { PasswordModule } from "primeng/password";
 import { TableModule } from "primeng/table";
 import { TabViewModule } from "primeng/tabview";
+import { ToastModule } from "primeng/toast";
 
 // Application Components
 import { AppComponent } from "./app.component";
@@ -68,6 +69,7 @@ import { CompaniesComponent } from "./demo/view/companies.component";
     PasswordModule,
     TableModule,
     TabViewModule,
+    ToastModule,
     GraphQLModule,
     ApolloModule,
     HttpLinkModule,
