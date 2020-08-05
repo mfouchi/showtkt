@@ -6,6 +6,7 @@ import {
   CompanyGQL,
   UpdateCompanyGQL,
   CompaniesCountGQL,
+  CreateCompanyGQL,
 } from "../../../generated/graphql";
 import { Company } from "../models/models";
 
@@ -19,6 +20,7 @@ export class DBService {
     private companiesGQL: CompaniesGQL,
     private companyGQL: CompanyGQL,
     private updateCompanyGQL: UpdateCompanyGQL,
+    private createCompanyGQL: CreateCompanyGQL,
     private companiesCountGQL: CompaniesCountGQL
   ) {}
 
@@ -38,6 +40,13 @@ export class DBService {
 
   UpdateCompany(company: Company): Observable<any> {
     const obs: Observable<any> = this.updateCompanyGQL.mutate({
+      ...company,
+    });
+    return obs;
+  }
+
+  CreateCompany(company: Company): Observable<any> {
+    const obs: Observable<any> = this.createCompanyGQL.mutate({
       ...company,
     });
     return obs;
