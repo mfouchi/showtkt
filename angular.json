@@ -39,7 +39,11 @@
               "node_modules/prismjs/prism.js",
               "node_modules/quill/dist/quill.js"
             ],
-            "allowedCommonJsDependencies": ["lodash"]
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "graphql-tag",
+              "zen-observable"
+            ]
           },
           "configurations": {
             "production": {
