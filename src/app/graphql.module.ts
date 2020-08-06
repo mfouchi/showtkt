@@ -16,7 +16,8 @@ const link = onError(({ graphQLErrors, networkError }) => {
     });
   }
   if (networkError) {
-    console.error(`[Network error]: ${networkError}`);
+    console.error("[Network error]:");
+    console.dir(networkError);
   }
 });
 

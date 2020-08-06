@@ -10,15 +10,14 @@ import { Company } from "../models/models";
   providers: [MessageService],
 })
 export class CompaniesComponent implements OnInit, OnDestroy {
+  private querySubscription: Subscription;
   displayDialog: boolean;
   company: Company = <Company>{};
   selectedCompany: Company = <Company>{};
   companies: Company[];
-  private querySubscription: Subscription;
   newCompany: boolean;
   cols: any[];
   loading: boolean = false;
-  error: any;
 
   constructor(
     private breadcrumbService: BreadcrumbService,
@@ -60,9 +59,8 @@ export class CompaniesComponent implements OnInit, OnDestroy {
     try {
       if (this.company.id) {
         //update
-        this.querySubscription = this.db
-          .UpdateCompany(this.company)
-          .subscribe((data) => {
+        this.querySubscription = this.db.UpdateCompany(this.company).subscribe(
+          (data) => {
             this.companies = [...this.companies];
             this.company = null;
             this.displayDialog = false;
@@ -72,12 +70,20 @@ export class CompaniesComponent implements OnInit, OnDestroy {
               summary: "Success",
               detail: "Company updated successfully",
             });
-          });
+          },
+          (err) => {
+            this.messageService.add({
+              key: "tc",
+              severity: "error",
+              summary: "Error",
+              detail: "Error updating company",
+            });
+          }
+        );
       } else {
         //add new
-        this.querySubscription = this.db
-          .CreateCompany(this.company)
-          .subscribe(({ data }) => {
+        this.querySubscription = this.db.CreateCompany(this.company).subscribe(
+          ({ data }) => {
             this.companies = [data.createOneCompany, ...this.companies];
             this.selectedCompany = this.company;
             this.company = null;
@@ -88,7 +94,16 @@ export class CompaniesComponent implements OnInit, OnDestroy {
               summary: "Success",
               detail: "Company added successfully",
             });
-          });
+          },
+          (err) => {
+            this.messageService.add({
+              key: "tc",
+              severity: "error",
+              summary: "Error",
+              detail: "Error adding company",
+            });
+          }
+        );
       }
     } catch (err) {
       console.log(err);

@@ -15,6 +15,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { MegaMenuModule } from "primeng/megamenu";
 import { MenubarModule } from "primeng/menubar";
 import { MenuModule } from "primeng/menu";
+import { MessageModule } from "primeng/message";
 import { MultiSelectModule } from "primeng/multiselect";
 import { PasswordModule } from "primeng/password";
 import { TableModule } from "primeng/table";
@@ -65,6 +66,7 @@ import { CompaniesComponent } from "./demo/view/companies.component";
     MegaMenuModule,
     MenuModule,
     MenubarModule,
+    MessageModule,
     MultiSelectModule,
     PasswordModule,
     TableModule,

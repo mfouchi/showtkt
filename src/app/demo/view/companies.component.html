@@ -4,13 +4,6 @@
     <div class="card" style="max-width: 100rem; margin: 0 auto;">
       <h1>ShowTkt Companies</h1>
 
-      <div *ngIf="loading">
-        Loading...
-      </div>
-      <div *ngIf="error">
-        Error :(
-      </div>
-
       <p-table
         #dt
         [columns]="cols"
@@ -90,7 +83,18 @@
             <label for="name">Name</label>
           </div>
           <div class="p-col-8">
-            <input pInputText id="name" [(ngModel)]="company.name" autofocus />
+            <input
+              pInputText
+              id="name"
+              #name="ngModel"
+              [(ngModel)]="company.name"
+              required
+            />
+            <p-message
+              *ngIf="name.invalid && (name.dirty || name.touched)"
+              severity="error"
+              text="Field is required"
+            ></p-message>
           </div>
           <div class="p-col-4">
             <label for="city">City</label>
