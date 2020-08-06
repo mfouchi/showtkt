@@ -5,7 +5,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloLink } from "apollo-link";
 import { onError } from "apollo-link-error";
 
-const uri = "http://localhost:4000"; // <-- add the URL of the GraphQL server here
+const uri = "http://localhost:4000/graphql"; // <-- add the URL of the GraphQL server here
 
 const link = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {

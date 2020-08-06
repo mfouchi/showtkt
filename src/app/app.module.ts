@@ -93,18 +93,7 @@ import { CompaniesComponent } from "./demo/view/companies.component";
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    {
-      provide: APOLLO_OPTIONS,
-      useFactory: (httpLink: HttpLink) => {
-        return {
-          cache: new InMemoryCache(),
-          link: httpLink.create({
-            uri: "http://localhost:4000/graphql",
-          }),
-        };
-      },
-      deps: [HttpLink],
-    },
+    GraphQLModule,
     BreadcrumbService,
     MenuService,
   ],
