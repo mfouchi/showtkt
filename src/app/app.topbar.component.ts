@@ -10,7 +10,7 @@ import { AppMainComponent } from "./app.main.component";
           <div class="layout-topbar-logo-wrapper">
             <a href="#" class="layout-topbar-logo">
               <img
-                src="assets/layout/images/logo-mirage@2x.png"
+                src="assets/layout/images/logo-showtkt.png"
                 alt="mirage-layout"
               />
               <span class="app-name">ShowTkt</span>
@@ -30,7 +30,7 @@ import { AppMainComponent } from "./app.main.component";
             class="megamenu-mobile-button"
             (click)="app.onMegaMenuMobileButtonClick($event)"
           >
-            <i class="pi pi-align-right megamenu-icon"></i>
+            <i class="pi pi-star megamenu-icon"></i>
           </a>
 
           <a
@@ -47,8 +47,8 @@ import { AppMainComponent } from "./app.main.component";
               href="#"
               (click)="app.onMegaMenuButtonClick($event)"
             >
-              <i class="pi pi-comment"></i>
-              Mega Menu
+              <i class="pi pi-star"></i>
+              Favorites
             </a>
             <ul
               class="layout-megamenu"
