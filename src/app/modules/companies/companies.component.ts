@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { BreadcrumbService } from "src/app/breadcrumb.service";
 import { Subscription } from "rxjs";
-import { DBService } from "../service/db-service";
+import { DBService } from "../../data/service/db-service";
 import { MessageService } from "primeng/api";
-import { Company } from "../models/models";
+import { Company } from "../../data/models/models";
 
 @Component({
   templateUrl: "./companies.component.html",

@@ -43,13 +43,12 @@ import { MenuService } from "./app.menu.service";
 import { AuthComponent } from "./auth/auth.component";
 
 // Apollo GraphQL services
-import { ApolloModule, APOLLO_OPTIONS } from "apollo-angular";
-import { HttpLinkModule, HttpLink } from "apollo-angular-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { ApolloModule } from "apollo-angular";
+import { HttpLinkModule } from "apollo-angular-link-http";
 import { GraphQLModule } from "./graphql.module";
 
 // ShowTkt pages
-import { CompaniesComponent } from "./demo/view/companies.component";
+import { CompaniesComponent } from "./modules/companies/companies.component";
 
 @NgModule({
   imports: [

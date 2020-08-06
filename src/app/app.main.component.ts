@@ -30,7 +30,7 @@ import {
   ],
 })
 export class AppMainComponent {
-  horizontalMenu: boolean = true;
+  horizontalMenu: boolean = false;
 
   darkMode = false;
 

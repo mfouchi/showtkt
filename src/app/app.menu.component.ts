@@ -18,6 +18,11 @@ export class AppMenuComponent implements OnInit {
         routerLink: ["/"],
       },
       {
+        label: "Companies",
+        icon: "pi pi-fw pi-sitemap",
+        routerLink: ["/companies"],
+      },
+      {
         label: "Productions",
         icon: "pi pi-fw pi-star",
         routerLink: ["/productions"],
@@ -25,12 +30,12 @@ export class AppMenuComponent implements OnInit {
       {
         label: "Orders",
         icon: "pi pi-fw pi-money-bill",
-        url: ["/"],
+        url: ["/orders"],
       },
       {
         label: "Help",
         icon: "pi pi-fw pi-file",
-        routerLink: ["/"],
+        routerLink: ["/help"],
       },
     ];
   }
