@@ -358,8 +358,8 @@ import { AppMainComponent } from "./app.main.component";
                   />
                 </span>
                 <span class="profile-info-wrapper">
-                  <h3>Olivia Eklund</h3>
-                  <span>Design</span>
+                  <h3>Marc Fouchi</h3>
+                  <span>Super Admin</span>
                 </span>
               </a>
               <ul class="profile-item-submenu fadeInDown">
@@ -441,8 +441,8 @@ import { AppMainComponent } from "./app.main.component";
                   />
                 </span>
                 <span class="profile-info-wrapper">
-                  <h3>Olivia Eklund</h3>
-                  <span>Design</span>
+                  <h3>Marc Fouchi</h3>
+                  <span>Super Admin</span>
                 </span>
               </a>
               <ul class="fadeInDown">
@@ -460,8 +460,8 @@ import { AppMainComponent } from "./app.main.component";
                       alt="mirage-layout"
                       width="45"
                     />
-                    <h1>Olivia Eklund</h1>
-                    <span>Design</span>
+                    <h1>Marc Fouchi</h1>
+                    <span>Super Admin</span>
                   </div>
                 </li>
                 <li>
