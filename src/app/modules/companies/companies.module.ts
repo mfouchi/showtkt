@@ -12,7 +12,6 @@ import { DialogModule } from "primeng/dialog";
 import { InputTextModule } from "primeng/inputtext";
 import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
-import { ToastModule } from "primeng/toast";
 
 @NgModule({
   declarations: [CompaniesComponent],
@@ -24,7 +23,6 @@ import { ToastModule } from "primeng/toast";
     InputTextModule,
     MessageModule,
     TableModule,
-    ToastModule,
     SharedModule,
   ],
   exports: [CompaniesComponent],
