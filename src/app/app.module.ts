@@ -9,18 +9,12 @@ import { AppRoutes } from "./app.routes";
 // PrimeNG Components
 import { ButtonModule } from "primeng/button";
 import { CheckboxModule } from "primeng/checkbox";
-import { DialogModule } from "primeng/dialog";
 import { DropdownModule } from "primeng/dropdown";
-import { InputTextModule } from "primeng/inputtext";
 import { MegaMenuModule } from "primeng/megamenu";
 import { MenubarModule } from "primeng/menubar";
 import { MenuModule } from "primeng/menu";
-import { MessageModule } from "primeng/message";
-import { MultiSelectModule } from "primeng/multiselect";
 import { PasswordModule } from "primeng/password";
-import { TableModule } from "primeng/table";
 import { TabViewModule } from "primeng/tabview";
-import { ToastModule } from "primeng/toast";
 
 // Application Components
 import { AppComponent } from "./app.component";
@@ -45,10 +39,10 @@ import { AuthComponent } from "./auth/auth.component";
 // Apollo GraphQL services
 import { ApolloModule } from "apollo-angular";
 import { HttpLinkModule } from "apollo-angular-link-http";
-import { GraphQLModule } from "./graphql.module";
+import { GraphQLModule } from "./data/graphql/graphql.module";
 
 // ShowTkt pages
-import { CompaniesComponent } from "./modules/companies/companies.component";
+import { DashboardComponent } from "@modules/dashboard/dashboard.component";
 
 @NgModule({
   imports: [
@@ -59,18 +53,12 @@ import { CompaniesComponent } from "./modules/companies/companies.component";
     BrowserAnimationsModule,
     ButtonModule,
     CheckboxModule,
-    DialogModule,
     DropdownModule,
-    InputTextModule,
     MegaMenuModule,
     MenuModule,
     MenubarModule,
-    MessageModule,
-    MultiSelectModule,
     PasswordModule,
-    TableModule,
     TabViewModule,
-    ToastModule,
     GraphQLModule,
     ApolloModule,
     HttpLinkModule,
@@ -89,8 +77,8 @@ import { CompaniesComponent } from "./modules/companies/companies.component";
     AppErrorComponent,
     AppAccessdeniedComponent,
     AppLoginComponent,
-    CompaniesComponent,
     AuthComponent,
+    DashboardComponent,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

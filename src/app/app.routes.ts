@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from "@angular/router";
 import { ModuleWithProviders } from "@angular/core";
-import { CompaniesComponent } from "./modules/companies/companies.component";
+import { DashboardComponent } from "@modules/dashboard/dashboard.component";
 import { AppMainComponent } from "./layout/app.main.component";
 import { AppNotfoundComponent } from "./pages/app.notfound.component";
 import { AppErrorComponent } from "./pages/app.error.component";
@@ -13,8 +13,14 @@ export const routes: Routes = [
     path: "",
     component: AppMainComponent,
     children: [
-      { path: "", component: CompaniesComponent },
-      { path: "companies", component: CompaniesComponent },
+      { path: "", component: DashboardComponent },
+      {
+        path: "companies",
+        loadChildren: () =>
+          import("@modules/companies/companies.module").then(
+            (m) => m.CompaniesModule
+          ),
+      },
     ],
   },
   { path: "error", component: AppErrorComponent },
