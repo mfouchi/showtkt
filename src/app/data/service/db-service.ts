@@ -10,8 +10,6 @@ import {
 } from "../../../generated/graphql";
 import { Company } from "../models/models";
 
-import { isCompositeType } from "graphql";
-
 @Injectable({
   providedIn: "root",
 })

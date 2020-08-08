@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from "@angular/router";
 import { ModuleWithProviders } from "@angular/core";
 import { CompaniesComponent } from "./modules/companies/companies.component";
-import { AppMainComponent } from "./app.main.component";
+import { AppMainComponent } from "./layout/app.main.component";
 import { AppNotfoundComponent } from "./pages/app.notfound.component";
 import { AppErrorComponent } from "./pages/app.error.component";
 import { AppAccessdeniedComponent } from "./pages/app.accessdenied.component";

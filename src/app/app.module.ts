@@ -24,22 +24,22 @@ import { ToastModule } from "primeng/toast";
 
 // Application Components
 import { AppComponent } from "./app.component";
-import { AppMainComponent } from "./app.main.component";
+import { AppMainComponent } from "./layout/app.main.component";
 import { AppNotfoundComponent } from "./pages/app.notfound.component";
 import { AppErrorComponent } from "./pages/app.error.component";
 import { AppAccessdeniedComponent } from "./pages/app.accessdenied.component";
 import { AppLoginComponent } from "./pages/app.login.component";
-import { AppMenuComponent } from "./app.menu.component";
-import { AppMenuitemComponent } from "./app.menuitem.component";
-import { AppBreadcrumbComponent } from "./app.breadcrumb.component";
-import { AppConfigComponent } from "./app.config.component";
-import { AppRightPanelComponent } from "./app.rightpanel.component";
-import { AppTopBarComponent } from "./app.topbar.component";
-import { AppFooterComponent } from "./app.footer.component";
+import { AppMenuComponent } from "./layout/menu/app.menu.component";
+import { AppMenuitemComponent } from "./layout/menu/app.menuitem.component";
+import { AppBreadcrumbComponent } from "./layout/breadcrumb/app.breadcrumb.component";
+import { AppConfigComponent } from "./layout/config/app.config.component";
+import { AppRightPanelComponent } from "./layout/rightpanel/app.rightpanel.component";
+import { AppTopBarComponent } from "./layout/topbar/app.topbar.component";
+import { AppFooterComponent } from "./layout/footer/app.footer.component";
 
 // Application services
-import { BreadcrumbService } from "./breadcrumb.service";
-import { MenuService } from "./app.menu.service";
+import { BreadcrumbService } from "./layout/breadcrumb/breadcrumb.service";
+import { MenuService } from "./layout/menu/app.menu.service";
 import { AuthComponent } from "./auth/auth.component";
 
 // Apollo GraphQL services

@@ -1,5 +1,5 @@
 import { Component, Renderer2 } from "@angular/core";
-import { MenuService } from "./app.menu.service";
+import { MenuService } from "./menu/app.menu.service";
 import {
   trigger,
   state,
