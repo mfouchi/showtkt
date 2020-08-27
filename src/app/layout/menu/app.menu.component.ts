@@ -23,6 +23,11 @@ export class AppMenuComponent implements OnInit {
         routerLink: ["/companies"],
       },
       {
+        label: "Producers",
+        icon: "pi pi-fw pi-users",
+        routerLink: ["/producers"],
+      },
+      {
         label: "Productions",
         icon: "pi pi-fw pi-star",
         routerLink: ["/productions"],

@@ -21,6 +21,13 @@ export const routes: Routes = [
             (m) => m.CompaniesModule
           ),
       },
+      {
+        path: "producers",
+        loadChildren: () =>
+          import("@modules/producers/producers.module").then(
+            (m) => m.ProducersModule
+          ),
+      },
     ],
   },
   { path: "error", component: AppErrorComponent },
