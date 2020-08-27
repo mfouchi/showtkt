@@ -45,7 +45,7 @@ export class CompaniesComponent implements OnInit, OnDestroy {
 
   onRowSelect(event) {
     this.newCompany = false;
-    this.company = event.data;
+    this.company = { ...event.data };
     this.displayDialog = true;
   }
 
