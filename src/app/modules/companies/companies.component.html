@@ -91,7 +91,7 @@
               required
             />
             <p-message
-              *ngIf="name.invalid && (name.dirty || name.touched)"
+              *ngIf="submitted && name.invalid"
               severity="error"
               text="Field is required"
             ></p-message>
