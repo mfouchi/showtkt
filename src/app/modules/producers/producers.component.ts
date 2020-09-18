@@ -9,7 +9,7 @@ import { Producer } from "@data/models/models";
   templateUrl: "./producers.component.html",
   providers: [MessageService],
 })
-export class CompaniesComponent implements OnInit, OnDestroy {
+export class ProducersComponent implements OnInit, OnDestroy {
   private querySubscription: Subscription;
   displayDialog: boolean;
   producer: Producer = <Producer>{};
@@ -26,20 +26,16 @@ export class CompaniesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.breadcrumbService.setItems([{ label: "Companies" }]);
+    this.breadcrumbService.setItems([{ label: "Producers" }]);
 
-    this.cols = [
-      { field: "name", header: "Name", width: "50%" },
-      { field: "city", header: "City", width: "25%" },
-      { field: "state", header: "State", width: "25%" },
-    ];
+    this.cols = [{ field: "name", header: "Name", width: "100%" }];
 
-    this.querySubscription = this.db
-      .GetCompanies()
-      .subscribe(({ data, loading }) => {
-        this.loading = loading;
-        this.companies = data.companies;
-      });
+    // this.querySubscription = this.db
+    //   .GetCompanies()
+    //   .subscribe(({ data, loading }) => {
+    //     this.loading = loading;
+    //     this.companies = data.companies;
+    //   });
   }
 
   onRowSelect(event) {
@@ -115,6 +111,6 @@ export class CompaniesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.querySubscription.unsubscribe();
+    // this.querySubscription.unsubscribe();
   }
 }

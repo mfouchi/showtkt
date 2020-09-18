@@ -19,6 +19,7 @@ export class CompaniesComponent implements OnInit, OnDestroy {
   newCompany: boolean;
   cols: any[];
   loading: boolean = false;
+  submitted: boolean;
 
   constructor(
     private breadcrumbService: BreadcrumbService,
@@ -45,7 +46,7 @@ export class CompaniesComponent implements OnInit, OnDestroy {
 
   onRowSelect(event) {
     this.newCompany = false;
-    this.company = event.data;
+    this.company = { ...event.data };
     this.displayDialog = true;
   }
 
@@ -53,58 +54,67 @@ export class CompaniesComponent implements OnInit, OnDestroy {
     this.selectedCompany = <Company>{};
     this.newCompany = true;
     this.company = <Company>{};
+    this.submitted = false;
     this.displayDialog = true;
   }
 
   save() {
+    this.submitted = true;
+
     try {
-      if (this.company.id) {
-        //update
-        this.querySubscription = this.db.UpdateCompany(this.company).subscribe(
-          (data) => {
-            this.companies = [...this.companies];
-            this.company = null;
-            this.displayDialog = false;
-            this.messageService.add({
-              key: "tc",
-              severity: "success",
-              summary: "Success",
-              detail: "Company updated successfully",
-            });
-          },
-          (err) => {
-            this.messageService.add({
-              key: "tc",
-              severity: "error",
-              summary: "Error",
-              detail: "Error updating company",
-            });
-          }
-        );
-      } else {
-        //add new
-        this.querySubscription = this.db.CreateCompany(this.company).subscribe(
-          ({ data }) => {
-            this.companies = [data.createOneCompany, ...this.companies];
-            this.selectedCompany = this.company;
-            this.company = null;
-            this.displayDialog = false;
-            this.messageService.add({
-              key: "tc",
-              severity: "success",
-              summary: "Success",
-              detail: "Company added successfully",
-            });
-          },
-          (err) => {
-            this.messageService.add({
-              key: "tc",
-              severity: "error",
-              summary: "Error",
-              detail: "Error adding company",
-            });
-          }
-        );
+      if (this.company.name.trim()) {
+        if (this.company.id) {
+          //update
+          this.querySubscription = this.db
+            .UpdateCompany(this.company)
+            .subscribe(
+              (data) => {
+                this.companies = [...this.companies];
+                this.company = null;
+                this.displayDialog = false;
+                this.messageService.add({
+                  key: "tc",
+                  severity: "success",
+                  summary: "Success",
+                  detail: "Company updated successfully",
+                });
+              },
+              (err) => {
+                this.messageService.add({
+                  key: "tc",
+                  severity: "error",
+                  summary: "Error",
+                  detail: "Error updating company",
+                });
+              }
+            );
+        } else {
+          //add new
+          this.querySubscription = this.db
+            .CreateCompany(this.company)
+            .subscribe(
+              ({ data }) => {
+                this.companies = [data.createOneCompany, ...this.companies];
+                this.selectedCompany = this.company;
+                this.company = null;
+                this.displayDialog = false;
+                this.messageService.add({
+                  key: "tc",
+                  severity: "success",
+                  summary: "Success",
+                  detail: "Company added successfully",
+                });
+              },
+              (err) => {
+                this.messageService.add({
+                  key: "tc",
+                  severity: "error",
+                  summary: "Error",
+                  detail: "Error adding company",
+                });
+              }
+            );
+        }
       }
     } catch (err) {
       console.log(err);

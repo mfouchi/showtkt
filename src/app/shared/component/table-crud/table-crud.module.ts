@@ -2,8 +2,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
 import { SharedModule } from "@app/shared/shared.module";
-import { CompaniesComponent } from "./companies.component";
-import { CompaniesRoutingModule } from "./companies-routing.module";
+import { TableCrudComponent } from "./table-crud.component";
 
 // PrimeNG Components
 import { ButtonModule } from "primeng/button";
@@ -13,9 +12,8 @@ import { MessageModule } from "primeng/message";
 import { TableModule } from "primeng/table";
 
 @NgModule({
-  declarations: [CompaniesComponent],
+  declarations: [TableCrudComponent],
   imports: [
-    CompaniesRoutingModule,
     ButtonModule,
     DialogModule,
     FormsModule,
@@ -24,6 +22,6 @@ import { TableModule } from "primeng/table";
     TableModule,
     SharedModule,
   ],
-  exports: [CompaniesComponent],
+  exports: [TableCrudComponent],
 })
-export class CompaniesModule {}
+export class TableCrudModule {}
