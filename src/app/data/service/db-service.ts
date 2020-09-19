@@ -1,52 +1,42 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import {
-  CompaniesGQL,
-  CompanyGQL,
-  UpdateCompanyGQL,
-  CompaniesCountGQL,
-  CreateCompanyGQL,
-} from "../../../generated/graphql";
+import { HttpClient } from "@angular/common/http";
+import { OktaAuthService } from "@okta/okta-angular";
+import { environment } from "environments/environment";
 import { Company } from "../models/models";
 
 @Injectable({
   providedIn: "root",
 })
 export class DBService {
-  constructor(
-    private companiesGQL: CompaniesGQL,
-    private companyGQL: CompanyGQL,
-    private updateCompanyGQL: UpdateCompanyGQL,
-    private createCompanyGQL: CreateCompanyGQL,
-    private companiesCountGQL: CompaniesCountGQL
-  ) {}
+  constructor(private http: HttpClient, public oktaAuth: OktaAuthService) {}
 
-  GetCompanies(): Observable<any> {
-    return this.companiesGQL.watch().valueChanges;
-  }
+  private async request(method: string, url: string, data?: any) {
+    //const token = await this.oktaAuth.getAccessToken();
 
-  GetCompany(id: number): Observable<any> {
-    return this.companyGQL
-      .watch()
-      .valueChanges.pipe(map((result) => result.data.company));
-  }
-
-  CountCompanies(): Observable<any> {
-    return this.companiesCountGQL.watch().valueChanges;
-  }
-
-  UpdateCompany(company: Company): Observable<any> {
-    const obs: Observable<any> = this.updateCompanyGQL.mutate({
-      ...company,
+    const result = this.http.request(method, url, {
+      body: data,
+      responseType: "json",
+      observe: "body",
+      headers: {
+        //   Authorization: `Bearer ${token}`,
+      },
     });
-    return obs;
+    return new Promise((resolve, reject) => {
+      result.subscribe(resolve, reject);
+    });
   }
 
-  CreateCompany(company: Company): Observable<any> {
-    const obs: Observable<any> = this.createCompanyGQL.mutate({
-      ...company,
-    });
-    return obs;
+  GetCompanies(): Promise<any> {
+    return this.request("GET", `${environment.serverUrl}/company`);
   }
+
+  GetCompany(id: number) {}
+
+  CountCompanies(company: Company) {}
+
+  UpdateCompany(company: Company) {}
+
+  CreateCompany(company: Company) {}
 }

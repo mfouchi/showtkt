@@ -36,12 +36,25 @@ export class CompaniesComponent implements OnInit, OnDestroy {
       { field: "state", header: "State", width: "25%" },
     ];
 
-    this.querySubscription = this.db
-      .GetCompanies()
-      .subscribe(({ data, loading }) => {
-        this.loading = loading;
-        this.companies = data.companies;
+    this.getCompanies();
+    // this.querySubscription = this.db
+    //   .GetCompanies()
+    //   .subscribe(({ data, loading }) => {
+    //     this.loading = loading;
+    //     this.companies = data.companies;
+    //   });
+  }
+
+  private getCompanies() {
+    this.db.GetCompanies().then((response: any) => {
+      console.log("Response", response);
+      this.companies = response.map((ev) => {
+        // ev.body = ev.description;
+        // ev.header = ev.name;
+        // ev.icon = 'fa-clock-o';
+        return ev;
       });
+    });
   }
 
   onRowSelect(event) {
@@ -61,64 +74,64 @@ export class CompaniesComponent implements OnInit, OnDestroy {
   save() {
     this.submitted = true;
 
-    try {
-      if (this.company.name.trim()) {
-        if (this.company.id) {
-          //update
-          this.querySubscription = this.db
-            .UpdateCompany(this.company)
-            .subscribe(
-              (data) => {
-                this.companies = [...this.companies];
-                this.company = null;
-                this.displayDialog = false;
-                this.messageService.add({
-                  key: "tc",
-                  severity: "success",
-                  summary: "Success",
-                  detail: "Company updated successfully",
-                });
-              },
-              (err) => {
-                this.messageService.add({
-                  key: "tc",
-                  severity: "error",
-                  summary: "Error",
-                  detail: "Error updating company",
-                });
-              }
-            );
-        } else {
-          //add new
-          this.querySubscription = this.db
-            .CreateCompany(this.company)
-            .subscribe(
-              ({ data }) => {
-                this.companies = [data.createOneCompany, ...this.companies];
-                this.selectedCompany = this.company;
-                this.company = null;
-                this.displayDialog = false;
-                this.messageService.add({
-                  key: "tc",
-                  severity: "success",
-                  summary: "Success",
-                  detail: "Company added successfully",
-                });
-              },
-              (err) => {
-                this.messageService.add({
-                  key: "tc",
-                  severity: "error",
-                  summary: "Error",
-                  detail: "Error adding company",
-                });
-              }
-            );
-        }
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   if (this.company.name.trim()) {
+    //     if (this.company.id) {
+    //       //update
+    //       this.querySubscription = this.db
+    //         .UpdateCompany(this.company)
+    //         .subscribe(
+    //           (data) => {
+    //             this.companies = [...this.companies];
+    //             this.company = null;
+    //             this.displayDialog = false;
+    //             this.messageService.add({
+    //               key: "tc",
+    //               severity: "success",
+    //               summary: "Success",
+    //               detail: "Company updated successfully",
+    //             });
+    //           },
+    //           (err) => {
+    //             this.messageService.add({
+    //               key: "tc",
+    //               severity: "error",
+    //               summary: "Error",
+    //               detail: "Error updating company",
+    //             });
+    //           }
+    //         );
+    //     } else {
+    //       //add new
+    //       this.querySubscription = this.db
+    //         .CreateCompany(this.company)
+    //         .subscribe(
+    //           ({ data }) => {
+    //             this.companies = [data.createOneCompany, ...this.companies];
+    //             this.selectedCompany = this.company;
+    //             this.company = null;
+    //             this.displayDialog = false;
+    //             this.messageService.add({
+    //               key: "tc",
+    //               severity: "success",
+    //               summary: "Success",
+    //               detail: "Company added successfully",
+    //             });
+    //           },
+    //           (err) => {
+    //             this.messageService.add({
+    //               key: "tc",
+    //               severity: "error",
+    //               summary: "Error",
+    //               detail: "Error adding company",
+    //             });
+    //           }
+    //         );
+    //     }
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
   }
 
   ngOnDestroy() {

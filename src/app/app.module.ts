@@ -36,13 +36,17 @@ import { BreadcrumbService } from "@app/layout/breadcrumb/breadcrumb.service";
 import { MenuService } from "@app/layout/menu/app.menu.service";
 import { AuthComponent } from "@app/auth/auth.component";
 
-// Apollo GraphQL services
-import { ApolloModule } from "apollo-angular";
-import { HttpLinkModule } from "apollo-angular-link-http";
-import { GraphQLModule } from "@data/graphql/graphql.module";
+import { OKTA_CONFIG, OktaAuthModule } from "@okta/okta-angular";
 
 // ShowTkt pages
 import { DashboardComponent } from "@modules/dashboard/dashboard.component";
+
+const oktaConfig = {
+  issuer: 'https://dev-142370.okta.com/oauth2/default"',
+  redirectUri: "http://localhost:4200/implicit/callback",
+  clientId: "0oazif52chfkfvGW14x6",
+  pkce: true,
+};
 
 @NgModule({
   imports: [
@@ -59,9 +63,7 @@ import { DashboardComponent } from "@modules/dashboard/dashboard.component";
     MenubarModule,
     PasswordModule,
     TabViewModule,
-    GraphQLModule,
-    ApolloModule,
-    HttpLinkModule,
+    OktaAuthModule,
   ],
   declarations: [
     AppComponent,
@@ -81,8 +83,8 @@ import { DashboardComponent } from "@modules/dashboard/dashboard.component";
     DashboardComponent,
   ],
   providers: [
+    { provide: OKTA_CONFIG, useValue: oktaConfig },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    GraphQLModule,
     BreadcrumbService,
     MenuService,
   ],

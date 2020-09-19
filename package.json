@@ -26,6 +26,7 @@
     "@fullcalendar/interaction": "4.0.2",
     "@fullcalendar/timegrid": "4.0.1",
     "@ngrx/store": "^9.2.0",
+    "@okta/okta-angular": "^2.2.0",
     "apollo-angular": "^1.10.0",
     "apollo-angular-link-http": "^1.11.0",
     "apollo-cache-inmemory": "^1.6.0",

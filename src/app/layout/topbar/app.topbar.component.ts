@@ -407,7 +407,6 @@ import { AppMainComponent } from "@app/layout/app.main.component";
                 </li>
                 <li class="layout-submenu-footer">
                   <button class="signout-button">Sign Out</button>
-                  <button class="buy-mirage-button">Buy Mirage</button>
                 </li>
               </ul>
             </li>
